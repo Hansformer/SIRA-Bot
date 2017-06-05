@@ -11,29 +11,29 @@ debug=False
 from config import *
 
 client = discord.Client()
+chan = None
 
 @client.event
 @asyncio.coroutine
 def on_ready():
     print(client.user.name)
     print(client.user.id)
-    print(client.servers)
-
+    print('--------------')
+    print('I live')
 
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    channel = message.channel
-    if message.content.startswith('*bombs u*'):
-        yield from client.send_message(message.channel,
+    if message.channel.name == 'sira-bot-playground':
+        chan = message.channel
+        if message.content.startswith('*bombs u*'):
+            yield from client.send_message(chan,
                                             'Space IRA will be free!')
-    if message.content.contains('<@319826689729232897>'):
-        yield from client.send_message(message.channel,
+        if message.content.startswith('<@319826689729232897>'):
+            yield from client.send_message(chan,
                                         'You mentioned me')
     if debug:
-        print("New message in: %s: %s" % (message.channel, message.content))
-        print(channel)
-        yield from client.send_message(channel, 'fucking kill me already')
+        print("New message in: %s: %s" % (message.channel.name, message.content))
 
 client.login(username, password)
 client.run(token)
