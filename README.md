@@ -6,7 +6,9 @@
 
 **Requisites**
 - python -m pip install -U discord.py
+
 [Check here](https://github.com/Rapptz/discord.py)
 
 **Usage**
+
 $ python3 init.py
