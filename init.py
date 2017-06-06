@@ -31,7 +31,7 @@ def on_message(message):
                                             'Space IRA will be free!')
         if message.content.startswith('<@319826689729232897>'):
             yield from client.send_message(chan,
-                                        'You mentioned me')
+                                            'You mentioned me')
     if debug:
         print("New message in: %s: %s" % (message.channel.name, message.content))
 
