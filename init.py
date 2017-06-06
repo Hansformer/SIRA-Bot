@@ -13,6 +13,7 @@ from config import *
 client = discord.Client()
 chan = None
 
+
 @client.event
 @asyncio.coroutine
 def on_ready():
@@ -21,6 +22,7 @@ def on_ready():
     print('--------------')
     print('I live')
 
+
 @client.event
 @asyncio.coroutine
 def on_message(message):
@@ -28,10 +30,10 @@ def on_message(message):
         chan = message.channel
         if message.content.startswith('*bombs u*'):
             yield from client.send_message(chan,
-                                            'Space IRA will be free!')
+                                           'Space IRA will be free!')
         if message.content.startswith('<@319826689729232897>'):
             yield from client.send_message(chan,
-                                            'You mentioned me')
+                                           'You mentioned me')
     if debug:
         print("New message in: %s: %s" % (message.channel.name, message.content))
 
