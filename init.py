@@ -3,6 +3,8 @@ import discord
 import asyncio
 import re
 import pendulum
+import aiohttp
+import json
 
 # discord api config
 '''
@@ -10,19 +12,33 @@ Create a local configuration file (config.py) with the following:
 username = "String value"
 password = "String value"
 token = "String value"
-debug = False
+debug = Boolean
+tzone = "String value"
+tformat = "String value"
 '''
 from config import *
 
 # var defs
 client = discord.Client()
 chan = None
+sstatus = None
+smsg = None
 
 
 def get_time():
     zone = pendulum.timezone(tzone)
     stamp = pendulum.now(zone).strftime(tformat)
     return stamp
+
+
+@asyncio.coroutine
+def check_server():
+    async with aiohttp.ClientSession() as session:
+        async with session.get('https://www.edsm.net/api-status-v1/elite-server') as resp:
+            api = yield from resp.json()
+            sstatus = api['type']
+            smsg = api['message']
+            return sstatus, smsg 
 
 
 # login routine
@@ -76,6 +92,43 @@ def on_message(message):
     tstamp = get_time()
     chan = message.channel
     x = message.content.lower()
+
+    if message.content.startswith('!'):
+        try:
+            command, parameter = message.content[1:].split(' ', 1)
+        except ValueError:
+            command = message.content[1:]
+            parameter = None
+
+        # admin commands
+        if(message.author.id == '189890760873738240' or
+           message.author.id == '156405315976429568'
+           ):
+            
+            if command in ['botkill', 'kill', 'close', 'end', 'ded', 'rip',
+                'makeded', 'fuckoff']:
+
+                # send a message and kill the script
+                print("[%s] SIRA Bot disengaged." % tstamp)
+                chan = client.get_channel('348971376750886912')
+                yield from client.send_message(
+                    chan,
+                    'SIRA Bot signing off. <:o7:308408906344824852>')
+                yield from client.close()
+
+            # idle
+            if command in ['rest', 'idle', 'recharge']:
+                yield from client.change_presence(
+                    game=discord.Game(name='recharging'),
+                    status=discord.Status('idle'),
+                    afk=True)
+
+            # vision
+            if command in ['vision']:
+                yield from client.change_presence(
+                    game=discord.Game(name='v i s i o n'),
+                    status=discord.Status('online'),
+                    afk=False)
 
     # no self reactions
     if message.author.id != '319826689729232897':
@@ -136,39 +189,22 @@ def on_message(message):
             chan,
             'SOON:tm: <:smiling_man:332954734975647754>')
 
-    # admin commands
-    if(message.author.id == '189890760873738240' or
-       message.author.id == '156405315976429568'
-       ):
-
-        # kill/close
-        if(message.content.startswith('!botkill') or
-           message.content.startswith('!kill') or
-           message.content.startswith('!close') or
-           message.content.startswith('!end')
-           ):
-
-            # send a message and kill the script
-            print("[%s] SIRA Bot disengaged." % ts)
-            chan = client.get_channel('348971376750886912')
+    # server status
+    if message.content.startswith('!server'):
+        sstatus, smsg = check_server()
+        if sstatus == 'success':
             yield from client.send_message(
                 chan,
-                'SIRA Bot signing off. <:o7:308408906344824852>')
-            yield from client.close()
-
-        # idle
-        if message.content.startswith('!rest'):
-            yield from client.change_presence(
-                game=discord.Game(name='recharging'),
-                status=discord.Status('idle'),
-                afk=True)
-
-        # vision
-        if message.content.startswith('!vision'):
-            yield from client.change_presence(
-                game=discord.Game(name='v i s i o n'),
-                status=discord.Status('online'),
-                afk=False)
+                'FDev says "%s". :ok_hand:' % smsg)
+        elif sstatus == 'warning':
+            yield from client.send_message(
+                chan,
+                ':warning: FDev says "%s".' % smsg)
+        elif sstatus == 'danger':
+            yield from client.send_message(
+                chan,
+                ':fire: "%s". Sandro tripped over the server cords again.' 
+                % smsg)
 
     # if debug is enabled print a message log in the console
     if debug:
