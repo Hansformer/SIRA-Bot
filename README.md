@@ -12,3 +12,4 @@
 **Usage**
 
 $ python3 init.py
+Windows: python init.py
