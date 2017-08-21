@@ -17,21 +17,26 @@ from config import *
 # var defs
 client = discord.Client()
 chan = None
-tz = pendulum.timezone(timezone)
+
+
+def get_time():
+    zone = pendulum.timezone(tzone)
+    stamp = pendulum.now(zone).strftime(tformat)
+    return stamp
 
 
 # login routine
 @client.event
 @asyncio.coroutine
 def on_ready():
-    ts = pendulum.now(tz).strftime(tsf)
+    tstamp = get_time()
     # print some console info
-    print("[%s] Initializing SIRA Bot..." % ts)
+    print("[%s] Initializing SIRA Bot..." % tstamp)
     print('-----INFO-----')
     print(client.user.name)
     print(client.user.id)
     print('--------------')
-    print("[%s] It lives." % (ts))
+    print("[%s] It lives." % (tstamp))
     # send a message
     chan = client.get_channel('348971376750886912')
     yield from client.send_message(
@@ -43,8 +48,8 @@ def on_ready():
 @client.event
 @asyncio.coroutine
 def on_member_join(member):
-    ts = pendulum.now(tz).strftime(tsf)
-    print("[%s] User joined - %s" % (ts, member.name))
+    tstamp = get_time()
+    print("[%s] User joined - %s" % (tstamp, member.name))
     chan = client.get_channel('195647497505472512')
     m = member.id
     yield from client.send_message(
@@ -60,15 +65,15 @@ def on_member_join(member):
 @client.event
 @asyncio.coroutine
 def on_member_remove(member):
-    ts = pendulum.now(tz).strftime(tsf)
-    print("[%s] User left - %s" % (ts, member.name))
+    tstamp = get_time()
+    print("[%s] User left - %s" % (tstamp, member.name))
 
 
 # on message routine
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    ts = pendulum.now(tz).strftime(tsf)
+    tstamp = get_time()
     chan = message.channel
     x = message.content.lower()
 
@@ -168,7 +173,7 @@ def on_message(message):
     # if debug is enabled print a message log in the console
     if debug:
         print("[%s] New message in %s - %s: %s" % (
-            ts,
+            tstamp,
             message.channel,
             message.author,
             message.content))
