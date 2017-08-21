@@ -190,7 +190,7 @@ def on_message(message):
 
     # server status
     if message.content.startswith('!server'):
-        sstatus, smsg = await check_server()
+        sstatus, smsg = yield from check_server()
         if sstatus == 'success':
             yield from client.send_message(
                 chan,
