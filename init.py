@@ -3,6 +3,7 @@ import discord
 import asyncio
 import time
 import datetime
+import re
 
 # discord api config
 '''
@@ -17,15 +18,15 @@ from config import *
 # var defs
 client = discord.Client()
 chan = None
-t = time.time()
-ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
 
 # login routine
 @client.event
 @asyncio.coroutine
 def on_ready():
+    t = time.time()
+    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
     # print some console info
-    print("[%s] Initializing SIRA Bot..." % (ts))
+    print("[%s] Initializing SIRA Bot..." % ts)
     print('-----INFO-----')
     print(client.user.name)
     print(client.user.id)
@@ -40,12 +41,21 @@ def on_ready():
 @client.event
 @asyncio.coroutine
 def on_member_join(member):
+    t = time.time()
+    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
     print("[%s] User joined - %s" % (ts, member.name))
-
+    chan = client.get_channel('195647497505472512')
+    m = member.id
+    yield from client.send_message (chan,
+                                    "Welcome <@!%s>. <:vision_intensifies:332951986645499904> If you have any issues, please tag an <@&200367057378869248>." % m)
+    yield from client.send_message (chan,
+                                    "Join the /edg/ player group, SIRA - https://inara.cz/wing/1470")
 # member quit routine
 @client.event
 @asyncio.coroutine
 def on_member_remove(member):
+    t = time.time()
+    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
     print("[%s] User left - %s" % (ts, member.name))
 
 
@@ -53,6 +63,8 @@ def on_member_remove(member):
 @client.event
 @asyncio.coroutine
 def on_message(message):
+    t = time.time()
+    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
     chan = message.channel
     x = message.content.lower()
     y = x.replace(" ", "")
@@ -60,7 +72,7 @@ def on_message(message):
     if message.author.id != '319826689729232897':
         # space ireland reactions
         if (message.content.find('<:space_ireland:309204831548211201>') != -1 or 
-            y.find('spaceireland') != -1):
+            re.search(r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b', x)):
             yield from client.add_reaction (message, 
                                             ':space_ireland:309204831548211201')
 
@@ -70,7 +82,7 @@ def on_message(message):
             yield from client.add_reaction (message, 
                                             ':o7:308408906344824852')
         # wew
-        if y.find('wew') != -1:
+        if re.search(r'(w\s?e\s?w(\slad)?)+\b', x):
             yield from client.add_reaction (message,
                                             ':wew:319973823040716804')
             yield from client.send_message (chan,
@@ -91,9 +103,8 @@ def on_message(message):
                                         'Space Ireland will be free! <:space_ireland:309204831548211201>')
 
     # space legs
-    if (y.find('spacelegs') != -1 or
-        y.find('atmospherics') != -1 or
-        y.find('atmosphericplanets') != -1):
+    if (re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b', x) or
+        re.search(r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+', x)):
         yield from client.send_message (chan,
                                         'SOON:tm: <:smiling_man:332954734975647754>')
 
@@ -107,7 +118,7 @@ def on_message(message):
             message.content.startswith('!close') or
             message.content.startswith('!end')):
             # send a message and kill the script
-            print("[%s] SIRA Bot disengaged." % (ts))
+            print("[%s] SIRA Bot disengaged." % ts)
             chan = client.get_channel('348971376750886912')
             yield from client.send_message (chan,
                                             'SIRA Bot signing off. <:o7:308408906344824852>')
