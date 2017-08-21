@@ -3,7 +3,6 @@ import discord
 import asyncio
 import re
 import pendulum
-from pendulum import Pendulum
 
 # discord api config
 '''
