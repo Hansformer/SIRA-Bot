@@ -1,7 +1,6 @@
 # required libs
 import discord
 import asyncio
-import time
 import re
 import pendulum
 
@@ -24,7 +23,7 @@ chan = None
 @client.event
 @asyncio.coroutine
 def on_ready():
-    ts = time.strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
     # print some console info
     print("[%s] Initializing SIRA Bot..." % ts)
     print('-----INFO-----')
@@ -43,7 +42,7 @@ def on_ready():
 @client.event
 @asyncio.coroutine
 def on_member_join(member):
-    ts = time.strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
     print("[%s] User joined - %s" % (ts, member.name))
     chan = client.get_channel('195647497505472512')
     m = member.id
@@ -60,7 +59,7 @@ def on_member_join(member):
 @client.event
 @asyncio.coroutine
 def on_member_remove(member):
-    ts = time.strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
     print("[%s] User left - %s" % (ts, member.name))
 
 
@@ -68,10 +67,11 @@ def on_member_remove(member):
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    ts = time.strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
     chan = message.channel
     x = message.content.lower()
 
+    # no self reactions
     if message.author.id != '319826689729232897':
         # space ireland reactions
         if(message.content.find('<:space_ireland:309204831548211201>') != -1 or
@@ -95,6 +95,12 @@ def on_message(message):
             yield from client.send_message(chan,
                                            'wew')
 
+        # v i s i o n
+        if re.search(r'(v\s?i\s?s\s?i\s?o\s?n)+', x):
+            yield from client.add_reaction(
+                message,
+                ':vision_intensifies:332951986645499904')
+
     # react to being mentioned
     if message.content.find('<@!319826689729232897>') != -1:
         yield from client.add_reaction(message,
@@ -110,6 +116,7 @@ def on_message(message):
             chan,
             'Space Ireland will be free! <:space_ireland:309204831548211201>')
 
+    # flag
     if message.content.startswith('!flag'):
         yield from client.send_file(
             chan,
