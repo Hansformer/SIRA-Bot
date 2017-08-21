@@ -2,8 +2,8 @@
 import discord
 import asyncio
 import time
-import datetime
 import re
+import pendulum
 
 # discord api config
 '''
@@ -23,8 +23,7 @@ chan = None
 @client.event
 @asyncio.coroutine
 def on_ready():
-    t = time.time()
-    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
+    ts = time.strftime('%Y-%m-%d %H:%M:%S') 
     # print some console info
     print("[%s] Initializing SIRA Bot..." % ts)
     print('-----INFO-----')
@@ -41,8 +40,7 @@ def on_ready():
 @client.event
 @asyncio.coroutine
 def on_member_join(member):
-    t = time.time()
-    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
+    ts = time.strftime('%Y-%m-%d %H:%M:%S') 
     print("[%s] User joined - %s" % (ts, member.name))
     chan = client.get_channel('195647497505472512')
     m = member.id
@@ -54,8 +52,7 @@ def on_member_join(member):
 @client.event
 @asyncio.coroutine
 def on_member_remove(member):
-    t = time.time()
-    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
+    ts = time.strftime('%Y-%m-%d %H:%M:%S') 
     print("[%s] User left - %s" % (ts, member.name))
 
 
@@ -63,11 +60,9 @@ def on_member_remove(member):
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    t = time.time()
-    ts = datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')
+    ts = time.strftime('%Y-%m-%d %H:%M:%S') 
     chan = message.channel
     x = message.content.lower()
-    y = x.replace(" ", "")
 
     if message.author.id != '319826689729232897':
         # space ireland reactions
@@ -101,6 +96,10 @@ def on_message(message):
                                         u"\U0001F4A3")
         yield from client.send_message (chan,
                                         'Space Ireland will be free! <:space_ireland:309204831548211201>')
+
+    if message.content.startswith('!flag'):
+        yield from client.send_file (chan, 
+                                     "C:/SIRA/SIRA-Bot-Rebirth/flag_of_space_ireland.png")
 
     # space legs
     if (re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b', x) or
