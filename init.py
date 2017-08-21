@@ -37,9 +37,7 @@ async def check_server():
     async with aiohttp.ClientSession() as session:
         async with session.get('https://www.edsm.net/api-status-v1/elite-server') as resp:
             api = await resp.json()
-            sstatus = api['type']
-            smsg = api['message']
-            return sstatus, smsg 
+            return api['type'], api['message']
 
 
 # login routine
@@ -192,7 +190,7 @@ def on_message(message):
 
     # server status
     if message.content.startswith('!server'):
-        sstatus, smsg = check_server()
+        sstatus, smsg = await check_server()
         if sstatus == 'success':
             yield from client.send_message(
                 chan,
