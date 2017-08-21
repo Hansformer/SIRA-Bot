@@ -17,13 +17,14 @@ from config import *
 # var defs
 client = discord.Client()
 chan = None
+tz = pendulum.timezone(timezone)
 
 
 # login routine
 @client.event
 @asyncio.coroutine
 def on_ready():
-    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now(tz).strftime(tsf)
     # print some console info
     print("[%s] Initializing SIRA Bot..." % ts)
     print('-----INFO-----')
@@ -42,7 +43,7 @@ def on_ready():
 @client.event
 @asyncio.coroutine
 def on_member_join(member):
-    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now(tz).strftime(tsf)
     print("[%s] User joined - %s" % (ts, member.name))
     chan = client.get_channel('195647497505472512')
     m = member.id
@@ -59,7 +60,7 @@ def on_member_join(member):
 @client.event
 @asyncio.coroutine
 def on_member_remove(member):
-    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now(tz).strftime(tsf)
     print("[%s] User left - %s" % (ts, member.name))
 
 
@@ -67,7 +68,7 @@ def on_member_remove(member):
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    ts = pendulum.now('Canada/Eastern').strftime('%Y-%m-%d %H:%M:%S')
+    ts = pendulum.now(tz).strftime(tsf)
     chan = message.channel
     x = message.content.lower()
 
