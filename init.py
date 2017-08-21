@@ -23,6 +23,7 @@ client = discord.Client()
 chan = None
 sstatus = None
 smsg = None
+tstamp = None
 
 
 def get_time():
@@ -31,11 +32,11 @@ def get_time():
     return stamp
 
 
-@asyncio.coroutine
-def check_server():
+@client.event
+async def check_server():
     async with aiohttp.ClientSession() as session:
         async with session.get('https://www.edsm.net/api-status-v1/elite-server') as resp:
-            api = yield from resp.json()
+            api = await resp.json()
             sstatus = api['type']
             smsg = api['message']
             return sstatus, smsg 
