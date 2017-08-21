@@ -57,24 +57,31 @@ def on_message(message):
     x = message.content.lower()
     y = x.replace(" ", "")
 
+    if message.author.id != '319826689729232897':
+        # space ireland reactions
+        if (message.content.find('<:space_ireland:309204831548211201>') != -1 or 
+            y.find('spaceireland') != -1):
+            yield from client.add_reaction (message, 
+                                            ':space_ireland:309204831548211201')
+
+        # o7 reactions
+        if (message.content.find('<:o7:308408906344824852>') != -1 or 
+            message.content.find('o7') != -1):
+            yield from client.add_reaction (message, 
+                                            ':o7:308408906344824852')
+        # wew
+        if y.find('wew') != -1:
+            yield from client.add_reaction (message,
+                                            ':wew:319973823040716804')
+            yield from client.send_message (chan,
+                                            'wew')
+
     # react to being mentioned
     if message.content.find('<@!319826689729232897>') != -1:
         yield from client.add_reaction (message,
                                         ':anime_smug:319973746825756683')
         yield from client.send_message (chan,
                                         'You noticed me, senpai.')
-
-    # space ireland reactions
-    if (message.content.find('<:space_ireland:309204831548211201>') != -1 or 
-        y.find('spaceireland') != -1):
-        yield from client.add_reaction (message, 
-                                        ':space_ireland:309204831548211201')
-
-    # o7 reactions
-    if (message.content.find('<:o7:308408906344824852>') != -1 or 
-        message.content.find('o7') != -1):
-        yield from client.add_reaction (message, 
-                                        ':o7:308408906344824852')
 
     # sira-bot is patriotic
     if message.content.find('*bombs u*') != -1:
@@ -90,17 +97,10 @@ def on_message(message):
         yield from client.send_message (chan,
                                         'SOON:tm: <:smiling_man:332954734975647754>')
 
-    # wew
-    if y.find('wew') != -1:
-        if message.author.id != '319826689729232897':
-            yield from client.add_reaction (message,
-                                            ':wew:319973823040716804')
-            yield from client.send_message (chan,
-                                            'wew')
-
     # admin commands
     if (message.author.id == '189890760873738240' or
         message.author.id == '156405315976429568'):
+    
         # kill/close
         if (message.content.startswith('!botkill') or
             message.content.startswith('!kill') or
@@ -116,6 +116,10 @@ def on_message(message):
         # idle
         if message.content.startswith('!rest'):
             yield from client.change_presence(game=discord.Game(name='recharging'), status=discord.Status('idle'), afk=True)
+
+        #vision
+        if message.content.startswith('!vision'):
+            yield from client.change_presence(game=discord.Game(name='v i s i o n'), status=discord.Status('online'), afk=False)
 
     # if debug is enabled print a message log in the console
     if debug:
