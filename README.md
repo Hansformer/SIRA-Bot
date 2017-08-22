@@ -3,9 +3,6 @@
 - EDSM/EDDN API connection (wip)
 - ~Spouting memes~ (done)
 
-**Requisites**
-- python -m pip install -U discord.py ([Check here](https://github.com/Rapptz/discord.py))
-- python -m pip install -U pendulum ([Check here](https://github.com/sdispater/pendulum))
-
 **Usage**\
+$ python3 -m pip install -r requirements.txt\
 $ python3 init.py
