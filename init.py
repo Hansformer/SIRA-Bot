@@ -86,7 +86,6 @@ async def on_member_remove(member):
 async def on_message(message):
     tstamp = get_time()
     chan = message.channel
-    x = message.content.lower()
 
     # '!' commands
     if message.content.startswith('!'):
