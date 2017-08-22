@@ -201,7 +201,7 @@ async def on_message(message):
     if '*bombs u*' in message.content:
         await client.add_reaction(
             message,
-            u"\U0001F4A3")
+            "\U0001F4A3")
         await client.send_message(
             chan,
             'Space Ireland will be free! <:space_ireland:309204831548211201>')
