@@ -6,15 +6,6 @@ import pendulum
 
 # discord api config
 import config
-'''
-Create a local configuration file (config.py) with the following:
-username = "String value"
-password = "String value"
-token = "String value"
-debug = Boolean
-tzone = "String value"
-tformat = "String value"
-'''
 
 # var defs
 client = discord.Client()
