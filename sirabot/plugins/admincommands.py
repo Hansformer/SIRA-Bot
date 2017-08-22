@@ -30,7 +30,7 @@ async def setup(client):
     for alias in ['botkill', 'kill', 'close', 'end',
                   'ded', 'rip', 'makeded', 'fuckoff']:
         client.register_command(alias, kill)
-    for alias in ['rest', 'idle', 'recharge','status2']:
+    for alias in ['rest', 'idle', 'recharge', 'status2']:
         client.register_command(alias, idle)
-    for alias in ['vision','status1']:
+    for alias in ['vision', 'status1']:
         client.register_command(alias, vision)
