@@ -1,8 +1,6 @@
 # required libs
 import aiohttp
-import asyncio
 import discord
-import json
 import pendulum
 import re
 
@@ -42,8 +40,7 @@ async def check_server():
 
 # login routine
 @client.event
-@asyncio.coroutine
-def on_ready():
+async def on_ready():
     tstamp = get_time()
 
     # print some console info
@@ -52,44 +49,41 @@ def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('--------------')
-    print("[%s] It lives." % (tstamp))
+    print("[%s] It lives." % tstamp)
 
     # send a message
     chan = client.get_channel('348971376750886912')
-    yield from client.send_message(
+    await client.send_message(
         chan,
         'SIRA Bot reporting for duty. <:o7:308408906344824852>')
 
 
 # member join routine
 @client.event
-@asyncio.coroutine
-def on_member_join(member):
+async def on_member_join(member):
     tstamp = get_time()
     print("[%s] User joined - %s" % (tstamp, member.name))
     chan = client.get_channel('195647497505472512')
-    yield from client.send_message(
+    await client.send_message(
         chan,
         "Welcome <@!%s>. <:vision_intensifies:332951986645499904> "
         "If you have any issues, please tag an <@&200367057378869248>."
         % member.id)
-    yield from client.send_message(
+    await client.send_message(
         chan,
         "Join the /edg/ player group, SIRA - https://inara.cz/wing/1470")
 
 
 # member quit routine
 @client.event
-@asyncio.coroutine
-def on_member_remove(member):
+async def on_member_remove(member):
     tstamp = get_time()
     print("[%s] User left - %s" % (tstamp, member.name))
 
 
 # on message routine
 @client.event
-@asyncio.coroutine
-def on_message(message):
+async def on_message(message):
     tstamp = get_time()
     chan = message.channel
     x = message.content.lower()
@@ -113,14 +107,14 @@ def on_message(message):
                 # send a message and kill the script
                 print("[%s] SIRA Bot disengaged." % tstamp)
                 chan = client.get_channel('348971376750886912')
-                yield from client.send_message(
+                await client.send_message(
                     chan,
                     'SIRA Bot signing off. <:o7:308408906344824852>')
-                yield from client.close()
+                await client.close()
 
             # idle
             if command in ['rest', 'idle', 'recharge']:
-                yield from client.change_presence(
+                await client.change_presence(
                     game=discord.Game(
                         name='recharging'),
                     status=discord.Status(
@@ -129,7 +123,7 @@ def on_message(message):
 
             # vision
             if command in ['vision']:
-                yield from client.change_presence(
+                await client.change_presence(
                     game=discord.Game(
                         name='v i s i o n'),
                     status=discord.Status(
@@ -138,26 +132,26 @@ def on_message(message):
 
         # server status
         if command in ['server', 'status']:
-            sstatus, smsg = yield from check_server()
+            sstatus, smsg = await check_server()
             if sstatus == 'success':
-                yield from client.send_message(
+                await client.send_message(
                     chan,
                     'FDev says "%s". :ok_hand:'
                     % smsg)
             elif sstatus == 'warning':
-                yield from client.send_message(
+                await client.send_message(
                     chan,
                     ':warning: FDev says "%s".'
                     % smsg)
             elif sstatus == 'danger':
-                yield from client.send_message(
+                await client.send_message(
                     chan,
                     ':fire: "%s". Sandro tripped over the server cords again.'
                     % smsg)
 
         # flag
         if command in ['flag']:
-            yield from client.send_file(
+            await client.send_file(
                 chan,
                 "C:/SIRA/SIRA-Bot-Rebirth/flag_of_space_ireland.png")
 
@@ -168,7 +162,7 @@ def on_message(message):
         if(message.content.find('<:o7:308408906344824852>') != -1 or
            message.content.find('o7') != -1
            ):
-            yield from client.add_reaction(
+            await client.add_reaction(
                 message,
                 ':o7:308408906344824852')
 
@@ -179,7 +173,7 @@ def on_message(message):
                 message.content,
                 re.I)
            ):
-            yield from client.add_reaction(
+            await client.add_reaction(
                 message,
                 ':space_ireland:309204831548211201')
 
@@ -189,10 +183,10 @@ def on_message(message):
                 message.content,
                 re.I
            ):
-            yield from client.add_reaction(
+            await client.add_reaction(
                 message,
                 ':wew:319973823040716804')
-            yield from client.send_message(
+            await client.send_message(
                 chan,
                 'wew')
 
@@ -202,7 +196,7 @@ def on_message(message):
                 message.content,
                 re.I
            ):
-            yield from client.add_reaction(
+            await client.add_reaction(
                 message,
                 ':vision_intensifies:332951986645499904')
 
@@ -216,25 +210,25 @@ def on_message(message):
             message.content,
             re.I)
        ):
-        yield from client.send_message(
+        await client.send_message(
             chan,
             'SOON:tm: <:smiling_man:332954734975647754>')
 
     # react to being mentioned
     if message.content.find('<@!319826689729232897>') != -1:
-        yield from client.add_reaction(
+        await client.add_reaction(
             message,
             ':anime_smug:319973746825756683')
-        yield from client.send_message(
+        await client.send_message(
             chan,
             'You noticed me, senpai.')
 
     # sira-bot is patriotic
     if message.content.find('*bombs u*') != -1:
-        yield from client.add_reaction(
+        await client.add_reaction(
             message,
             u"\U0001F4A3")
-        yield from client.send_message(
+        await client.send_message(
             chan,
             'Space Ireland will be free! <:space_ireland:309204831548211201>')
 
