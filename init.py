@@ -1,10 +1,11 @@
 # required libs
+import re
 import aiohttp
 import discord
 import pendulum
-import re
 
 # discord api config
+from config import *
 '''
 Create a local configuration file (config.py) with the following:
 username = "String value"
@@ -14,7 +15,6 @@ debug = Boolean
 tzone = "String value"
 tformat = "String value"
 '''
-from config import *
 
 # var defs
 client = discord.Client()
