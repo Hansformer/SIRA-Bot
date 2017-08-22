@@ -110,7 +110,7 @@ async def on_message(message):
                     afk=True)
 
             # vision
-            if command in ['vision']:
+            if command == 'vision':
                 await client.change_presence(
                     game=discord.Game(
                         name='v i s i o n'),
@@ -138,7 +138,7 @@ async def on_message(message):
                     % smsg)
 
         # flag
-        if command in ['flag']:
+        if command == 'flag':
             await client.send_file(
                 chan,
                 "C:/SIRA/SIRA-Bot-Rebirth/flag_of_space_ireland.png")
