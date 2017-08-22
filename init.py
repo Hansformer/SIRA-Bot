@@ -97,8 +97,7 @@ async def on_message(message):
 
         # admin-only commands
         if(message.author.id == '189890760873738240' or
-           message.author.id == '156405315976429568'
-           ):
+           message.author.id == '156405315976429568'):
 
             if command in ['botkill', 'kill', 'close', 'end', 'ded', 'rip',
                            'makeded', 'fuckoff']:
@@ -158,25 +157,22 @@ async def on_message(message):
     if message.author.id != '319826689729232897':
 
         # o7
-        if '<:o7:308408906344824852>' in message.content or 'o7' in message.content:
+        if '<:o7:308408906344824852>' in message.content or\
+                        'o7' in message.content:
             await client.add_reaction(
                 message,
                 ':o7:308408906344824852')
 
         # space ireland
-        if ('<:space_ireland:309204831548211201>' in message.content or
-           re.search(r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
-                     message.content, re.I)):
+        if '<:space_ireland:309204831548211201>' in message.content or\
+                re.search(r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
+                          message.content, re.I):
             await client.add_reaction(
                 message,
                 ':space_ireland:309204831548211201')
 
         # wew
-        if re.search(
-                r'(w\s?e\s?w(\slad)?)+\b',
-                message.content,
-                re.I
-           ):
+        if re.search(r'(w\s?e\s?w(\slad)?)+\b', message.content, re.I):
             await client.add_reaction(
                 message,
                 ':wew:319973823040716804')
@@ -188,22 +184,16 @@ async def on_message(message):
         if re.search(
                 r'(v\s?i\s?s\s?i\s?o\s?n)+',
                 message.content,
-                re.I
-           ):
+                re.I):
             await client.add_reaction(
                 message,
                 ':vision_intensifies:332951986645499904')
 
     # soon
-    if(re.search(
-            r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
-            message.content,
-            re.I) or
-       re.search(
-            r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
-            message.content,
-            re.I)
-       ):
+    if re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
+                 message.content, re.I)\
+            or re.search(r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
+                         message.content, re.I):
         await client.send_message(
             chan,
             'SOON:tm: <:smiling_man:332954734975647754>')
