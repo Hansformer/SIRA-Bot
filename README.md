@@ -1,8 +1,7 @@
-# This will be a discord bot for Space IRA
-**Feature list**
-- EDSM/ED Discovery API connection
-- Tracking members
-- Spouting memes
+# Discord bot for SIRA (/edg/)
+**Feature Wishlist**
+- EDSM/EDDN API connection
+- ~Spouting memes~ (done)
 
 **Requisites**
 - python -m pip install -U discord.py
