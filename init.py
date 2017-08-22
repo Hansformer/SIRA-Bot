@@ -145,7 +145,7 @@ async def on_message(message):
                 "C:/SIRA/SIRA-Bot-Rebirth/flag_of_space_ireland.png")
 
     # reactions (no self reactions)
-    if message.author.id != '319826689729232897':
+    if message.author.id != client.user.id:
 
         # o7
         if '<:o7:308408906344824852>' in message.content or\
@@ -190,7 +190,7 @@ async def on_message(message):
             'SOON:tm: <:smiling_man:332954734975647754>')
 
     # react to being mentioned
-    if '<@!319826689729232897>' in message.content:
+    if '<@!{}>'.format(client.user.id) in message.content:
         await client.add_reaction(
             message,
             ':anime_smug:319973746825756683')
