@@ -141,7 +141,7 @@ async def on_message(message):
         if command == 'flag':
             await client.send_file(
                 chan,
-                "C:/SIRA/SIRA-Bot-Rebirth/flag_of_space_ireland.png")
+                "flag_of_space_ireland.png")
 
     # reactions (no self reactions)
     if message.author.id != client.user.id:
