@@ -21,10 +21,12 @@ from config import *
 # var defs
 client = discord.Client()
 chan = None
-# server status
+
+# for server status
 smsg = None
 sstatus = None
-# timestamp
+
+# for timestamps
 tstamp = None
 
 
@@ -51,6 +53,7 @@ async def check_server():
 @asyncio.coroutine
 def on_ready():
     tstamp = get_time()
+
     # print some console info
     print("[%s] Initializing SIRA Bot..." % tstamp)
     print('-----INFO-----')
@@ -58,6 +61,7 @@ def on_ready():
     print(client.user.id)
     print('--------------')
     print("[%s] It lives." % (tstamp))
+
     # send a message
     chan = client.get_channel('348971376750886912')
     yield from client.send_message(
@@ -98,6 +102,7 @@ def on_message(message):
     chan = message.channel
     x = message.content.lower()
 
+    # '!' commands
     if message.content.startswith('!'):
         try:
             command, parameter = message.content[1:].split(' ', 1)
@@ -105,7 +110,7 @@ def on_message(message):
             command = message.content[1:]
             parameter = None
 
-        # admin commands
+        # admin-only commands
         if(message.author.id == '189890760873738240' or
            message.author.id == '156405315976429568'
            ):
@@ -164,27 +169,34 @@ def on_message(message):
                 chan,
                 "C:/SIRA/SIRA-Bot-Rebirth/flag_of_space_ireland.png")
 
-    # no self reactions
+    # reactions (no self reactions)
     if message.author.id != '319826689729232897':
-        # space ireland reactions
-        if(message.content.find('<:space_ireland:309204831548211201>') != -1 or
-           re.search(
-                r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
-                x)
-           ):
-            yield from client.add_reaction(
-                message,
-                ':space_ireland:309204831548211201')
 
-        # o7 reactions
+        # o7
         if(message.content.find('<:o7:308408906344824852>') != -1 or
            message.content.find('o7') != -1
            ):
             yield from client.add_reaction(
                 message,
                 ':o7:308408906344824852')
+
+        # space ireland
+        if(message.content.find('<:space_ireland:309204831548211201>') != -1 or
+           re.search(
+                r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
+                message.content,
+                re.I)
+           ):
+            yield from client.add_reaction(
+                message,
+                ':space_ireland:309204831548211201')
+
         # wew
-        if re.search(r'(w\s?e\s?w(\slad)?)+\b', x):
+        if re.search(
+                r'(w\s?e\s?w(\slad)?)+\b',
+                message.content,
+                re.I
+           ):
             yield from client.add_reaction(
                 message,
                 ':wew:319973823040716804')
@@ -193,10 +205,28 @@ def on_message(message):
                 'wew')
 
         # v i s i o n
-        if re.search(r'(v\s?i\s?s\s?i\s?o\s?n)+', x):
+        if re.search(
+                r'(v\s?i\s?s\s?i\s?o\s?n)+',
+                message.content,
+                re.I
+           ):
             yield from client.add_reaction(
                 message,
                 ':vision_intensifies:332951986645499904')
+
+    # soon
+    if(re.search(
+            r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
+            message.content,
+            re.I) or
+       re.search(
+            r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
+            message.content,
+            re.I)
+       ):
+        yield from client.send_message(
+            chan,
+            'SOON:tm: <:smiling_man:332954734975647754>')
 
     # react to being mentioned
     if message.content.find('<@!319826689729232897>') != -1:
@@ -215,18 +245,6 @@ def on_message(message):
         yield from client.send_message(
             chan,
             'Space Ireland will be free! <:space_ireland:309204831548211201>')
-
-    # soon
-    if(re.search(
-            r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
-            x) or
-       re.search(
-            r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
-            x)
-       ):
-        yield from client.send_message(
-            chan,
-            'SOON:tm: <:smiling_man:332954734975647754>')
 
     # if debug is enabled print a message log in the console
     if debug:
