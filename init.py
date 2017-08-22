@@ -1,199 +1,147 @@
 # required libs
 import re
-import aiohttp
-import pendulum
+import os
+from functools import partial
 
 import discord
-from discord.ext import commands
+from pluginbase import PluginBase
 
 # discord api config
 import config
-
-# var defs
-description = 'Discord bot for SIRA'
-bot = commands.Bot(command_prefix='!', description=description)
+from sirabot.utils import get_time
 
 
-# timestamp formatting for console/terminal
-def get_time():
-    zone = pendulum.timezone(config.tzone)
-    stamp = pendulum.now(zone).strftime(config.tformat)
-    return stamp
+class SIRABot(discord.Client):
+    def __init__(self, **options):
+        super().__init__(**options)
+        here = os.path.abspath(os.path.dirname(__file__))
+        get_path = partial(os.path.join, here)
+        plugin_base = PluginBase(package='sirabot.plugins')
+        self.plugin_source = plugin_base.make_plugin_source(
+            searchpath=[get_path('./sirabot/plugins')])
+        self.commands = {}
 
+    def register_command(self, name, command):
+        self.commands[name] = command
 
-def is_admin(fn):
-    async def ret_fn(ctx):
-        if ctx.message.author.id in config.admins:
-            return fn(ctx)
-        else:
-            raise Exception('Unauthorized')
-    return ret_fn
+    async def process_reactions(self, message):
+        regex_reactions =\
+            {r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b':
+             ':space_ireland:309204831548211201',
+             r'(w\s?e\s?w(\slad)?)+\b': ':wew:319973823040716804',
+             r'(v\s?i\s?s\s?i\s?o\s?n)+':
+             ':vision_intensifies:332951986645499904'}
+        reactions = {'<:o7:308408906344824852>': ':o7:308408906344824852',
+                     '<:space_ireland:309204831548211201>':
+                         ':space_ireland:309204831548211201'}
 
+        for regex, reaction in regex_reactions.items():
+            if re.search(regex, message.content, re.I):
+                await self.add_reaction(message, reaction)
+                if reaction == ':wew:319973823040716804':
+                    await self.send_message(message.channel, 'wew')
 
-async def process_reactions(message):
-    regex_reactions = {r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b':
-                       ':space_ireland:309204831548211201',
-                       r'(w\s?e\s?w(\slad)?)+\b': ':wew:319973823040716804',
-                       r'(v\s?i\s?s\s?i\s?o\s?n)+':
-                           ':vision_intensifies:332951986645499904'}
-    reactions = {'<:o7:308408906344824852>': ':o7:308408906344824852',
-                 '<:space_ireland:309204831548211201>':
-                     ':space_ireland:309204831548211201'}
+        for trigger, reaction in reactions.items():
+            if trigger in message.content:
+                await self.add_reaction(message, reaction)
 
-    for regex, reaction in regex_reactions.items():
-        if re.search(regex, message.content, re.I):
-            await bot.add_reaction(message, reaction)
-            if reaction == ':wew:319973823040716804':
-                await bot.send_message(message.channel, 'wew')
+    async def process_commands(self, message):
+        try:
+            command, parameter = message.content[1:].split(' ', 1)
+        except ValueError:
+            command = message.content[1:]
+            parameter = None
 
-    for trigger, reaction in reactions.items():
-        if trigger in message.content:
-            await bot.add_reaction(message, reaction)
+        if command in self.commands:
+            await self.commands[command](self, message, parameter)
 
+    # login routine
+    async def on_ready(self):
+        for plugin_name in self.plugin_source.list_plugins():
+            plugin = self.plugin_source.load_plugin(plugin_name)
+            await plugin.setup(self)
 
-# get server status from EDSM API
-@bot.event
-async def check_server():
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            'https://www.edsm.net/api-status-v1/elite-server'
-                ) as resp:
-            api = await resp.json()
-            return api['type'], api['message']
+        tstamp = get_time()
 
+        # print some console info
+        print(f"[{tstamp}] Initializing SIRA Bot...")
+        print('-----INFO-----')
+        print(self.user.name)
+        print(self.user.id)
+        print('--------------')
+        print(f"[{tstamp}] It lives.")
 
-# login routine
-@bot.event
-async def on_ready():
-    tstamp = get_time()
-
-    # print some console info
-    print("[%s] Initializing SIRA Bot..." % tstamp)
-    print('-----INFO-----')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('--------------')
-    print("[%s] It lives." % tstamp)
-
-    # send a message
-    chan = bot.get_channel('348971376750886912')
-    await bot.send_message(
-        chan,
-        'SIRA Bot reporting for duty. <:o7:308408906344824852>')
-
-
-# member join routine
-@bot.event
-async def on_member_join(member):
-    tstamp = get_time()
-    print("[%s] User joined - %s" % (tstamp, member.name))
-    chan = bot.get_channel('195647497505472512')
-    await bot.send_message(
-        chan,
-        "Welcome <@!%s>. <:vision_intensifies:332951986645499904> "
-        "If you have any issues, please tag an <@&200367057378869248>."
-        % member.id)
-    await bot.send_message(
-        chan,
-        "Join the /edg/ player group, SIRA - https://inara.cz/wing/1470")
-
-
-# member quit routine
-@bot.event
-async def on_member_remove(member):
-    tstamp = get_time()
-    print("[%s] User left - %s" % (tstamp, member.name))
-
-
-# on message routine
-@bot.event
-async def on_message(message):
-    tstamp = get_time()
-    chan = message.channel
-
-    # reactions (no self reactions)
-    if message.author.id != bot.user.id:
-        await process_reactions(message)
-
-    # soon
-    if re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
-                 message.content, re.I)\
-            or re.search(r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
-                         message.content, re.I):
-        await bot.send_message(
+        # send a message
+        chan = self.get_channel('348971376750886912')
+        await self.send_message(
             chan,
-            'SOON:tm: <:smiling_man:332954734975647754>')
+            'SIRA Bot reporting for duty. <:o7:308408906344824852>')
 
-    # react to being mentioned
-    if '<@!{}>'.format(bot.user.id) in message.content:
-        await bot.add_reaction(
-            message,
-            ':anime_smug:319973746825756683')
-        await bot.send_message(
+    # member join routine
+    async def on_member_join(self, member):
+        tstamp = get_time()
+        print(f"[{tstamp}] User joined - {member.name}")
+        chan = self.get_channel('195647497505472512')
+        await self.send_message(
             chan,
-            'You noticed me, senpai.')
-
-    # sira-bot is patriotic
-    if '*bombs u*' in message.content:
-        await bot.add_reaction(
-            message,
-            "\U0001F4A3")
-        await bot.send_message(
+            f"Welcome <@!{member.id}>."
+            " <:vision_intensifies:332951986645499904> "
+            "If you have any issues, please tag an <@&200367057378869248>.")
+        await self.send_message(
             chan,
-            'Space Ireland will be free! <:space_ireland:309204831548211201>')
+            "Join the /edg/ player group, SIRA - https://inara.cz/wing/1470")
 
-    await bot.process_commands(message)
+    # member quit routine
+    @staticmethod
+    async def on_member_remove(member):
+        tstamp = get_time()
+        print(f"[{tstamp}] User left - {member.name}")
 
-    # if debug is enabled print a message log in the console
-    if config.debug:
-        print("[%s] New message in %s - %s: %s" % (
-            tstamp,
-            message.channel,
-            message.author,
-            message.content))
+    # on message routine
+    async def on_message(self, message):
+        tstamp = get_time()
+        chan = message.channel
 
+        # reactions (no self reactions)
+        if message.author.id != self.user.id:
+            await self.process_reactions(message)
 
-@bot.command(aliases=['status'])
-async def server():
-    sstatus, smsg = await check_server()
-    if sstatus == 'success':
-        await bot.say('FDev says "%s". :ok_hand:' % smsg)
-    elif sstatus == 'warning':
-        await bot.say(':warning: FDev says "%s".' % smsg)
-    elif sstatus == 'danger':
-        await bot.send_message(
-            ':fire: "%s". Sandro tripped over the server cords again.' % smsg)
+        # soon
+        if re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
+                     message.content, re.I)\
+                or re.search(r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
+                             message.content, re.I):
+            await self.send_message(
+                chan,
+                'SOON:tm: <:smiling_man:332954734975647754>')
 
+        # react to being mentioned
+        if f'<@!{self.user.id}>' in message.content:
+            await self.add_reaction(
+                message,
+                ':anime_smug:319973746825756683')
+            await self.send_message(
+                chan,
+                'You noticed me, senpai.')
 
-@bot.command(pass_context=True)
-async def flag(ctx):
-    await bot.send_file(ctx.message.channel, "flag_of_space_ireland.png")
+        # sira-bot is patriotic
+        if '*bombs u*' in message.content:
+            await self.add_reaction(
+                message,
+                "\U0001F4A3")
+            await self.send_message(
+                chan,
+                'Space Ireland will be free!'
+                ' <:space_ireland:309204831548211201>')
 
+        if message.content.startswith('!'):
+            await self.process_commands(message)
 
-@is_admin
-@bot.command(aliases=['botkill', 'close', 'end', 'ded',
-                      'rip', 'makeded', 'fuckoff'], pass_context=True)
-async def kill(ctx):
-    # send a message and kill the script
-    print("[%s] SIRA Bot disengaged." % get_time())
-    chan = bot.get_channel('348971376750886912')
-    await bot.send_message(chan,
-                           'SIRA Bot signing off. <:o7:308408906344824852>')
-    await bot.close()
-
-
-@is_admin
-@bot.command(aliases=['rest', 'recharge'], pass_context=True)
-async def idle(ctx):
-    await bot.change_presence(game=discord.Game(name='recharging'),
-                              status=discord.Status('idle'), afk=True)
-
-
-@is_admin
-@bot.command(pass_context=True)
-async def vision(ctx):
-    await bot.change_presence(game=discord.Game(name='v i s i o n'),
-                              status=discord.Status('online'), afk=False)
+        # if debug is enabled print a message log in the console
+        if config.debug:
+            print(f"[{tstamp}] New message in {message.channel} -"
+                  f" {message.author}: {message.content}")
 
 # running the bot
+bot = SIRABot()
 bot.run(config.token)
