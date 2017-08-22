@@ -30,6 +30,27 @@ def is_admin(fn):
     return ret_fn
 
 
+async def process_reactions(message):
+    regex_reactions = {r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b':
+                       ':space_ireland:309204831548211201',
+                       r'(w\s?e\s?w(\slad)?)+\b': ':wew:319973823040716804',
+                       r'(v\s?i\s?s\s?i\s?o\s?n)+':
+                           ':vision_intensifies:332951986645499904'}
+    reactions = {'<:o7:308408906344824852>': ':o7:308408906344824852',
+                 '<:space_ireland:309204831548211201>':
+                     ':space_ireland:309204831548211201'}
+
+    for regex, reaction in regex_reactions:
+        if re.search(regex, message.content, re.I):
+            await bot.add_reaction(message, reaction)
+            if reaction == ':wew:319973823040716804':
+                await bot.send_message(message.channel, 'wew')
+
+    for trigger, reaction in reactions:
+        if trigger in message.content:
+            await bot.add_reaction(message, reaction)
+
+
 # get server status from EDSM API
 @bot.event
 async def check_server():
@@ -92,39 +113,7 @@ async def on_message(message):
 
     # reactions (no self reactions)
     if message.author.id != bot.user.id:
-
-        # o7
-        if '<:o7:308408906344824852>' in message.content or\
-                        'o7' in message.content:
-            await bot.add_reaction(
-                message,
-                ':o7:308408906344824852')
-
-        # space ireland
-        if '<:space_ireland:309204831548211201>' in message.content or\
-                re.search(r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
-                          message.content, re.I):
-            await bot.add_reaction(
-                message,
-                ':space_ireland:309204831548211201')
-
-        # wew
-        if re.search(r'(w\s?e\s?w(\slad)?)+\b', message.content, re.I):
-            await bot.add_reaction(
-                message,
-                ':wew:319973823040716804')
-            await bot.send_message(
-                chan,
-                'wew')
-
-        # v i s i o n
-        if re.search(
-                r'(v\s?i\s?s\s?i\s?o\s?n)+',
-                message.content,
-                re.I):
-            await bot.add_reaction(
-                message,
-                ':vision_intensifies:332951986645499904')
+        await process_reactions(message)
 
     # soon
     if re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
