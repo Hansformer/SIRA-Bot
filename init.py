@@ -216,5 +216,4 @@ async def on_message(message):
 
 
 # running the bot
-client.login(config.username, config.password)
 client.run(config.token)
