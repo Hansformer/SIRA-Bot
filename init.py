@@ -158,20 +158,15 @@ async def on_message(message):
     if message.author.id != '319826689729232897':
 
         # o7
-        if(message.content.find('<:o7:308408906344824852>') != -1 or
-           message.content.find('o7') != -1
-           ):
+        if '<:o7:308408906344824852>' in message.content or 'o7' in message.content:
             await client.add_reaction(
                 message,
                 ':o7:308408906344824852')
 
         # space ireland
-        if(message.content.find('<:space_ireland:309204831548211201>') != -1 or
-           re.search(
-                r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
-                message.content,
-                re.I)
-           ):
+        if ('<:space_ireland:309204831548211201>' in message.content or
+           re.search(r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b',
+                     message.content, re.I)):
             await client.add_reaction(
                 message,
                 ':space_ireland:309204831548211201')
@@ -214,7 +209,7 @@ async def on_message(message):
             'SOON:tm: <:smiling_man:332954734975647754>')
 
     # react to being mentioned
-    if message.content.find('<@!319826689729232897>') != -1:
+    if '<@!319826689729232897>' in message.content:
         await client.add_reaction(
             message,
             ':anime_smug:319973746825756683')
@@ -223,7 +218,7 @@ async def on_message(message):
             'You noticed me, senpai.')
 
     # sira-bot is patriotic
-    if message.content.find('*bombs u*') != -1:
+    if '*bombs u*' in message.content:
         await client.add_reaction(
             message,
             u"\U0001F4A3")
