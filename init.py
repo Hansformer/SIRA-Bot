@@ -20,14 +20,6 @@ from config import *
 
 # var defs
 client = discord.Client()
-chan = None
-
-# for server status
-smsg = None
-sstatus = None
-
-# for timestamps
-tstamp = None
 
 
 # timestamp formatting for console/terminal
