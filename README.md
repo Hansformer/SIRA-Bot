@@ -2,6 +2,7 @@
 **Feature Wishlist**
 - EDSM/EDDN API connection (wip)
 - ~Spouting memes~ (done)
+- Sanity (never)
 
 **Usage**\
 $ python3 -m pip install -r requirements.txt\
