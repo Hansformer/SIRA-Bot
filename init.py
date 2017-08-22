@@ -87,8 +87,7 @@ async def on_message(message):
             parameter = None
 
         # admin-only commands
-        if(message.author.id == '189890760873738240' or
-           message.author.id == '156405315976429568'):
+        if message.author.id in config.admins:
 
             if command in ['botkill', 'kill', 'close', 'end', 'ded', 'rip',
                            'makeded', 'fuckoff']:

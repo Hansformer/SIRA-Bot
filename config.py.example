@@ -4,3 +4,4 @@ token = 'token'
 debug = False
 tzone = 'UTC'
 tformat = '%Y-%m-%d %H:%M:%S'
+admins = []
