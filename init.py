@@ -5,7 +5,7 @@ import discord
 import pendulum
 
 # discord api config
-from config import *
+import config
 '''
 Create a local configuration file (config.py) with the following:
 username = "String value"
@@ -22,8 +22,8 @@ client = discord.Client()
 
 # timestamp formatting for console/terminal
 def get_time():
-    zone = pendulum.timezone(tzone)
-    stamp = pendulum.now(zone).strftime(tformat)
+    zone = pendulum.timezone(config.tzone)
+    stamp = pendulum.now(zone).strftime(config.tformat)
     return stamp
 
 
@@ -217,7 +217,7 @@ async def on_message(message):
             'Space Ireland will be free! <:space_ireland:309204831548211201>')
 
     # if debug is enabled print a message log in the console
-    if debug:
+    if config.debug:
         print("[%s] New message in %s - %s: %s" % (
             tstamp,
             message.channel,
@@ -226,5 +226,5 @@ async def on_message(message):
 
 
 # running the bot
-client.login(username, password)
-client.run(token)
+client.login(config.username, config.password)
+client.run(config.token)
