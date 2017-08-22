@@ -40,13 +40,13 @@ async def process_reactions(message):
                  '<:space_ireland:309204831548211201>':
                      ':space_ireland:309204831548211201'}
 
-    for regex, reaction in regex_reactions:
+    for regex, reaction in regex_reactions.items():
         if re.search(regex, message.content, re.I):
             await bot.add_reaction(message, reaction)
             if reaction == ':wew:319973823040716804':
                 await bot.send_message(message.channel, 'wew')
 
-    for trigger, reaction in reactions:
+    for trigger, reaction in reactions.items():
         if trigger in message.content:
             await bot.add_reaction(message, reaction)
 
@@ -170,9 +170,9 @@ async def flag(ctx):
     await bot.send_file(ctx.message.channel, "flag_of_space_ireland.png")
 
 
+@is_admin
 @bot.command(aliases=['botkill', 'close', 'end', 'ded',
                       'rip', 'makeded', 'fuckoff'], pass_context=True)
-@is_admin
 async def kill(ctx):
     # send a message and kill the script
     print("[%s] SIRA Bot disengaged." % get_time())
@@ -182,15 +182,15 @@ async def kill(ctx):
     await bot.close()
 
 
-@bot.command(aliases=['rest', 'recharge'], pass_context=True)
 @is_admin
+@bot.command(aliases=['rest', 'recharge'], pass_context=True)
 async def idle(ctx):
     await bot.change_presence(game=discord.Game(name='recharging'),
                               status=discord.Status('idle'), afk=True)
 
 
-@bot.command(pass_context=True)
 @is_admin
+@bot.command(pass_context=True)
 async def vision(ctx):
     await bot.change_presence(game=discord.Game(name='v i s i o n'),
                               status=discord.Status('online'), afk=False)
