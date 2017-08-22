@@ -9,7 +9,3 @@
 
 **Usage**\
 $ python3 init.py
-
-Windows:\
-cd C:\dir\to\repo\
-python init.py\
