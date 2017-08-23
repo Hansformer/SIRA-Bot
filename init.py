@@ -105,10 +105,10 @@ class SIRABot(discord.Client):
             await self.process_reactions(message)
 
         # soon
-        if re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
+        if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
                      message.content, re.I)\
-                or re.search(r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
-                             message.content, re.I):
+            or re.search(r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\b',
+                         message.content, re.I):
             await self.send_message(
                 chan,
                 'SOON:tm: <:smiling_man:332954734975647754>')
