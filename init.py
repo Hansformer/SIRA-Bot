@@ -31,8 +31,8 @@ class SIRABot(discord.Client):
              r'(w\s?e\s?w(\slad)?)+\b': ':wew:319973823040716804',
              r'(v\s?i\s?s\s?i\s?o\s?n)+':
              ':vision_intensifies:332951986645499904'}
-        reactions = {'<:o7:308408906344824852>': ':o7:308408906344824852',
-                     '<:space_ireland:309204831548211201>':
+        reactions = {'o7': ':o7:308408906344824852',
+                     'space_ireland:309204831548211201':
                          ':space_ireland:309204831548211201'}
 
         for regex, reaction in regex_reactions.items():
