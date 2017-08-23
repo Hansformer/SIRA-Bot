@@ -90,14 +90,13 @@ class SIRABot(discord.Client):
             "Join the /edg/ player group, SIRA - https://inara.cz/wing/1470")
 
     # member quit routine
-    @staticmethod
     async def on_member_remove(member):
         tstamp = get_time()
         print(f"[{tstamp}] User left - {member.name}")
         chan = self.get_channel('200383687232192513')
         await self.send_message(
             chan,
-            f"<@!{member.id}> has quit.")
+            f"{member.name} has quit.")
 
     # on message routine
     async def on_message(self, message):
