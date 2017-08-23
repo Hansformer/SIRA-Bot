@@ -26,14 +26,12 @@ class SIRABot(discord.Client):
 
     async def process_reactions(self, message):
         regex_reactions =\
-            {r'(s\s?p\s?a\s?c\s?e\s*i\s?r\s?e\s?l\s?a\s?n\s?d)+\b':
+            {r'\bs\s?p\s?a\s?c\s?e(?:\s?|_)i\s?r\s?e\s?l\s?a\s?n\s?d\b':
              ':space_ireland:309204831548211201',
-             r'(w\s?e\s?w(\slad)?)+\b': ':wew:319973823040716804',
-             r'(v\s?i\s?s\s?i\s?o\s?n)+':
+             r'\bw\s?e\s?w(?:\slad)?\b': ':wew:319973823040716804',
+             r'v\s?i\s?s\s?i\s?o\s?n':
              ':vision_intensifies:332951986645499904'}
-        reactions = {'<:o7:308408906344824852>': ':o7:308408906344824852',
-                     '<:space_ireland:309204831548211201>':
-                         ':space_ireland:309204831548211201'}
+        reactions = {'o7': ':o7:308408906344824852'}
 
         for regex, reaction in regex_reactions.items():
             if re.search(regex, message.content, re.I):
@@ -107,10 +105,10 @@ class SIRABot(discord.Client):
             await self.process_reactions(message)
 
         # soon
-        if re.search(r'(s\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s)+\b',
+        if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
                      message.content, re.I)\
-                or re.search(r'(a\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?i\s?c)+',
-                             message.content, re.I):
+            or re.search(r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\b',
+                         message.content, re.I):
             await self.send_message(
                 chan,
                 'SOON:tm: <:smiling_man:332954734975647754>')
