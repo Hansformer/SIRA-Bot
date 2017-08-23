@@ -94,6 +94,10 @@ class SIRABot(discord.Client):
     async def on_member_remove(member):
         tstamp = get_time()
         print(f"[{tstamp}] User left - {member.name}")
+        chan = self.get_channel('200383687232192513')
+        await self.send_message(
+            chan,
+            f"<@!{member.id}> has quit.")
 
     # on message routine
     async def on_message(self, message):
@@ -107,8 +111,9 @@ class SIRABot(discord.Client):
         # soon
         if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
                      message.content, re.I)\
-            or re.search(r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\b',
-                         message.content, re.I):
+            or re.search(
+                r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
+                message.content, re.I):
             await self.send_message(
                 chan,
                 'SOON:tm: <:smiling_man:332954734975647754>')
