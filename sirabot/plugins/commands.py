@@ -11,6 +11,7 @@ async def check_server():
             return api['type'], api['message']
 
 
+# server status command
 async def server(client, message, parameter):
     sstatus, smsg = await check_server()
     if sstatus == 'success':
@@ -25,19 +26,23 @@ async def server(client, message, parameter):
                                   ' server cords again.')
 
 
+# flag command
 async def flag(client, message, parameter):
     await client.send_file(message.channel, "flag_of_space_ireland.png")
 
 
+# logo command
 async def logo(client, message, parameter):
     await client.send_file(message.channel, "sira_logo.png")
 
 
+# space ira command
 async def space_ira(client, message, parameter):
     await client.send_message(message.channel,
                               f'https://www.youtube.com/watch?v=5h7UPVOz6MU')
 
 
+# trigger definitions
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server)

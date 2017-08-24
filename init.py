@@ -14,6 +14,7 @@ from pluginbase import PluginBase
 # discord api config
 import config
 
+# logging
 if config.debug:
     logging.getLogger('asyncio').setLevel(logging.DEBUG)
     warnings.simplefilter('default')
@@ -38,6 +39,7 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 
+# exception logging
 def log_exception(exc_type, exc_value, exc_traceback):
     logger.error("Uncaught exception",
                  exc_info=(exc_type, exc_value, exc_traceback))
@@ -45,7 +47,10 @@ def log_exception(exc_type, exc_value, exc_traceback):
 sys.excepthook = log_exception
 
 
+# bot class and main functions
 class SIRABot(discord.Client):
+
+    # initialization
     def __init__(self, **options):
         logger.info('Initializing SIRA Bot...')
         super().__init__(**options)
@@ -61,6 +66,7 @@ class SIRABot(discord.Client):
         self.commands = {}
         self.log = logger
 
+    # kill routine
     async def kill(self, signame='SIGINT'):
         logger.debug(f'Received {signame}')
         chan = self.get_channel('348971376750886912')
@@ -70,9 +76,11 @@ class SIRABot(discord.Client):
         await self.logout()
         logger.info('SIRA Bot disengaged.')
 
+    # registering commands
     def register_command(self, name, command):
         self.commands[name] = command
 
+    # processing reactions
     async def process_reactions(self, message):
         regex_reactions =\
             {r'\bs\s?p\s?a\s?c\s?e(?:\s?|_)i\s?r\s?e\s?l\s?a\s?n\s?d\b':
@@ -92,6 +100,7 @@ class SIRABot(discord.Client):
             if trigger in message.content:
                 await self.add_reaction(message, reaction)
 
+    # processing commands
     async def process_commands(self, message):
         try:
             command, parameter = message.content[1:].split(' ', 1)
@@ -177,6 +186,11 @@ class SIRABot(discord.Client):
                 'Space Ireland will be free!'
                 ' <:space_ireland:309204831548211201>')
 
+        # >ASP
+        if 'ASP' in message.content:
+            await self.send_file(chan, "ASP.png")
+
+        # trigger ! commands
         if message.content.startswith('!'):
             await self.process_commands(message)
 
@@ -184,11 +198,12 @@ class SIRABot(discord.Client):
         logging.debug(f"New message in {message.channel} -"
                       f" {message.author}: {message.content}")
 
+    # member update routine
     async def on_member_update(self, member, after):
+        server = self.get_server('195647497505472512')
 
         # auto tag the heathens
         if 'EVE Online' in f'{member.game}':
-            server = self.get_server('195647497505472512')
             role = discord.utils.get(server.roles, id='207087337958539274')
             await self.add_roles(member, role)
 
