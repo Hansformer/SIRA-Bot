@@ -33,8 +33,15 @@ async def logo(client, message, parameter):
     await client.send_file(message.channel, "sira_logo.png")
 
 
+async def space_ira(client, message, parameter):
+    await client.send_message(message.channel,
+                              f'https://www.youtube.com/watch?v=5h7UPVOz6MU')
+
+
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server)
+    for alias in ['spaceira', 'space_ira']:
+        client.register_command(alias, space_ira)
     client.register_command('flag', flag)
     client.register_command('logo', logo)
