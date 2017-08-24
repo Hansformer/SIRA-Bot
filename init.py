@@ -2,6 +2,7 @@
 import asyncio
 import re
 import os
+import sys
 import logging
 import warnings
 import signal
@@ -35,6 +36,13 @@ ch.setFormatter(formatter)
 
 logger.addHandler(fh)
 logger.addHandler(ch)
+
+
+def log_exception(exc_type, exc_value, exc_traceback):
+    logger.error("Uncaught exception",
+                 exc_info=(exc_type, exc_value, exc_traceback))
+
+sys.excepthook = log_exception
 
 
 class SIRABot(discord.Client):
