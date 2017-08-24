@@ -1,5 +1,6 @@
 import aiohttp
 
+
 # get server status from EDSM API
 async def check_server():
     async with aiohttp.ClientSession() as session:
@@ -20,7 +21,8 @@ async def server(client, message, parameter):
                                   f':warning: FDev says "{smsg}".')
     elif sstatus == 'danger':
         await client.send_message(message.channel,
-            f':fire: "{smsg}". Sandro tripped over the server cords again.')
+                                  f':fire: "{smsg}". Sandro tripped over the'
+                                  ' server cords again.')
 
 
 async def flag(client, message, parameter):

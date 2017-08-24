@@ -1,6 +1,9 @@
+import logging
 import pendulum
 
 from config import tzone, tformat, admins
+
+logger = logging.getLogger('sirabot')
 
 
 # timestamp formatting for console/terminal
@@ -15,5 +18,5 @@ def is_admin(fn):
         if message.author.id in admins:
             return await fn(client, message, parameter)
         else:
-            raise Exception('Unauthorized')
+            logger.debug(f'Permission denied: {message}')
     return ret_fn

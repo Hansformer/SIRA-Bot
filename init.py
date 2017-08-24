@@ -1,6 +1,8 @@
 # required libs
 import re
 import os
+import logging
+import warnings
 from functools import partial
 
 import discord
@@ -8,11 +10,34 @@ from pluginbase import PluginBase
 
 # discord api config
 import config
-from sirabot.utils import get_time
+
+if config.debug:
+    logging.getLogger('asyncio').setLevel(logging.DEBUG)
+    warnings.simplefilter('default')
+
+logger = logging.getLogger('sirabot')
+logger.setLevel(logging.DEBUG)
+
+fh = logging.FileHandler(config.logfile)
+fh.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler()
+if config.debug:
+    ch.setLevel(logging.DEBUG)
+else:
+    ch.setLevel(logging.ERROR)
+
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s: %(message)s')
+fh.setFormatter(formatter)
+ch.setFormatter(formatter)
+
+logger.addHandler(fh)
+logger.addHandler(ch)
 
 
 class SIRABot(discord.Client):
     def __init__(self, **options):
+        logger.info('Initializing SIRA Bot...')
         super().__init__(**options)
         here = os.path.abspath(os.path.dirname(__file__))
         get_path = partial(os.path.join, here)
@@ -20,6 +45,7 @@ class SIRABot(discord.Client):
         self.plugin_source = plugin_base.make_plugin_source(
             searchpath=[get_path('./sirabot/plugins')])
         self.commands = {}
+        self.log = logger
 
     def register_command(self, name, command):
         self.commands[name] = command
@@ -55,19 +81,14 @@ class SIRABot(discord.Client):
 
     # login routine
     async def on_ready(self):
+        logger.info("Connected to Discord")
+        logger.info(f'Username: {self.user.name}')
+        logger.info(f'ID: {self.user.id}')
+        logger.debug('Loading plugins')
         for plugin_name in self.plugin_source.list_plugins():
             plugin = self.plugin_source.load_plugin(plugin_name)
             await plugin.setup(self)
-
-        tstamp = get_time()
-
-        # print some console info
-        print(f"[{tstamp}] Initializing SIRA Bot...")
-        print('-----INFO-----')
-        print(self.user.name)
-        print(self.user.id)
-        print('--------------')
-        print(f"[{tstamp}] It lives.")
+        logger.debug('Plugins loaded')
 
         # send a message
         chan = self.get_channel('348971376750886912')
@@ -77,8 +98,7 @@ class SIRABot(discord.Client):
 
     # member join routine
     async def on_member_join(self, member):
-        tstamp = get_time()
-        print(f"[{tstamp}] User joined - {member.name}")
+        logging.info(f"User joined - {member.name}")
         chan = self.get_channel('195647497505472512')
         await self.send_message(
             chan,
@@ -91,8 +111,7 @@ class SIRABot(discord.Client):
 
     # member quit routine
     async def on_member_remove(self, member):
-        tstamp = get_time()
-        print(f"[{tstamp}] User left - {member.name}")
+        logging.info(f"User left - {member.name}")
         chan = self.get_channel('200383687232192513')
         await self.send_message(
             chan,
@@ -100,7 +119,6 @@ class SIRABot(discord.Client):
 
     # on message routine
     async def on_message(self, message):
-        tstamp = get_time()
         chan = message.channel
 
         # reactions (no self reactions)
@@ -140,9 +158,8 @@ class SIRABot(discord.Client):
             await self.process_commands(message)
 
         # if debug is enabled print a message log in the console
-        if config.debug:
-            print(f"[{tstamp}] New message in {message.channel} -"
-                  f" {message.author}: {message.content}")
+        logging.debug(f"New message in {message.channel} -"
+                      f" {message.author}: {message.content}")
 
     async def on_member_update(self, member, after):
 
@@ -151,6 +168,7 @@ class SIRABot(discord.Client):
             server = self.get_server('195647497505472512')
             role = discord.utils.get(server.roles, id='207087337958539274')
             await self.add_roles(member, role)
+
 
 # running the bot
 bot = SIRABot()
