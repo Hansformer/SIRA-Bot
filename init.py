@@ -1,8 +1,10 @@
 # required libs
+import asyncio
 import re
 import os
 import logging
 import warnings
+import signal
 from functools import partial
 
 import discord
@@ -39,6 +41,10 @@ class SIRABot(discord.Client):
     def __init__(self, **options):
         logger.info('Initializing SIRA Bot...')
         super().__init__(**options)
+        for signame in ('SIGINT', 'SIGTERM'):
+            self.loop.add_signal_handler(getattr(signal, signame),
+                                         lambda: asyncio.ensure_future(
+                                         self.kill(signame)))
         here = os.path.abspath(os.path.dirname(__file__))
         get_path = partial(os.path.join, here)
         plugin_base = PluginBase(package='sirabot.plugins')
@@ -46,6 +52,16 @@ class SIRABot(discord.Client):
             searchpath=[get_path('./sirabot/plugins')])
         self.commands = {}
         self.log = logger
+
+    async def kill(self, signame='SIGINT'):
+        logger.debug(f'Received {signame}')
+        chan = self.get_channel('348971376750886912')
+        await self.send_message(chan,
+                                'SIRA Bot signing off. <:o7:308408906344824852>'
+                                )
+        await self.logout()
+        logger.info('SIRA Bot disengaged.')
+        self.loop.close()
 
     def register_command(self, name, command):
         self.commands[name] = command

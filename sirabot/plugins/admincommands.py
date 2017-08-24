@@ -4,12 +4,7 @@ from sirabot.utils import is_admin
 
 @is_admin
 async def kill(client, message, parameter):
-    # send a message and kill the script
-    client.log.info('SIRA Bot disengaged.')
-    chan = client.get_channel('348971376750886912')
-    await client.send_message(chan,
-                              'SIRA Bot signing off. <:o7:308408906344824852>')
-    await client.close()
+    await client.kill()
 
 
 @is_admin
