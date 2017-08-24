@@ -27,7 +27,7 @@ async def vision(client, message, parameter):
 
 
 async def setup(client):
-    for alias in ['botkill', 'kill', 'close', 'end',
+    for alias in ['botkill', 'kill', 'close', 'end', 'kys',
                   'ded', 'rip', 'makeded', 'fuckoff']:
         client.register_command(alias, kill)
     for alias in ['rest', 'idle', 'recharge', 'status2']:

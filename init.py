@@ -144,6 +144,14 @@ class SIRABot(discord.Client):
             print(f"[{tstamp}] New message in {message.channel} -"
                   f" {message.author}: {message.content}")
 
+    async def on_member_update(self, member, after):
+
+        # auto tag the heathens
+        if 'EVE Online' in f'{member.game}':
+            server = self.get_server('195647497505472512')
+            role = discord.utils.get(server.roles, id='207087337958539274')
+            await self.add_roles(member, role)
+
 # running the bot
 bot = SIRABot()
 bot.run(config.token)
