@@ -61,7 +61,6 @@ class SIRABot(discord.Client):
                                 )
         await self.logout()
         logger.info('SIRA Bot disengaged.')
-        self.loop.close()
 
     def register_command(self, name, command):
         self.commands[name] = command
