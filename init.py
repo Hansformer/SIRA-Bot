@@ -157,48 +157,48 @@ class SIRABot(discord.Client):
         if message.author.id != self.user.id:
             await self.process_reactions(message)
 
-        # soon
-        if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
-                     message.content, re.I)\
-            or re.search(
-                r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
-                message.content, re.I):
-            await self.send_message(
-                chan,
-                'SOON:tm: <:smiling_man:332954734975647754>')
+            # >ASP
+            if 'ASP' in message.content:
+                await self.send_file(chan, "ASP.png")
 
-        # react to being mentioned
-        if f'<@!{self.user.id}>' in message.content:
-            await self.add_reaction(
-                message,
-                ':anime_smug:319973746825756683')
-            await self.send_message(
-                chan,
-                'You noticed me, senpai.')
+            # soon
+            if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
+                         message.content, re.I)\
+                or re.search(
+                    r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
+                    message.content, re.I):
+                await self.send_message(
+                    chan,
+                    'SOON:tm: <:smiling_man:332954734975647754>')
 
-        # sira-bot is patriotic
-        if '*bombs u*' in message.content:
-            await self.add_reaction(
-                message,
-                "\U0001F4A3")
-            await self.send_message(
-                chan,
-                'Space Ireland will be free!'
-                ' <:space_ireland:309204831548211201>')
+            # react to being mentioned
+            if f'<@!{self.user.id}>' in message.content:
+                await self.add_reaction(
+                    message,
+                    ':anime_smug:319973746825756683')
+                await self.send_message(
+                    chan,
+                    'You noticed me, senpai.')
 
-        # >ASP
-        if 'ASP' in message.content:
-            await self.send_file(chan, "ASP.png")
+            # sira-bot is patriotic
+            if '*bombs u*' in message.content:
+                await self.add_reaction(
+                    message,
+                    "\U0001F4A3")
+                await self.send_message(
+                    chan,
+                    'Space Ireland will be free!'
+                    ' <:space_ireland:309204831548211201>')        
 
-        # trigger ! commands
-        if message.content.startswith('!'):
-            await self.process_commands(message)
+            # trigger ! commands
+            if message.content.startswith('!'):
+                await self.process_commands(message)
 
-        # >greentexting
-        if message.content.startswith('>'):
-             await self.send_message(
-                chan,
-                f'```css\n {message.content}```')
+            # >greentexting
+            if message.content.startswith('>'):
+                 await self.send_message(
+                    chan,
+                    f'```css\n {message.content}```')
 
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
