@@ -198,7 +198,7 @@ class SIRABot(discord.Client):
         if message.content.startswith('>'):
              await self.send_message(
                 chan,
-                f'```css {message}```')
+                '```css {message}```')
 
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
