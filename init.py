@@ -147,7 +147,8 @@ class SIRABot(discord.Client):
         chan = self.get_channel('200383687232192513')
         await self.send_message(
             chan,
-            f"<@!{member.id}> has quit.")
+            f"<@!{member.id}> ({member.name}) has quit. "
+            "<:umaru_cry:319973822012981248>")
 
     # on message routine
     async def on_message(self, message):
@@ -198,7 +199,7 @@ class SIRABot(discord.Client):
             if message.content.startswith('>'):
                  await self.send_message(
                     chan,
-                    f'```css\n {message.content}```')
+                    f'```css\n{message.content}```')
 
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
