@@ -194,6 +194,12 @@ class SIRABot(discord.Client):
         if message.content.startswith('!'):
             await self.process_commands(message)
 
+        # >greentexting
+        if message.content.startswith('>'):
+             await self.send_message(
+                chan,
+                f'```css {message}```')
+
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
                       f" {message.author}: {message.content}")
