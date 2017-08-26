@@ -44,6 +44,7 @@ def log_exception(exc_type, exc_value, exc_traceback):
     logger.error("Uncaught exception",
                  exc_info=(exc_type, exc_value, exc_traceback))
 
+
 sys.excepthook = log_exception
 
 
@@ -57,7 +58,7 @@ class SIRABot(discord.Client):
         for signame in ('SIGINT', 'SIGTERM'):
             self.loop.add_signal_handler(getattr(signal, signame),
                                          lambda: asyncio.ensure_future(
-                                         self.kill(signame)))
+                                             self.kill(signame)))
         here = os.path.abspath(os.path.dirname(__file__))
         get_path = partial(os.path.join, here)
         plugin_base = PluginBase(package='sirabot.plugins')
@@ -189,7 +190,7 @@ class SIRABot(discord.Client):
                 await self.send_message(
                     chan,
                     'Space Ireland will be free!'
-                    ' <:space_ireland:309204831548211201>')        
+                    ' <:space_ireland:309204831548211201>')
 
             # trigger ! commands
             if message.content.startswith('!'):
