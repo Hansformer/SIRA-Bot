@@ -20,10 +20,10 @@ async def idle(client, message, parameter):
 # vision status
 @is_admin
 async def vision(client, message, parameter):
-    await client.change_presence(game=discord.Game(name='the V I S I O N'),
+    await client.change_presence(game=discord.Game(name='V I S I O N'),
                                  status=discord.Status('online'),
                                  afk=False)
-    await client.send_message(message.channel, 'I have been visioned.')
+    await client.send_message(message.channel, 'I have been V I S I O N\'d.')
 
 
 # trigger definitions

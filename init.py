@@ -216,8 +216,9 @@ class SIRABot(discord.Client):
         # auto tag the heathens
         if 'EVE Online' in f'{member.game}':
             role = discord.utils.get(server.roles, id='207087337958539274')
-            await self.add_roles(member, role)
-            logger.info(f"{member.name} auto-tagged as EVE heathen.")
+            if discord.utils.get(member.roles, id='207087337958539274') is not None:
+                await self.add_roles(member, role)
+                logger.info(f"{member.name} auto-tagged as EVE heathen.")
 
 
 # running the bot
