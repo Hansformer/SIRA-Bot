@@ -210,15 +210,15 @@ class SIRABot(discord.Client):
                      f" {message.author}: {message.content}")
 
     # member update routine
-    async def on_member_update(self, member, after):
+    async def on_member_update(self, before, after):
         server = self.get_server('195647497505472512')
 
         # auto tag the heathens
-        if 'EVE Online' in f'{member.game}':
+        if 'EVE Online' in f'{after.game}':
             role = discord.utils.get(server.roles, id='207087337958539274')
-            if role not in member.roles:
-                await self.add_roles(member, role)
-                logger.info(f"{member.name} auto-tagged as EVE heathen.")
+            if role not in after.roles:
+                await self.add_roles(after, role)
+                logger.info(f"{after.name} auto-tagged as EVE heathen.")
 
 
 # running the bot
