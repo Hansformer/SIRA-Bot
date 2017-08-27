@@ -125,8 +125,8 @@ class SIRABot(discord.Client):
         if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
                      message.content, re.I)\
            or re.search(
-                r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
-                message.content, re.I):
+               r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
+               message.content, re.I):
             await self.send_message(
                 chan,
                 'SOON:tm: <:smiling_man:332954734975647754>')
@@ -206,8 +206,8 @@ class SIRABot(discord.Client):
                 await self.process_message(message)
 
         # if debug is enabled print a message log in the console
-        logging.debug(f"New message in {message.channel} -"
-                      f" {message.author}: {message.content}")
+        logger.debug(f"New message in {message.channel} -"
+                     f" {message.author}: {message.content}")
 
     # member update routine
     async def on_member_update(self, member, after):
