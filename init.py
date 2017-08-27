@@ -192,7 +192,7 @@ class SIRABot(discord.Client):
 
             # >greentexting
             elif (message.content.startswith('>') or
-                  re.search(r'\b>',
+                  re.search(r'\b(>.)',
                             message.content, re.I)):
                 await self.send_message(chan,
                                         f'```css\n{message.content}```')
