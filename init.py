@@ -116,18 +116,6 @@ class SIRABot(discord.Client):
     async def process_message(self, message):
         chan = message.channel
 
-        # trigger ! commands
-        if message.content.startswith('!'):
-            await self.process_commands(message)
-
-        # >greentexting
-        if message.content.startswith('>'):
-            await self.send_message(chan, f'```css\n{message.content}```')
-
-        # >ASP
-        if 'ASP' in message.content:
-            await self.send_file(chan, "ASP.png")
-
         # soon
         if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
                      message.content, re.I)\
@@ -137,6 +125,10 @@ class SIRABot(discord.Client):
             await self.send_message(
                 chan,
                 'SOON:tm: <:smiling_man:332954734975647754>')
+
+        # >ASP
+        if 'ASP' in message.content:
+            await self.send_file(chan, "ASP.png")
 
     # processing commands
     async def process_commands(self, message):
@@ -193,8 +185,17 @@ class SIRABot(discord.Client):
 
         # reactions (no self reactions)
         if message.author.id != self.user.id:
-            await self.process_reactions(message)
-            await self.process_message(message)
+            # trigger ! commands
+            if message.content.startswith('!'):
+                await self.process_commands(message)
+
+            # >greentexting
+            elif message.content.startswith('>'):
+                await self.send_message(chan, f'```css\n{message.content}```')
+
+            else:
+                await self.process_reactions(message)
+                await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
