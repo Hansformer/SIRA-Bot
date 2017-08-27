@@ -31,7 +31,8 @@ if config.debug:
 else:
     ch.setLevel(logging.ERROR)
 
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s: %(message)s')
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:'
+                              ' %(message)s')
 fh.setFormatter(formatter)
 ch.setFormatter(formatter)
 
@@ -71,9 +72,9 @@ class SIRABot(discord.Client):
     async def kill(self, signame='SIGINT'):
         logger.debug(f'Received {signame}')
         chan = self.get_channel('348971376750886912')
-        await self.send_message(chan,
-                                'SIRA Bot signing off. <:o7:308408906344824852>'
-                                )
+        await self.send_message(
+            chan,
+            'SIRA Bot signing off. <:o7:308408906344824852>')
         await self.logout()
         logger.info('SIRA Bot disengaged.')
 
@@ -89,7 +90,9 @@ class SIRABot(discord.Client):
              r'\bw\s?e\s?w(?:\slad)?\b': ':wew:319973823040716804',
              r'v\s?i\s?s\s?i\s?o\s?n':
              ':vision_intensifies:332951986645499904'}
-        reactions = {'o7': ':o7:308408906344824852'}
+        reactions = {'o7': ':o7:308408906344824852',
+                     f'<@!{self.user.id}>': ':anime_smug:319973746825756683',
+                     '*bombs u*': "\U0001F4A3"}
 
         for regex, reaction in regex_reactions.items():
             if re.search(regex, message.content, re.I):
@@ -100,6 +103,38 @@ class SIRABot(discord.Client):
         for trigger, reaction in reactions.items():
             if trigger in message.content:
                 await self.add_reaction(message, reaction)
+                if reaction == ':anime_smug:319973746825756683':
+                    await self.send_message(message.channel,
+                                            'You noticed me, senpai.')
+                if reaction == "\U0001F4A3":
+                    await self.send_message(
+                        message.channel,
+                        'Space Ireland will be free!'
+                        '<:space_ireland:309204831548211201>')
+
+    # processing messages
+    async def process_message(self, message):
+        # trigger ! commands
+        if message.content.startswith('!'):
+            await self.process_commands(message)
+
+        # >greentexting
+        if message.content.startswith('>'):
+            await self.send_message(chan, f'```css\n{message.content}```')
+
+        # >ASP
+        if 'ASP' in message.content:
+            await self.send_file(chan, "ASP.png")
+
+        # soon
+        if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
+                     message.content, re.I)\
+           or re.search(
+                r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
+                message.content, re.I):
+            await self.send_message(
+                chan,
+                'SOON:tm: <:smiling_man:332954734975647754>')
 
     # processing commands
     async def process_commands(self, message):
@@ -158,48 +193,7 @@ class SIRABot(discord.Client):
         # reactions (no self reactions)
         if message.author.id != self.user.id:
             await self.process_reactions(message)
-
-            # >ASP
-            if 'ASP' in message.content:
-                await self.send_file(chan, "ASP.png")
-
-            # soon
-            if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
-                         message.content, re.I)\
-                or re.search(
-                    r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
-                    message.content, re.I):
-                await self.send_message(
-                    chan,
-                    'SOON:tm: <:smiling_man:332954734975647754>')
-
-            # react to being mentioned
-            if f'<@!{self.user.id}>' in message.content:
-                await self.add_reaction(
-                    message,
-                    ':anime_smug:319973746825756683')
-                await self.send_message(
-                    chan,
-                    'You noticed me, senpai.')
-
-            # sira-bot is patriotic
-            if '*bombs u*' in message.content:
-                await self.add_reaction(
-                    message,
-                    "\U0001F4A3")
-                await self.send_message(
-                    chan,
-                    'Space Ireland will be free!'
-                    ' <:space_ireland:309204831548211201>')
-
-            # trigger ! commands
-            if message.content.startswith('!'):
-                await self.process_commands(message)
-
-            # >greentexting
-            if message.content.startswith('>'):
-                await self.send_message(chan,
-                                        f'```css\n{message.content}```')
+            await self.process_messages(message)
 
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
