@@ -96,7 +96,7 @@ class SIRABot(discord.Client):
 
         # reaction definitions
         reactions = {'o7': ':o7:308408906344824852',
-                     f'{self.user.mention}': ':anime_smug:319973746825756683',
+                     f'{self.user.id}>': ':anime_smug:319973746825756683',
                      '*bombs u*': "\U0001F4A3"}
 
         # regex triggers
