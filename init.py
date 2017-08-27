@@ -84,6 +84,8 @@ class SIRABot(discord.Client):
 
     # processing reactions
     async def process_reactions(self, message):
+        chan = message.channel
+
         regex_reactions =\
             {r'\bs\s?p\s?a\s?c\s?e(?:\s?|_)i\s?r\s?e\s?l\s?a\s?n\s?d\b':
              ':space_ireland:309204831548211201',
@@ -98,22 +100,22 @@ class SIRABot(discord.Client):
             if re.search(regex, message.content, re.I):
                 await self.add_reaction(message, reaction)
                 if reaction == ':wew:319973823040716804':
-                    await self.send_message(message.channel, 'wew')
+                    await self.send_message(chan, 'wew')
 
         for trigger, reaction in reactions.items():
             if trigger in message.content:
                 await self.add_reaction(message, reaction)
                 if reaction == ':anime_smug:319973746825756683':
-                    await self.send_message(message.channel,
-                                            'You noticed me, senpai.')
+                    await self.send_message(chan, 'You noticed me, senpai.')
                 if reaction == "\U0001F4A3":
                     await self.send_message(
-                        message.channel,
-                        'Space Ireland will be free!'
+                        chan, 'Space Ireland will be free! '
                         '<:space_ireland:309204831548211201>')
 
     # processing messages
     async def process_message(self, message):
+        chan = message.channel
+
         # trigger ! commands
         if message.content.startswith('!'):
             await self.process_commands(message)
@@ -188,7 +190,6 @@ class SIRABot(discord.Client):
 
     # on message routine
     async def on_message(self, message):
-        chan = message.channel
 
         # reactions (no self reactions)
         if message.author.id != self.user.id:
