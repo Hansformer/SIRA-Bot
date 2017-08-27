@@ -86,22 +86,27 @@ class SIRABot(discord.Client):
     async def process_reactions(self, message):
         chan = message.channel
 
+        # regex definitions
         regex_reactions =\
             {r'\bs\s?p\s?a\s?c\s?e(?:\s?|_)i\s?r\s?e\s?l\s?a\s?n\s?d\b':
              ':space_ireland:309204831548211201',
              r'\bw\s?e\s?w(?:\slad)?\b': ':wew:319973823040716804',
              r'v\s?i\s?s\s?i\s?o\s?n':
              ':vision_intensifies:332951986645499904'}
+
+        # reaction definitions
         reactions = {'o7': ':o7:308408906344824852',
                      f'<@!{self.user.id}>': ':anime_smug:319973746825756683',
                      '*bombs u*': "\U0001F4A3"}
 
+        # regex triggers
         for regex, reaction in regex_reactions.items():
             if re.search(regex, message.content, re.I):
                 await self.add_reaction(message, reaction)
                 if reaction == ':wew:319973823040716804':
                     await self.send_message(chan, 'wew')
 
+        # reaction triggers
         for trigger, reaction in reactions.items():
             if trigger in message.content:
                 await self.add_reaction(message, reaction)
@@ -160,7 +165,7 @@ class SIRABot(discord.Client):
 
     # member join routine
     async def on_member_join(self, member):
-        logging.info(f"User joined - {member.name}")
+        logger.info(f"User joined - {member.name}")
         chan = self.get_channel('195647497505472512')
         await self.send_message(
             chan,
@@ -173,7 +178,7 @@ class SIRABot(discord.Client):
 
     # member quit routine
     async def on_member_remove(self, member):
-        logging.info(f"User left - {member.name}")
+        logger.info(f"User left - {member.name}")
         chan = self.get_channel('200383687232192513')
         await self.send_message(
             chan,
@@ -184,8 +189,9 @@ class SIRABot(discord.Client):
     async def on_message(self, message):
         chan = message.channel
 
-        # reactions (no self reactions)
+        # react to messages (no self reactions)
         if message.author.id != self.user.id:
+
             # trigger ! commands
             if message.content.startswith('!'):
                 await self.process_commands(message)
@@ -211,6 +217,9 @@ class SIRABot(discord.Client):
         if 'EVE Online' in f'{member.game}':
             role = discord.utils.get(server.roles, id='207087337958539274')
             await self.add_roles(member, role)
+
+            # debug
+            logging.debug(f"{member.name} tagged as EVE heathen.")
 
 
 # running the bot
