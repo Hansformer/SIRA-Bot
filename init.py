@@ -193,7 +193,7 @@ class SIRABot(discord.Client):
         # reactions (no self reactions)
         if message.author.id != self.user.id:
             await self.process_reactions(message)
-            await self.process_messages(message)
+            await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logging.debug(f"New message in {message.channel} -"
