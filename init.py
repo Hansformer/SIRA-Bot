@@ -96,7 +96,7 @@ class SIRABot(discord.Client):
 
         # reaction definitions
         reactions = {'o7': ':o7:308408906344824852',
-                     f'<@!{self.user.id}>': ':anime_smug:319973746825756683',
+                     f'{self.user.mention}': ':anime_smug:319973746825756683',
                      '*bombs u*': "\U0001F4A3"}
 
         # regex triggers
@@ -169,7 +169,7 @@ class SIRABot(discord.Client):
         chan = self.get_channel('195647497505472512')
         await self.send_message(
             chan,
-            f"Welcome <@!{member.id}>."
+            f"Welcome {member.mention}."
             " <:vision_intensifies:332951986645499904> "
             "If you have any issues, please tag an <@&200367057378869248>.")
         await self.send_message(
@@ -182,7 +182,7 @@ class SIRABot(discord.Client):
         chan = self.get_channel('200383687232192513')
         await self.send_message(
             chan,
-            f"<@!{member.id}> ({member.name}) has quit. "
+            f"{member.mention} ({member.name}) has quit. "
             "<:umaru_cry:319973822012981248>")
 
     # on message routine
