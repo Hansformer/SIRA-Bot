@@ -217,9 +217,7 @@ class SIRABot(discord.Client):
         if 'EVE Online' in f'{member.game}':
             role = discord.utils.get(server.roles, id='207087337958539274')
             await self.add_roles(member, role)
-
-            # debug
-            logging.debug(f"{member.name} tagged as EVE heathen.")
+            logger.info(f"{member.name} auto-tagged as EVE heathen.")
 
 
 # running the bot
