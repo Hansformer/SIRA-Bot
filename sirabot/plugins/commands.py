@@ -20,7 +20,7 @@ async def get_factions(system):
             if api:
                 return api['controllingFaction'], api['factions']
             else:
-                return None
+                return None, None
 
 
 # server status command
