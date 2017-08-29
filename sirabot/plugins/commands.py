@@ -38,7 +38,11 @@ async def server(client, message, parameter):
 async def faction_info(client, message, parameter):
     sys = message.content.replace("!factioninfo ", "")
     confac, fac = await get_factions(sys)
-    await client.send_message(message.channel,f'{confac}, {fac}')
+    if fac is not "":
+        await client.send_message(message.channel,f'{confac}, {fac}')
+    else:
+        await client.send_message(message.channel,
+                                  'I can\'t find what you\'re looking for.')
 
 
 # flag command
