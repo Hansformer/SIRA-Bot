@@ -11,6 +11,15 @@ async def check_server():
             return api['type'], api['message']
 
 
+async def get_factions(system):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            f'https://www.edsm.net/api-system-v1/factions?systemName={system}'
+                ) as resp:
+            api = await resp.json()
+            return api['controllingFaction'], api['factions']
+
+
 # server status command
 async def server(client, message, parameter):
     sstatus, smsg = await check_server()
@@ -24,6 +33,12 @@ async def server(client, message, parameter):
         await client.send_message(message.channel,
                                   f':fire: "{smsg}". Sandro tripped over the'
                                   ' server cords again.')
+
+
+async def faction_info(client, message, parameter):
+    sys = message.content.replace("!factioninfo", "")
+    confac, fac = await get_factions(sys)
+    await client.send_message(message.channel,f'{confac}, {fac}')
 
 
 # flag command
@@ -48,5 +63,6 @@ async def setup(client):
         client.register_command(alias, server)
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
+    client.register_command('factioninfo', faction_info)
     client.register_command('flag', flag)
     client.register_command('logo', logo)
