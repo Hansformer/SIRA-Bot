@@ -38,9 +38,8 @@ async def server(client, message, parameter):
 async def faction_info(client, message, parameter):
     sys = message.content.replace("!factioninfo ", "")
     confac, fac = await get_factions(sys)
-    if fac is None:
-        await client.send_message(message.channel,
-                                  'I can\'t find what you\'re looking for.')
+    if not confac:
+        await client.send_message(message.channel,'invalid')
     else:
         await client.send_message(message.channel,f'{confac}, {fac}')
         
