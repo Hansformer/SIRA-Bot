@@ -17,7 +17,7 @@ async def get_factions(system):
             f'https://www.edsm.net/api-system-v1/factions?systemName={system}'
                 ) as resp:
             api = await resp.json()
-            if api != "":
+            if api:
                 return api['controllingFaction'], api['factions']
             else:
                 return None
@@ -40,7 +40,7 @@ async def server(client, message, parameter):
 
 async def faction_info(client, message, parameter):
     confac, fac = await get_factions(parameter)
-    if confac is not None:
+    if confac:
         await client.send_message(message.channel, f'{confac}, {fac}')
     else:
         await client.send_message(message.channel, 'invalid')
