@@ -220,6 +220,9 @@ class SIRABot(discord.Client):
                 await self.add_roles(after, role)
                 logger.info(f"{after.name} auto-tagged as EVE heathen.")
 
+    async def on_error(self, event_method, *args, **kwargs):
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        log_exception(exc_type, exc_value, exc_traceback)
 
 # running the bot
 bot = SIRABot()
