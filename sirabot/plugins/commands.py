@@ -36,7 +36,7 @@ async def server(client, message, parameter):
 
 
 async def faction_info(client, message, parameter):
-    sys = message.content.replace("!factioninfo", "")
+    sys = message.content.replace("!factioninfo ", "")
     confac, fac = await get_factions(sys)
     await client.send_message(message.channel,f'{confac}, {fac}')
 
