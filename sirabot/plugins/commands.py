@@ -17,7 +17,7 @@ async def get_factions(system):
             f'https://www.edsm.net/api-system-v1/factions?systemName={system}'
                 ) as resp:
             api = await resp.json()
-            if api['name'] == system:
+            if api != "":
                 return api['controllingFaction'], api['factions']
             else:
                 return None
