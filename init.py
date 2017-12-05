@@ -196,24 +196,24 @@ class SIRABot(discord.Client):
             if message.content.startswith('!'):
                 await self.process_commands(message)
 
-            else:
-                await self.process_reactions(message)
-                await self.process_message(message)
+            # else:
+            #     await self.process_reactions(message)
+            #     await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logger.debug(f"New message in {message.channel} -"
                      f" {message.author}: {message.content}")
 
     # member update routine
-    async def on_member_update(self, before, after):
-        server = self.get_server('195647497505472512')
-
-        # auto tag the heathens
-        if 'EVE Online' in f'{after.game}':
-            role = discord.utils.get(server.roles, id='207087337958539274')
-            if role not in after.roles:
-                await self.add_roles(after, role)
-                logger.info(f"{after.name} auto-tagged as EVE heathen.")
+    # async def on_member_update(self, before, after):
+    #     server = self.get_server('195647497505472512')
+    #
+    #     # auto tag the heathens
+    #     if 'EVE Online' in f'{after.game}':
+    #         role = discord.utils.get(server.roles, id='207087337958539274')
+    #         if role not in after.roles:
+    #             await self.add_roles(after, role)
+    #             logger.info(f"{after.name} auto-tagged as EVE heathen.")
 
     async def on_error(self, event_method, *args, **kwargs):
         exc_type, exc_value, exc_traceback = sys.exc_info()
