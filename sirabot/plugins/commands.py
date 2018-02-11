@@ -50,6 +50,7 @@ async def faction_info(client, message, parameter):
 async def flag(client, message, parameter):
     await client.send_file(message.channel, "flag_of_space_ireland.png")
 
+
 # new battleflag command
 async def flag(client, message, parameter):
     await client.send_file(message.channel, "battleflag.png")
