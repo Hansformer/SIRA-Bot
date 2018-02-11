@@ -52,7 +52,7 @@ async def flag(client, message, parameter):
 
 
 # new battleflag command
-async def flag(client, message, parameter):
+async def battleflag(client, message, parameter):
     await client.send_file(message.channel, "battleflag.png")
 
 
