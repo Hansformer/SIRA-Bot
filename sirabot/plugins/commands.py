@@ -76,3 +76,4 @@ async def setup(client):
     client.register_command('factioninfo', faction_info)
     client.register_command('flag', flag)
     client.register_command('logo', logo)
+    client.register_command('battleflag', battleflag)
