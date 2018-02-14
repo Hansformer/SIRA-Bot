@@ -74,7 +74,7 @@ class SIRABot(discord.Client):
         chan = self.get_channel('348971376750886912')
         await self.send_message(
             chan,
-            'SIRA Bot signing off. <:o7:308408906344824852>')
+            'SIRA Bot signing off. <:o7:365926799613624330>')
         await self.logout()
         logger.info('SIRA Bot disengaged.')
 
@@ -95,7 +95,7 @@ class SIRABot(discord.Client):
              ':vision_intensifies:332951986645499904'}
 
         # reaction definitions
-        reactions = {'o7': ':o7:308408906344824852',
+        reactions = {'o7': ':o7:365926799613624330',
                      f'{self.user.id}>': ':anime_smug:319973746825756683',
                      '*bombs u*': "\U0001F4A3"}
 
@@ -161,7 +161,7 @@ class SIRABot(discord.Client):
         chan = self.get_channel('348971376750886912')
         await self.send_message(
             chan,
-            'SIRA Bot reporting for duty. <:o7:308408906344824852>')
+            'SIRA Bot reporting for duty. <:o7:365926799613624330>')
 
     # member join routine
     async def on_member_join(self, member):
