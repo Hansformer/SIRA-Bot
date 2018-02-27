@@ -66,6 +66,10 @@ async def space_ira(client, message, parameter):
     await client.send_message(message.channel,
                               f'https://www.youtube.com/watch?v=5h7UPVOz6MU')
 
+# Actually useful command, post inara page
+async def inara(client, message, parameter):
+    await client.send_message(message.channel,
+                              f'https://inara.cz/wing/1470/')
 
 # trigger definitions
 async def setup(client):
@@ -77,3 +81,4 @@ async def setup(client):
     client.register_command('flag', flag)
     client.register_command('logo', logo)
     client.register_command('battleflag', battleflag)
+    client.register_command('inara', inara)
