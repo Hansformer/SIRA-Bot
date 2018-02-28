@@ -28,7 +28,7 @@ async def get_factions(system):
                     if faction['state'] != 'None':
                         text += f" {faction['state']}"
                     if faction['isPlayer']:
-                        text += '| Player'
+                        text += ' | Player'
                     text += '\n'
                 return text
             else:
