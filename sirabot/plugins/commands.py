@@ -24,7 +24,7 @@ async def get_factions(system):
                         text += f"**{faction['name']}**"
                     else:
                         text += f"{faction['name']}"
-                    text += f" | {faction['allegiance']} | {faction['government']} | {faction['influence']}"
+                    text += f" | {faction['allegiance']} | {faction['government']} | {faction['influence']:.1%}"
                     if faction['state'] != 'None':
                         text += f" {faction['state']}"
                     if faction['isPlayer']:
