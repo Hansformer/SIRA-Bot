@@ -18,9 +18,21 @@ async def get_factions(system):
                 ) as resp:
             api = await resp.json()
             if api:
-                return api['controllingFaction'], api['factions']
+                text = f"{api['name']} factions:\n"
+                for faction in api['factions']:
+                    if api['controllingFaction']['id'] == faction['id']:
+                        text += f"**{faction['name']}**"
+                    else:
+                        text += f"{faction['name']}"
+                    text += f" | {faction['allegiance']} | {faction['government']} | {faction['influence']}"
+                    if faction['state'] != 'None':
+                        text += f" {faction['state']}"
+                    if faction['isPlayer']:
+                        text += '| Player'
+                    text += '\n'
+                return text
             else:
-                return None, None
+                return None
 
 
 # server status command
@@ -39,9 +51,9 @@ async def server(client, message, parameter):
 
 
 async def faction_info(client, message, parameter):
-    confac, fac = await get_factions(parameter)
-    if confac:
-        await client.send_message(message.channel, f'{confac}, {fac}')
+    info = await get_factions(parameter)
+    if info:
+        await client.send_message(message.channel, info)
     else:
         await client.send_message(message.channel, 'invalid')
         
