@@ -219,6 +219,7 @@ class SIRABot(discord.Client):
         exc_type, exc_value, exc_traceback = sys.exc_info()
         log_exception(exc_type, exc_value, exc_traceback)
 
+
 # running the bot
 bot = SIRABot()
 bot.run(config.token)
