@@ -1,63 +1,3 @@
-import aiohttp
-
-
-# get server status from EDSM API
-async def check_server():
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            'https://www.edsm.net/api-status-v1/elite-server'
-                ) as resp:
-            api = await resp.json()
-            return api['type'], api['message']
-
-
-async def get_factions(system):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            f'https://www.edsm.net/api-system-v1/factions?systemName={system}'
-                ) as resp:
-            api = await resp.json()
-            if api:
-                text = f"{api['name']} factions:\n"
-                for faction in api['factions']:
-                    if api['controllingFaction']['id'] == faction['id']:
-                        text += f"**{faction['name']}**"
-                    else:
-                        text += f"{faction['name']}"
-                    text += f" | {faction['allegiance']} | {faction['government']} | {faction['influence']:.1%}"
-                    if faction['state'] != 'None':
-                        text += f" {faction['state']}"
-                    if faction['isPlayer']:
-                        text += ' | Player'
-                    text += '\n'
-                return text
-            else:
-                return None
-
-
-# server status command
-async def server(client, message, parameter):
-    sstatus, smsg = await check_server()
-    if sstatus == 'success':
-        await client.send_message(message.channel,
-                                  f'FDev says "{smsg}". :ok_hand:')
-    elif sstatus == 'warning':
-        await client.send_message(message.channel,
-                                  f':warning: FDev says "{smsg}".')
-    elif sstatus == 'danger':
-        await client.send_message(message.channel,
-                                  f':fire: "{smsg}". Sandro tripped over the'
-                                  ' server cords again.')
-
-
-async def faction_info(client, message, parameter):
-    info = await get_factions(parameter)
-    if info:
-        await client.send_message(message.channel, info)
-    else:
-        await client.send_message(message.channel, 'invalid')
-        
-
 # flag command
 async def flag(client, message, parameter):
     await client.send_file(message.channel, "flag_of_space_ireland.png")
@@ -87,11 +27,8 @@ async def inara(client, message, parameter):
 
 # trigger definitions
 async def setup(client):
-    for alias in ['server', 'status']:
-        client.register_command(alias, server)
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
-    client.register_command('factioninfo', faction_info)
     client.register_command('flag', flag)
     client.register_command('logo', logo)
     client.register_command('battleflag', battleflag)

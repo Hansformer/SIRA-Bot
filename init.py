@@ -187,8 +187,6 @@ class SIRABot(discord.Client):
 
     # on message routine
     async def on_message(self, message):
-        chan = message.channel
-
         # react to messages (no self reactions)
         if message.author.id != self.user.id:
 
