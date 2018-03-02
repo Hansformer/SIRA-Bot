@@ -43,7 +43,7 @@ async def faction_info(client, message, parameter):
                 text += ' | Player'
             text += '\n'
 
-            await client.send_message(message.channel, text)
+        await client.send_message(message.channel, text)
     else:
         await client.send_message(message.channel, 'invalid')
 
