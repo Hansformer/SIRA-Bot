@@ -35,8 +35,8 @@ async def faction_info(client, message, parameter):
                 text += f"**{faction['name']}**"
             else:
                 text += f"{faction['name']}"
-            text += f" | {faction['allegiance']} | {faction['government']} | " \
-                    f"{faction['influence']:.1%}"
+            text += f" ({faction['allegiance']}, {faction['government']}) | " \
+                    f"**{faction['influence']:.1%}**"
             if faction['state'] != 'None':
                 text += f" {faction['state']}"
             if faction['isPlayer']:
