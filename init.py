@@ -175,7 +175,7 @@ class SIRABot(discord.Client):
         await self.send_message(
             chan,
             f"Be sure to join the /edg/ group (SIRA) - "
-            " <:space_ireland:419945113129713664> - "
+            " <:space_ireland:309204831548211201> - "
             "<https://inara.cz/wing/1470>")
 
     # member quit routine
