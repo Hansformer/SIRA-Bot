@@ -28,7 +28,7 @@ async def inara(client, message, parameter):
 # Actually useful command pt. 2
 async def recruitbrief(client, message, parameter):
     await client.send_message(message.channel,
-                              f':beginner: **SIRA New Recruit Breifing**: '
+                              f':beginner: **SIRA New Recruit Briefing**: '
                               '<https://inara.cz/wing-documents/1470/518/>')
 
 
