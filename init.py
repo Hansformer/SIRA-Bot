@@ -174,7 +174,9 @@ class SIRABot(discord.Client):
             "If you have any issues, please tag an <@&200367057378869248>.")
         await self.send_message(
             chan,
-            "Join the /edg/ player group, SIRA - https://inara.cz/wing/1470")
+            "Be sure to join the /edg/ group (SIRA) - "
+            " <:space_ireland:419945113129713664> - "
+            "<https://inara.cz/wing/1470>")
 
     # member quit routine
     async def on_member_remove(self, member):

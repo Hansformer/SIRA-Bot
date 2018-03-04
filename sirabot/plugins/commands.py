@@ -22,7 +22,13 @@ async def space_ira(client, message, parameter):
 # Actually useful command, post inara page
 async def inara(client, message, parameter):
     await client.send_message(message.channel,
-                              f'https://inara.cz/wing/1470/')
+                              f'<https://inara.cz/wing/1470/>')
+
+
+# Actually useful command pt. 2
+async def recruitbrief(client, message, parameter):
+    await client.send_message(message.channel,
+                              f'<https://inara.cz/wing-documents/1470/518/>')
 
 
 # trigger definitions
@@ -31,5 +37,7 @@ async def setup(client):
         client.register_command(alias, space_ira)
     client.register_command('flag', flag)
     client.register_command('logo', logo)
-    client.register_command('battleflag', battleflag)
+    for alias in ['battleflag', 'battle_flag']:
+        client.register_command(alias, battleflag)
     client.register_command('inara', inara)
+    client.register_command('recruit', recruitbrief)
