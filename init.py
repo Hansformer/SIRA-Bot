@@ -174,7 +174,7 @@ class SIRABot(discord.Client):
             "If you have any issues, please tag an <@&200367057378869248>.")
         await self.send_message(
             chan,
-            "Be sure to join the /edg/ group (SIRA) - "
+            f"Be sure to join the /edg/ group (SIRA) - "
             " <:space_ireland:419945113129713664> - "
             "<https://inara.cz/wing/1470>")
 

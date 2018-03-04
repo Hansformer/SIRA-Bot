@@ -28,7 +28,8 @@ async def inara(client, message, parameter):
 # Actually useful command pt. 2
 async def recruitbrief(client, message, parameter):
     await client.send_message(message.channel,
-                              f'<https://inara.cz/wing-documents/1470/518/>')
+                              f':beginner: **SIRA New Recruit Breifing**: '
+                              '<https://inara.cz/wing-documents/1470/518/>')
 
 
 # trigger definitions
@@ -39,5 +40,6 @@ async def setup(client):
     client.register_command('logo', logo)
     for alias in ['battleflag', 'battle_flag']:
         client.register_command(alias, battleflag)
-    client.register_command('inara', inara)
+    for alias in ['inara', 'wing']:
+        client.register_command(alias, inara)
     client.register_command('recruit', recruitbrief)
