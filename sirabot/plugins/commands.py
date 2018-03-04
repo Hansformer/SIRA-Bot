@@ -38,10 +38,21 @@ async def inara(client, message, parameter):
 
 
 # Actually useful command pt. 2
-async def recruitbrief(client, message, parameter):
+async def recruit_brief(client, message, parameter):
     await client.send_message(message.channel,
                               f':beginner: **SIRA New Recruit Briefing**: '
                               '<https://inara.cz/wing-documents/1470/518/>')
+
+
+# Actually useful command pt. 3: material traders
+async def mat_trader(client, message, parameter):
+    await client.send_message(message.channel,
+                              f':scales: **Material Traders Near HQ**:\n'
+                              ':floppy_disk: *Encoded*: Quimper Ring, LHS 21\n'
+                              ':gear: *Manufactured*: HQ - Barba Ring, '
+                              'LP 355-65\n'
+                              ':full_moon: *Raw Materials*: Wedge Hangar, '
+                              'LFT 300')
 
 
 # trigger definitions
@@ -53,6 +64,7 @@ async def setup(client):
     client.register_command('battleflag', logo)
     for alias in ['inara', 'wing']:
         client.register_command(alias, inara)
-    client.register_command('recruit', recruitbrief)
+    client.register_command('recruit_brief', recruit_brief)
     client.register_command('explore_hud', exp_hud)
-    client.register_command('explore_map', exp_sysmap)
+    client.register_command('explore_sysmap', exp_sysmap)
+    client.register_command('mat_trader', mat_trader)
