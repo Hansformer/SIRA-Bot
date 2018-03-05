@@ -59,12 +59,14 @@ async def mat_trader(client, message, parameter):
 async def mining(client, message, parameter):
     await client.send_message(message.channel,
                               f':pick: **Pristine Rings Near HQ**:\n'
-                              ':trophy: *Metallic*: Algol A 4 (Dist.: '
-                              '28.73 Ly - Scan req.)\n'
+                              ':trophy: *Metallic*:\n'
+                              'Algol A 4 (Dist.: 28.73 Ly - Scan req.)\n'
+                              'GCRV 1568 AB 1 (Dist.: 40.48 Ly)\n'
                               ':snowflake: *Icy*: HIP 13644 3 (Dist.: '
                               '51.44 Ly)\n'
-                              ':comet: *Metal-Rich, Rocky*: Algol A 1 (Dist.: '
-                              '28.73 Ly - Scan req.)')
+                              ':comet: *Metal-Rich, Rocky*:\n'
+                              'Algol A 1 (Dist.: 28.73 Ly - Scan req.)\n'
+                              'GCRV 1568 AB 2 (Dist.: 40.48 Ly)')
 
 
 # trigger definitions
