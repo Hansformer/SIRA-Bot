@@ -55,6 +55,18 @@ async def mat_trader(client, message, parameter):
                               'LFT 300')
 
 
+# Actually useful command pt. 4: nearby pristines
+async def mining(client, message, parameter):
+    await client.send_message(message.channel,
+                              f':pick: **Pristine Rings Near HQ**:\n'
+                              ':trophy: *Metallic*: Algol A 4 (Dist.: '
+                              '28.73 Ly - Scan req.)\n'
+                              ':snowflake: *Icy*: HIP 13644 3 (Dist.: '
+                              '51.44 Ly)\n'
+                              ':comet: *Metal-Rich, Rocky*: Algol A 1 (Dist.: '
+                              '28.73 Ly - Scan req.)')
+
+
 # trigger definitions
 async def setup(client):
     for alias in ['spaceira', 'space_ira']:
@@ -67,4 +79,4 @@ async def setup(client):
     client.register_command('recruit_brief', recruit_brief)
     client.register_command('explore_hud', exp_hud)
     client.register_command('explore_sysmap', exp_sysmap)
-    client.register_command('mat_trader', mat_trader)
+    client.register_command('mining', mining)
