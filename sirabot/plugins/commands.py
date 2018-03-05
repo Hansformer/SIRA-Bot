@@ -81,4 +81,5 @@ async def setup(client):
     client.register_command('recruit_brief', recruit_brief)
     client.register_command('explore_hud', exp_hud)
     client.register_command('explore_sysmap', exp_sysmap)
+    client.register_command('mat_trader', mat_trader)
     client.register_command('mining', mining)
