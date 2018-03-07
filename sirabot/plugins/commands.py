@@ -23,6 +23,11 @@ async def exp_sysmap(client, message, parameter):
     await client.send_file(message.channel, "exp_sysmap.jpg")
 
 
+# Bhadaba :DDD
+async def bhadaba(client, message, parameter):
+    await client.send_file(message.channel, "Bhadaba.jpg")
+
+
 # space ira command
 async def space_ira(client, message, parameter):
     await client.send_message(message.channel,
@@ -47,24 +52,24 @@ async def recruit_brief(client, message, parameter):
 # Actually useful command pt. 3: material traders
 async def mat_trader(client, message, parameter):
     await client.send_message(message.channel,
-                              f':scales: **Material Traders Near HQ**:\n'
-                              ':floppy_disk: *Encoded*: Quimper Ring, LHS 21\n'
-                              ':gear: *Manufactured*: HQ - Barba Ring, '
+                              f':scales: __**Material Traders Near HQ**__:\n'
+                              ':floppy_disk: **Encoded**: Quimper Ring, LHS 21\n'
+                              ':gear: **Manufactured**: HQ - Barba Ring, '
                               'LP 355-65\n'
-                              ':full_moon: *Raw Materials*: Wedge Hangar, '
+                              ':full_moon: **Raw Materials**: Wedge Hangar, '
                               'LFT 300')
 
 
 # Actually useful command pt. 4: nearby pristines
 async def mining(client, message, parameter):
     await client.send_message(message.channel,
-                              f':pick: **Pristine Rings Near HQ**:\n'
-                              ':trophy: *Metallic*:\n'
+                              f':pick: __**Pristine Rings Near HQ**__:\n'
+                              ':trophy: **Metallic**:\n'
                               'Algol A 4 (Dist.: 28.73 Ly - Scan req.)\n'
                               'GCRV 1568 AB 1 (Dist.: 40.48 Ly)\n'
-                              ':snowflake: *Icy*: HIP 13644 3 (Dist.: '
+                              ':snowflake: **Icy**: HIP 13644 3 (Dist.: '
                               '51.44 Ly)\n'
-                              ':comet: *Metal-Rich, Rocky*:\n'
+                              ':comet: **Metal-Rich, Rocky**:\n'
                               'Algol A 1 (Dist.: 28.73 Ly - Scan req.)\n'
                               'GCRV 1568 AB 2 (Dist.: 40.48 Ly)')
 
@@ -83,3 +88,4 @@ async def setup(client):
     client.register_command('explore_sysmap', exp_sysmap)
     client.register_command('mat_trader', mat_trader)
     client.register_command('mining', mining)
+    client.register_command('bhadaba', bhadaba)
