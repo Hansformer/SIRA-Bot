@@ -23,7 +23,7 @@ async def vision(client, message, parameter):
     await client.change_presence(game=discord.Game(name='V I S I O N'),
                                  status=discord.Status('online'),
                                  afk=False)
-    await client.send_message(message.channel, 
+    await client.send_message(message.channel,
                               f'I have been V I S I O N\'d.'
                               ' <:vision_intensifies:332951986645499904>')
 
