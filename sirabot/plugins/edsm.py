@@ -32,13 +32,13 @@ async def faction_info(client, message, parameter):
         text = f"{api['name']} factions:\n"
         for faction in api['factions']:
             if api['controllingFaction']['id'] == faction['id']:
-                text += f"**{faction['name']}**"
+                text += f"***{faction['name']}***"
             else:
-                text += f"{faction['name']}"
-            text += f" ({faction['allegiance']}, {faction['government']}) | " \
+                text += f"*{faction['name']}*"
+            text += f" ({faction['allegiance']}, {faction['government']}): " \
                     f"**{faction['influence']:.1%}**"
             if faction['state'] != 'None':
-                text += f" {faction['state']}"
+                text += f" ({faction['state']})"
             if faction['isPlayer']:
                 text += ' | Player'
             text += '\n'
