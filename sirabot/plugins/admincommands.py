@@ -30,8 +30,7 @@ async def vision(client, message, parameter):
 
 # trigger definitions
 async def setup(client):
-    for alias in ['botkill', 'kill', 'close', 'end', 'kys',
-                  'ded', 'rip', 'makeded', 'fuckoff']:
+    for alias in ['kill', 'close', 'end', 'kys', 'ded', 'rip', 'makeded']:
         client.register_command(alias, kill)
     client.register_command('idle', idle)
     client.register_command('vision', vision)
