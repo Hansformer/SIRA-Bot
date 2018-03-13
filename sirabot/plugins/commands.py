@@ -37,9 +37,8 @@ async def space_ira(client, message, parameter):
 # Actually useful command, post inara page
 async def inara(client, message, parameter):
     await client.send_message(message.channel,
-                              f'<:space_ireland:309204831548211201> '
-                              '**SIRA INARA Wing**: '
-                              '<https://inara.cz/wing/1470/>')
+                              f'<:space_ireland:309204831548211201> **SIRA'
+                              ' INARA Wing**: <https://inara.cz/wing/1470/>')
 
 
 # Actually useful command pt. 2
@@ -53,39 +52,41 @@ async def recruit_brief(client, message, parameter):
 async def mat_trader(client, message, parameter):
     await client.send_message(message.channel,
                               f':scales: __**Material Traders Near HQ**__:\n'
-                              ':floppy_disk: **Encoded**: Quimper Ring, LHS 21\n'
-                              ':gear: **Manufactured**: HQ - Barba Ring, '
-                              'LP 355-65\n'
-                              ':full_moon: **Raw Materials**: Wedge Hangar, '
+                              ':floppy_disk: **Encoded**: Quimper Ring, LHS 21'
+                              '\n:gear: **Manufactured**: Barba Ring, LP 355-65'
+                              '\n:full_moon: **Raw Materials**: Wedge Hangar, '
                               'LFT 300')
 
 
-# Actually useful command pt. 4: nearby pristines
+# Actually useful command pt. 4: mining ref
 async def mining(client, message, parameter):
     await client.send_message(message.channel,
-                              f':pick: __**Pristine Rings Near HQ**__:\n'
-                              ':trophy: **Metallic**:\n'
-                              'Algol A 4 (Dist.: 28.73 Ly - Scan req.)\n'
-                              'GCRV 1568 AB 1 (Dist.: 40.48 Ly)\n'
-                              ':snowflake: **Icy**: HIP 13644 3 (Dist.: '
-                              '51.44 Ly)\n'
-                              ':comet: **Metal-Rich, Rocky**:\n'
-                              'Algol A 1 (Dist.: 28.73 Ly - Scan req.)\n'
-                              'GCRV 1568 AB 2 (Dist.: 40.48 Ly)')
+                              f':pick: **SIRA Mining Reference**: '
+                              '<https://inara.cz/wing-documents/1470/864/>')
+
+
+# Actually useful command pt. 5: territory ref
+async def hq_ref(client, message, parameter):
+    await client.send_message(message.channel,
+                              f'<:space_ireland:309204831548211201> **SIRA '
+                              'Territory Reference**: '
+                              '<https://inara.cz/wing-documents/1470/517/>')
 
 
 # trigger definitions
 async def setup(client):
+    client.register_command('flag', flag)
+        for alias in ['battleflag', 'battle_flag']:
+        client.register_command(alias, battleflag)
+    client.register_command('logo', logo)
+    client.register_command('explore_hud', exp_hud)
+    client.register_command('explore_sysmap', exp_sysmap)
+    client.register_command('bhadaba', bhadaba)
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
-    client.register_command('flag', flag)
-    client.register_command('logo', logo)
-    client.register_command('battleflag', logo)
     for alias in ['inara', 'wing']:
         client.register_command(alias, inara)
     client.register_command('recruit_brief', recruit_brief)
-    client.register_command('explore_hud', exp_hud)
-    client.register_command('explore_sysmap', exp_sysmap)
     client.register_command('mat_trader', mat_trader)
     client.register_command('mining', mining)
-    client.register_command('bhadaba', bhadaba)
+    client.register_command('hq_ref', hq_ref)
