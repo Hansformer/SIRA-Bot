@@ -48,7 +48,7 @@ async def recruit_brief(client, message, parameter):
                               '<https://inara.cz/wing-documents/1470/518/>')
 
 
-# Actually useful command pt. 3: material traders
+# material traders
 async def mat_trader(client, message, parameter):
     await client.send_message(message.channel,
                               f':scales: __**Material Traders Near HQ**__:\n'
@@ -58,14 +58,14 @@ async def mat_trader(client, message, parameter):
                               'LFT 300')
 
 
-# Actually useful command pt. 4: mining ref
+# mining reference
 async def mining(client, message, parameter):
     await client.send_message(message.channel,
                               f':pick: **SIRA Mining Reference**: '
                               '<https://inara.cz/wing-documents/1470/864/>')
 
 
-# Actually useful command pt. 5: territory ref
+# territory reference
 async def hq_ref(client, message, parameter):
     await client.send_message(message.channel,
                               f'<:space_ireland:309204831548211201> **SIRA '
@@ -73,10 +73,24 @@ async def hq_ref(client, message, parameter):
                               '<https://inara.cz/wing-documents/1470/517/>')
 
 
+# powerplay briefing
+async def pp_brief(client, message, parameter):
+    await client.send_message(message.channel,
+                              f':tickets: **SIRA Powerplay Briefing**: '
+                              '<https://inara.cz/wing-documents/1470/512/>')
+
+
+# background sim briefing
+async def bgs_brief(client, message, parameter):
+    await client.send_message(message.channel,
+                              f':bar_chart: **SIRA BGS Briefing**: '
+                              '<https://inara.cz/wing-documents/1470/516/>')
+
+
 # trigger definitions
 async def setup(client):
     client.register_command('flag', flag)
-        for alias in ['battleflag', 'battle_flag']:
+    for alias in ['battleflag', 'battle_flag']:
         client.register_command(alias, battleflag)
     client.register_command('logo', logo)
     client.register_command('explore_hud', exp_hud)
@@ -90,3 +104,5 @@ async def setup(client):
     client.register_command('mat_trader', mat_trader)
     client.register_command('mining', mining)
     client.register_command('hq_ref', hq_ref)
+    client.register_command('pp_brief', pp_brief)
+    client.register_command('bgs_brief', bgs_brief)
