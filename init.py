@@ -23,14 +23,15 @@ if config.debug:
 logger = logging.getLogger('sirabot')
 logger.setLevel(logging.DEBUG)
 
-fh = logging.FileHandler(config.logfile)
-fh.setLevel(logging.DEBUG)
-
 ch = logging.StreamHandler()
+fh = logging.FileHandler(config.logfile)
+
 if config.debug:
     ch.setLevel(logging.DEBUG)
+    fh.setLevel(logging.DEBUG)
 else:
-    ch.setLevel(logging.ERROR)
+    ch.setLevel(logging.WARNING)
+    fh.setLevel(logging.WARNING)
 
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:'
                               ' %(message)s')
