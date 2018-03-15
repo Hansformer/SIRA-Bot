@@ -227,5 +227,8 @@ class SIRABot(discord.Client):
 
 
 # running the bot
-bot = SIRABot()
-bot.run(config.token)
+if config.token != 'token':
+    bot = SIRABot()
+    bot.run(config.token)
+else:
+    logger.error('Token not set')
