@@ -54,10 +54,10 @@ class SIRABot(discord.Client):
 
     # initialization
     def __init__(self, **options):
-        if config.debug:
-            self.loop.set_debug(True)
         logger.info('Initializing SIRA Bot...')
         super().__init__(**options)
+        if config.debug:
+            self.loop.set_debug(True)
         for signame in ('SIGINT', 'SIGTERM'):
             self.loop.add_signal_handler(getattr(signal, signame),
                                          lambda: asyncio.ensure_future(
