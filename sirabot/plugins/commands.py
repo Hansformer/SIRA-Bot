@@ -1,31 +1,31 @@
 # flag command
 async def flag(client, message, parameter):
-    await client.send_file(message.channel, "flag_of_space_ireland.png")
+    await client.send_file(message.channel, "images/flag_of_space_ireland.png")
 
 
 # new battleflag command
 async def battleflag(client, message, parameter):
-    await client.send_file(message.channel, "battleflag.png")
+    await client.send_file(message.channel, "images/battleflag.png")
 
 
 # logo command
 async def logo(client, message, parameter):
-    await client.send_file(message.channel, "sira_logo.png")
+    await client.send_file(message.channel, "images/sira_logo.png")
 
 
 # exploration HUD cheatsheet command
 async def exp_hud(client, message, parameter):
-    await client.send_file(message.channel, "exp_hud.png")
+    await client.send_file(message.channel, "images/exp_hud.png")
 
 
 # exploration sysmap cheatsheet command
 async def exp_sysmap(client, message, parameter):
-    await client.send_file(message.channel, "exp_sysmap.jpg")
+    await client.send_file(message.channel, "images/exp_sysmap.jpg")
 
 
 # Bhadaba :DDD
 async def bhadaba(client, message, parameter):
-    await client.send_file(message.channel, "Bhadaba.jpg")
+    await client.send_file(message.channel, "images/Bhadaba.jpg")
 
 
 # space ira command

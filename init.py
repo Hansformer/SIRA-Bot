@@ -136,7 +136,7 @@ class SIRABot(discord.Client):
 
         # >ASP
         if 'ASP' in message.content:
-            await self.send_file(chan, "ASP.png")
+            await self.send_file(chan, "images/ASP.png")
 
     # processing commands
     async def process_commands(self, message):
@@ -154,7 +154,7 @@ class SIRABot(discord.Client):
         logger.info("Connected to Discord")
         logger.info(f'Username: {self.user.name}')
         logger.info(f'ID: {self.user.id}')
-        async with aiofiles.open('siraicon.png', mode='rb') as f:
+        async with aiofiles.open('images/siraicon.png', mode='rb') as f:
             contents = await f.read()
         await self.edit_profile(avatar=contents)
         logger.debug('Loading plugins')
