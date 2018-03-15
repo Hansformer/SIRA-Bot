@@ -2,3 +2,4 @@ discord.py
 pendulum
 aiohttp
 pluginbase
+aiofiles
