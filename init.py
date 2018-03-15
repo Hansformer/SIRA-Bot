@@ -54,6 +54,8 @@ class SIRABot(discord.Client):
 
     # initialization
     def __init__(self, **options):
+        if config.debug:
+            self.loop.set_debug(True)
         logger.info('Initializing SIRA Bot...')
         super().__init__(**options)
         for signame in ('SIGINT', 'SIGTERM'):
