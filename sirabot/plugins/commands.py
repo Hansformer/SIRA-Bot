@@ -4,7 +4,7 @@ async def flag(client, message, parameter):
 
 
 # new battleflag command
-async def battleflag(client, message, parameter):
+async def battle_flag(client, message, parameter):
     await client.send_file(message.channel, "images/battleflag.png")
 
 
@@ -87,11 +87,18 @@ async def bgs_brief(client, message, parameter):
                               '<https://inara.cz/wing-documents/1470/516/>')
 
 
+# help/readme
+async def bot_help(client, message, parameter):
+    await client.send_message(message.channel,
+                              f':robot: **SIRA Bot Help**: <https://github.com/'
+                              'Hansformer/SIRA-Bot/blob/master/README.md>')
+
+
 # trigger definitions
 async def setup(client):
     client.register_command('flag', flag)
     for alias in ['battleflag', 'battle_flag']:
-        client.register_command(alias, battleflag)
+        client.register_command(alias, battle_flag)
     client.register_command('logo', logo)
     client.register_command('explore_hud', exp_hud)
     client.register_command('explore_sysmap', exp_sysmap)
@@ -106,3 +113,4 @@ async def setup(client):
     client.register_command('hq_ref', hq_ref)
     client.register_command('pp_brief', pp_brief)
     client.register_command('bgs_brief', bgs_brief)
+    client.register_command('help', bot_help)

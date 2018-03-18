@@ -29,7 +29,7 @@ async def faction_info(client, message, parameter):
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
 
     if api:
-        text = f"{api['name']} factions:\n"
+        text = f"__**{api['name']} Faction Overview**__:\n"
         for faction in api['factions']:
             if api['controllingFaction']['id'] == faction['id']:
                 text += f"***{faction['name']}***"
@@ -40,7 +40,7 @@ async def faction_info(client, message, parameter):
             if faction['state'] != 'None':
                 text += f" ({faction['state']})"
             if faction['isPlayer']:
-                text += ' | Player'
+                text += ' | *Player Faction*'
             text += '\n'
 
         await client.send_message(message.channel, text)
@@ -51,4 +51,5 @@ async def faction_info(client, message, parameter):
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server)
-    client.register_command('factioninfo', faction_info)
+    for alias in ['factioninfo', 'faction_info']:
+        client.register_command(alias, faction_info)
