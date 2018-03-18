@@ -93,22 +93,16 @@ class SIRABot(discord.Client):
         # regex definitions
         regex_reactions =\
             {r'\bs\s?p\s?a\s?c\s?e(?:\s?|_)i\s?r\s?e\s?l\s?a\s?n\s?d\b':
-             ':space_ireland:309204831548211201',
-             r'\bw\s?e\s?w(?:\slad)?\b': ':wew:319973823040716804',
-             r'v\s?i\s?s\s?i\s?o\s?n':
-             ':vision_intensifies:332951986645499904'}
+             ':space_ireland:309204831548211201'}
 
         # reaction definitions
-        reactions = {'o7': ':o7:365926799613624330',
-                     f'{self.user.id}>': ':anime_smug:319973746825756683',
+        reactions = {f'{self.user.id}>': ':anime_smug:319973746825756683',
                      '*bombs u*': "\U0001F4A3"}
 
         # regex triggers
         for regex, reaction in regex_reactions.items():
             if re.search(regex, message.content, re.I):
                 await self.add_reaction(message, reaction)
-                if reaction == ':wew:319973823040716804':
-                    await self.send_message(chan, 'wew')
 
         # reaction triggers
         for trigger, reaction in reactions.items():
@@ -126,18 +120,18 @@ class SIRABot(discord.Client):
         chan = message.channel
 
         # soon
-        if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
-                     message.content, re.I)\
-           or re.search(
-               r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
-               message.content, re.I):
-            await self.send_message(
-                chan,
-                'SOON:tm: <:smiling_man:332954734975647754>')
+        # if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
+        #             message.content, re.I)\
+        #   or re.search(
+        #       r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
+        #       message.content, re.I):
+        #    await self.send_message(
+        #        chan,
+        #        'SOON:tm: <:smiling_man:332954734975647754>')
 
         # >ASP
-        if 'ASP' in message.content:
-            await self.send_file(chan, "images/ASP.png")
+        # if 'ASP' in message.content:
+        #    await self.send_file(chan, "images/ASP.png")
 
     # processing commands
     async def process_commands(self, message):
@@ -203,9 +197,9 @@ class SIRABot(discord.Client):
             if message.content.startswith('!'):
                 await self.process_commands(message)
 
-            # else:
-            #     await self.process_reactions(message)
-            #     await self.process_message(message)
+            else:
+                await self.process_reactions(message)
+                await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logger.debug(f"New message in {message.channel} -"

@@ -2,33 +2,37 @@
 
 ## Help/Commands
 
-### Useful Commands
-- **!server** ; **!status** - *checks ED server status per FDev*
+### Basic Commands
 - **!factioninfo** *x* ; **!faction_info** *x* - *replace x with a system name to check faction overview*
-- **!inara** ; **!wing** - *links to the SIRA INARA wing page*
-- **!hq_ref** - *links to the SIRA Territory Reference*
-- **!mat_trader** - *lists the material traders near HQ*
-- **!mining** - *links to the SIRA Mining Reference*
+- **!mat_trader** - *lists the material traders near LP 355-65*
+- **!server** ; **!status** - *checks ED server status per FDev*
+
+### INARA Links
 - **!bgs_brief** - *links to the SIRA BGS Briefing*
+- **!hq_ref** - *links to the SIRA Territory Reference*
+- **!inara** ; **!wing** - *links to the SIRA INARA wing page*
+- **!lore** ; **!history** - *links to the SIRA Lore & History*
+- **!mining** - *links to the SIRA Mining Reference*
 - **!pp_brief** - *links to the SIRA Powerplay Briefing*
 - **!recruit_brief** - *links to the SIRA New Recruit Briefing*
 
-### Images
+### Semi-Useful Images
 - **!explore_hud** - *displays the exploration infographic for HUD images*
-- **!explore_sysmap** - *displays the exploration infographic for sysmap images*
+- **!explore_sysmap** - *displays the exploration infographic for system map images*
 - **!flag** - *displays the Space Ireland flag*
 - **!logo** - *displays the SIRA logo*
 
-### Memes
+### Memes (don't spam these, consider this a warning)
+- **!ASP** *display the >ASP greentext meme*
 - **!battleflag** ; **!battle_flag** - *displays the Space Ireland battle flag*
 - **!bhadaba** - *displays the Bhadaba! meme*
 - **!spaceira** ; **!space_ira** - *links the original Space IRA video*
 
 ## Feature Wishlist
-- EDSM/EDDN API connection (wip)
+- EDSM/EDDN API connection (WIP)
 - ~Spouting memes~ (done)
 - Sanity (never)
-- Useful features!
+- Useful features! (WIP)
 
 ## Technical Usage
 $ python3 -m pip install -r requirements.txt\

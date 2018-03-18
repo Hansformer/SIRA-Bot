@@ -23,9 +23,14 @@ async def exp_sysmap(client, message, parameter):
     await client.send_file(message.channel, "images/exp_sysmap.jpg")
 
 
-# Bhadaba :DDD
+# Bhadaba! command
 async def bhadaba(client, message, parameter):
     await client.send_file(message.channel, "images/Bhadaba.jpg")
+
+
+# asp meme command
+async def asp(client, message, parameter):
+    await client.send_file(message.channel, "images/ASP.png")
 
 
 # space ira command
@@ -34,7 +39,7 @@ async def space_ira(client, message, parameter):
                               f'https://www.youtube.com/watch?v=5h7UPVOz6MU')
 
 
-# material traders
+# nearby material traders command
 async def mat_trader(client, message, parameter):
     await client.send_message(message.channel,
                               f':scales: __**Material Traders Near HQ**__:\n'
@@ -44,7 +49,7 @@ async def mat_trader(client, message, parameter):
                               'LFT 300')
 
 
-# help/readme
+# bot help/readme command
 async def bot_help(client, message, parameter):
     await client.send_message(message.channel,
                               f':robot: **SIRA Bot Help**: <https://github.com/'
@@ -60,6 +65,7 @@ async def setup(client):
     client.register_command('explore_hud', exp_hud)
     client.register_command('explore_sysmap', exp_sysmap)
     client.register_command('bhadaba', bhadaba)
+    client.register_command('ASP', asp)
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
     client.register_command('mat_trader', mat_trader)
