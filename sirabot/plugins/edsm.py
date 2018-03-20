@@ -42,7 +42,8 @@ async def faction_info(client, message, parameter):
                 text += f" ({faction['state']})"
             if faction['isPlayer']:
                 text += ' | *Player Faction*'
-            text += f"\n`{faction['allegiance']}, {faction['government']}`"
+            text += '\n'
+            text += f"`{faction['allegiance']}, {faction['government']}`"
             text += '\n'
 
         await client.send_message(message.channel, text)
