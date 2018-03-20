@@ -31,7 +31,7 @@ async def sys_bgs(client, message, parameter):
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
 
     if api:
-        text = f"__**{api['name']} Faction Overview**__:\n"
+        text = f"```{api['name']} Faction Overview```"
         for faction in api['factions']:
             if faction['influence'] != 0:
                 if api['controllingFaction']['id'] == faction['id']:
@@ -43,8 +43,8 @@ async def sys_bgs(client, message, parameter):
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
-                text += '\n'
                 if faction['pendingStates']:
+                    text += '\n'
                     text += f"Pending: "
                     for pendingState in faction['pendingStates']:
                         text += f"{pendingState['state']}; "
