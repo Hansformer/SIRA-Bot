@@ -44,8 +44,10 @@ async def sys_bgs(client, message, parameter):
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
                 if faction['pendingStates'] != 'None':
+                    text += f"Pending: "
                     for pendingState in faction['pendingStates']:
-                        text += f"Pending: {pendingState['state']}"
+                        text += f"{pendingState['state']} "
+                text += '\n'
                 text += f">> `{faction['allegiance']}, {faction['government']}`"
                 text += '\n'
 
