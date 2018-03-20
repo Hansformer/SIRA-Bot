@@ -108,8 +108,6 @@ class SIRABot(discord.Client):
         for trigger, reaction in reactions.items():
             if trigger in message.content:
                 await self.add_reaction(message, reaction)
-                if reaction == ':anime_smug:319973746825756683':
-                    await self.send_message(chan, 'You noticed me, senpai.')
                 if reaction == "\U0001F4A3":
                     await self.send_message(
                         chan, 'Space Ireland will be free! '

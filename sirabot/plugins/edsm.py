@@ -1,6 +1,7 @@
 import aiohttp
 
 
+# fetch command
 async def fetch(url):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
@@ -24,6 +25,7 @@ async def server(client, message, parameter):
     await client.send_message(message.channel, msg)
 
 
+# faction info command
 async def faction_info(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
@@ -35,12 +37,12 @@ async def faction_info(client, message, parameter):
                 text += f"***{faction['name']}***"
             else:
                 text += f"*{faction['name']}*"
-            text += f" ({faction['allegiance']}, {faction['government']}): " \
-                    f"**{faction['influence']:.1%}**"
+            text += f"**: {faction['influence']:.1%}**"
             if faction['state'] != 'None':
                 text += f" ({faction['state']})"
             if faction['isPlayer']:
                 text += ' | *Player Faction*'
+            text += f" `{faction['allegiance']}, {faction['government']}`"
             text += '\n'
 
         await client.send_message(message.channel, text)
@@ -48,6 +50,7 @@ async def faction_info(client, message, parameter):
         await client.send_message(message.channel, 'invalid')
 
 
+# trigger definitions
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server)
