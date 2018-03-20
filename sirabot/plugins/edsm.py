@@ -39,7 +39,7 @@ async def sys_bgs(client, message, parameter):
                 else:
                     text += f"**{faction['name']}**"
                 if faction['isPlayer']:
-                    text += ' *(Player)*'
+                    text += f" *(Player)*"
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
