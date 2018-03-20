@@ -26,7 +26,7 @@ async def server(client, message, parameter):
 
 
 # faction info command
-async def faction_info(client, message, parameter):
+async def sys_bgs(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
 
@@ -38,13 +38,17 @@ async def faction_info(client, message, parameter):
                     text += f":crown: **{faction['name']}**"
                 else:
                     text += f"**{faction['name']}**"
+                if faction['isPlayer']:
+                    text += ' *(Player)*'
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
-                if faction['isPlayer']:
-                    text += ' | *Player Faction*'
+                if faction['pendingState'] != 'None':
+                    for pState in faction['pendingState']:
+                    text += '\n'
+                    text += f"Pending: {pState['state']}"
                 text += '\n'
-                text += f"`{faction['allegiance']}, {faction['government']}`"
+                text += f">> `{faction['allegiance']}, {faction['government']}`"
                 text += '\n'
 
         await client.send_message(message.channel, text)
@@ -56,5 +60,5 @@ async def faction_info(client, message, parameter):
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server)
-    for alias in ['factioninfo', 'faction_info']:
-        client.register_command(alias, faction_info)
+    for alias in ['sys_bgs', 'sysbgs']:
+        client.register_command(alias, sys_bgs)
