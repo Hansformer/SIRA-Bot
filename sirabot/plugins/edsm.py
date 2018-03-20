@@ -44,10 +44,10 @@ async def sys_bgs(client, message, parameter):
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
                 if faction['pendingStates']:
-                    text += f">> Pending: "
+                    text += f" >> Pending: "
                     for pendingState in faction['pendingStates']:
                         text += f"{pendingState['state']}; "
-                text += f" \n >> `{faction['allegiance']}, " \
+                text += f" >> `{faction['allegiance']}, " \
                         f"{faction['government']}`\n"
 
         await client.send_message(message.channel, text)
