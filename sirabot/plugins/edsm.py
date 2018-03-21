@@ -47,7 +47,7 @@ async def system_inf(client, message, parameter):
                     text += f" ({faction['state']})"
                 text += f"\n"
                 if faction['pendingStates']:
-                    text += f":fast_forward: __Pending__: "
+                    text += f":fast_forward: __Pending__:"
                     for pendingState in faction['pendingStates']:
                         text += f" {pendingState['state']} "
                         if pendingState['trend'] >= 1:
@@ -59,7 +59,7 @@ async def system_inf(client, message, parameter):
                         text += f";"
                     text += f"\n"
                 if faction['recoveringStates']:
-                    text += f":twisted_rightwards_arrows: __Recovering__: "
+                    text += f":twisted_rightwards_arrows: __Recovering__:"
                     for recoveringState in faction['recoveringStates']:
                         text += f" {recoveringState['state']} "
                         if recoveringState['trend'] >= 1:
