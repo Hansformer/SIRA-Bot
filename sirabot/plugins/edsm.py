@@ -36,7 +36,7 @@ async def system_inf(client, message, parameter):
             if faction['influence'] != 0:
                 if api['controllingFaction']['id'] == faction['id']:
                     text += f"__Last Updated__: {faction['lastUpdate']}\n"
-                    text += f":crown: **{faction['name']}** "
+                    text += f" :crown: **{faction['name']}** "
                 else:
                     text += f"**{faction['name']}**"
                 if faction['name'] == 'SIRA Incorporated':
