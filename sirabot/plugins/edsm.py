@@ -34,14 +34,14 @@ async def system_inf(client, message, parameter):
         text = f"```{api['name']} Faction Overview```"
         for faction in api['factions']:
             if faction['influence'] != 0:
-                if faction['name'] == 'SIRA Incorporated':
-                    text += f"<:space_ireland:309204831548211201> "
                 if api['controllingFaction']['id'] == faction['id']:
                     text += f"__Last Updated__: {faction['lastUpdate']}\n"
                     text += f"**{faction['name']}** :crown:"
                 else:
                     text += f"**{faction['name']}**"
-                if faction['isPlayer']:
+                if faction['name'] == 'SIRA Incorporated':
+                    text += f"<:space_ireland:309204831548211201> "
+                elif faction['isPlayer']:
                     text += f" :joystick:"
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
