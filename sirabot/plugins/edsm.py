@@ -48,6 +48,7 @@ async def system_inf(client, message, parameter):
                     text += f">> Pending: "
                     for pendingState in faction['pendingStates']:
                         text += f"{pendingState['state']}; "
+                    text += f"\n"
                 text += f">> `{faction['allegiance']}, " \
                         f"{faction['government']}`\n"
 
