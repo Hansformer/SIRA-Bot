@@ -29,9 +29,12 @@ async def server_status(client, message, parameter):
 async def system_inf(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
+    updated = 0
 
     if api:
-        text = f"```{api['name']} Faction Overview```"
+        if updated == 0:
+            text = f"```{api['name']} Faction Overview```"
+            updated ++
         for faction in api['factions']:
             text += f"__Last Updated__: {faction['lastUpdate']}"
             text += f"\n"
@@ -49,7 +52,7 @@ async def system_inf(client, message, parameter):
                     text += f" ({faction['state']})"
                 text += f"\n"
                 if faction['pendingStates']:
-                    text += f":fast_foward: __Pending__: "
+                    text += f":fast_forward: __Pending__: "
                     for pendingState in faction['pendingStates']:
                         text += f"{pendingState['state']} "
                         if pendingState['trend'] >= 1:
