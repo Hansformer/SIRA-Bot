@@ -48,10 +48,11 @@ async def system_inf(client, message, parameter):
                     text += f">> __Pending__: "
                     for pendingState in faction['pendingStates']:
                         text += f"{pendingState['state']} "
-                        if pendingState['trend'] >= 1:
+                        if pendingState['trend'] >= 0:
                             text += f" :small_red_triangle:"
-                        if pendingState['trend'] <= -1:
+                        if pendingState['trend'] <= 0:
                             text += f" :small_red_triangle_down:"
+                        text += f";"
                     text += f"\n"
                 text += f">> `{faction['allegiance']}, " \
                         f"{faction['government']}`\n"
