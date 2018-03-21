@@ -37,7 +37,7 @@ async def system_inf(client, message, parameter):
                 if faction['name'] == 'SIRA Incorporated':
                     text += f"<:space_ireland:309204831548211201> "
                 if api['controllingFaction']['id'] == faction['id']:
-                    text += f":crown: **{faction['name']}**"
+                    text += f"**{faction['name']}** :crown:"
                 else:
                     text += f"**{faction['name']}**"
                 if faction['isPlayer']:
