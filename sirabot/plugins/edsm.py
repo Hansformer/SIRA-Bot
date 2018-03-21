@@ -59,7 +59,7 @@ async def system_inf(client, message, parameter):
                         text += f";"
                     text += f"\n"
                 if faction['recoveringStates']:
-                    text += f">> __Recovering__: "
+                    text += f":twisted_rightwards_arrows: __Recovering__: "
                     for recoveringState in faction['recoveringStates']:
                         text += f"{recoveringState['state']} "
                         if recoveringState['trend'] >= 1:
@@ -70,7 +70,7 @@ async def system_inf(client, message, parameter):
                             text += f":small_red_triangle_down:"
                         text += f";"
                     text += f"\n"
-                text += f">> `{faction['allegiance']}, " \
+                text += f":classical_building: `{faction['allegiance']}, " \
                         f"{faction['government']}`\n"
 
         await client.send_message(message.channel, text)
