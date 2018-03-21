@@ -26,7 +26,7 @@ async def server(client, message, parameter):
 
 
 # faction info command
-async def sys_bgs(client, message, parameter):
+async def system_inf(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
 
@@ -60,5 +60,5 @@ async def sys_bgs(client, message, parameter):
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server)
-    for alias in ['sys_bgs', 'sysbgs']:
-        client.register_command(alias, sys_bgs)
+    for alias in ['sys_bgs', 'sysbgs', 'sys_inf', 'sysinf']:
+        client.register_command(alias, system_inf)
