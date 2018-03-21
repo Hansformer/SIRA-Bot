@@ -79,7 +79,7 @@ async def system_inf(client, message, parameter):
         await client.send_message(message.channel, "I can't find that, senpai.")
 
 
-# faction info command
+# traffic report command
 async def traffic_report(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/traffic?systemName={parameter}')

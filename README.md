@@ -6,6 +6,7 @@
 - **!mattrade** ; **!mat_trader** - *lists the material traders near LP 355-65*
 - **!server** ; **!status** - *checks ED server status per FDev*
 - **!sysinf** *x* - *replace x with a system name to check faction influence/states overview*
+- **!traffic** *x* - *replace x with a system name to check EDSM traffic reports*
 
 ### INARA Links
 - **!bgs_brief** - *links to the SIRA BGS Briefing*
