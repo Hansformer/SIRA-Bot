@@ -195,9 +195,9 @@ class SIRABot(discord.Client):
             if message.content.startswith('!'):
                 await self.process_commands(message)
 
-            # else:
-            #   await self.process_reactions(message)
-            #   await self.process_message(message)
+            else:
+               await self.process_reactions(message)
+               await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logger.debug(f"New message in {message.channel} -"
