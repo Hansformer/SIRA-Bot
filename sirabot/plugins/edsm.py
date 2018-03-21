@@ -34,6 +34,8 @@ async def system_inf(client, message, parameter):
         text = f"```{api['name']} Faction Overview```"
         for faction in api['factions']:
             if faction['influence'] != 0:
+                if faction['name'] == 'SIRA Incorporated':
+                    text += f":space_ireland: "
                 if api['controllingFaction']['id'] == faction['id']:
                     text += f":crown: **{faction['name']}**"
                 else:
@@ -51,6 +53,18 @@ async def system_inf(client, message, parameter):
                         if pendingState['trend'] >= 1:
                             text += f":small_red_triangle:"
                         elif pendingState['trend'] == 0:
+                            text += f"(-)"
+                        else:
+                            text += f":small_red_triangle_down:"
+                        text += f";"
+                    text += f"\n"
+                if faction['recoveringStates']:
+                    text += f">> __Recovering__: "
+                    for recoveringState in faction['recoveringStates']:
+                        text += f"{recoveringState['state']} "
+                        if recoveringState['trend'] >= 1:
+                            text += f":small_red_triangle:"
+                        elif recoveringState['trend'] == 0:
                             text += f"(-)"
                         else:
                             text += f":small_red_triangle_down:"
