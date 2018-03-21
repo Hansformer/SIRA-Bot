@@ -37,11 +37,12 @@ async def system_inf(client, message, parameter):
                 if faction['name'] == 'SIRA Incorporated':
                     text += f"<:space_ireland:309204831548211201> "
                 if api['controllingFaction']['id'] == faction['id']:
+                    text += f"__Last Updated__: {faction['lastUpdate']}\n"
                     text += f"**{faction['name']}** :crown:"
                 else:
                     text += f"**{faction['name']}**"
                 if faction['isPlayer']:
-                    text += f" *(Player)*"
+                    text += f" :joystick:"
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
@@ -82,5 +83,4 @@ async def system_inf(client, message, parameter):
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server_status)
-    for alias in ['sys_bgs', 'sysbgs', 'sys_inf', 'sysinf']:
-        client.register_command(alias, system_inf)
+    client.register_command('sysinf', system_inf)

@@ -68,5 +68,6 @@ async def setup(client):
     client.register_command('ASP', asp)
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
-    client.register_command('mat_trader', mat_trader)
+    for alias in ['mattrade', 'mat_trader']:
+      client.register_command(alias, mat_trader)
     client.register_command('help', bot_help)
