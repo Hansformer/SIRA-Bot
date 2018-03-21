@@ -72,7 +72,8 @@ async def system_inf(client, message, parameter):
                     text += f"\n"
                 text += f":classical_building: `{faction['allegiance']}, " \
                         f"{faction['government']}`"
-                text += f"\n\n"
+                text += f"\n"
+                text += f"---"
 
         await client.send_message(message.channel, text)
     else:
