@@ -35,7 +35,7 @@ async def system_inf(client, message, parameter):
         for faction in api['factions']:
             if faction['influence'] != 0:
                 if faction['name'] == 'SIRA Incorporated':
-                    text += ":space_ireland:309204831548211201 "
+                    text += f":space_ireland:309204831548211201 "
                 if api['controllingFaction']['id'] == faction['id']:
                     text += f":crown: **{faction['name']}**"
                 else:
