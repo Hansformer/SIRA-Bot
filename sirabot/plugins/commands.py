@@ -52,7 +52,7 @@ async def mat_trader(client, message, parameter):
 # bot help/readme command
 async def bot_help(client, message, parameter):
     await client.send_message(message.channel,
-                              f':robot: **SIRA Bot Help**: <https://github.com/'
+                              f':robot: **SIRA-Bot Help**: <https://github.com/'
                               'Hansformer/SIRA-Bot#helpcommands>')
 
 
