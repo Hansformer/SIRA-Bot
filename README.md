@@ -3,9 +3,9 @@
 ## Help/Commands
 
 ### Basic Commands
-- **!factioninfo** *x* ; **!faction_info** *x* - *replace x with a system name to check faction overview*
-- **!mat_trader** - *lists the material traders near LP 355-65*
+- **!mattrade** ; **!mat_trader** - *lists the material traders near LP 355-65*
 - **!server** ; **!status** - *checks ED server status per FDev*
+- **!sysinf** *x* - *replace x with a system name to check faction influence/states overview*
 
 ### INARA Links
 - **!bgs_brief** - *links to the SIRA BGS Briefing*
