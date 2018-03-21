@@ -51,7 +51,7 @@ async def system_inf(client, message, parameter):
                         if pendingState['trend'] >= 1:
                             text += f":small_red_triangle:"
                         elif pendingState['trend'] == 0:
-                            text += f" "
+                            text += f"-"
                         else:
                             text += f":small_red_triangle_down:"
                         text += f";"
