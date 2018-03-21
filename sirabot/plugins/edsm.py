@@ -34,7 +34,7 @@ async def system_inf(client, message, parameter):
     if api:
         if updated == 0:
             text = f"```{api['name']} Faction Overview```"
-            updated = 1
+            updated++
         for faction in api['factions']:
             text += f"__Last Updated__: {faction['lastUpdate']}"
             text += f"\n"
