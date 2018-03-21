@@ -10,7 +10,7 @@ async def fetch(url):
 
 
 # server status command
-async def server(client, message, parameter):
+async def server_status(client, message, parameter):
     api = await fetch('https://www.edsm.net/api-status-v1/elite-server')
     sstatus, smsg = api['type'], api['message']
 
@@ -81,6 +81,6 @@ async def system_inf(client, message, parameter):
 # trigger definitions
 async def setup(client):
     for alias in ['server', 'status']:
-        client.register_command(alias, server)
+        client.register_command(alias, server_status)
     for alias in ['sys_bgs', 'sysbgs', 'sys_inf', 'sysinf']:
         client.register_command(alias, system_inf)
