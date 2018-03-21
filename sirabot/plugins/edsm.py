@@ -76,7 +76,22 @@ async def system_inf(client, message, parameter):
 
         await client.send_message(message.channel, text)
     else:
-        await client.send_message(message.channel, 'invalid')
+        await client.send_message(message.channel, "I can't find that, senpai.")
+
+
+# faction info command
+async def traffic_report(client, message, parameter):
+    api = await fetch(
+        f'https://www.edsm.net/api-system-v1/traffic?systemName={parameter}')
+
+    if api:
+        text = f"```{api['name']} EDSM Traffic Report```"
+        text += f"{api['traffic']}"
+        # for ships in api['breakdown']:
+
+        await client.send_message(message.channel, text)
+    else:
+        await client.send_message(message.channel, "I can't find that, senpai.")
 
 
 # trigger definitions
@@ -84,3 +99,4 @@ async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server_status)
     client.register_command('sysinf', system_inf)
+    client.register_command('traffic', traffic_report)
