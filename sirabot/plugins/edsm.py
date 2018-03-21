@@ -86,7 +86,7 @@ async def traffic_report(client, message, parameter):
 
     if api:
         text = f"```{api['name']} EDSM Traffic Report```"
-        text += f"{api['traffic']}"
+        text += f"Last 24h: {api['traffic'['day']]}"
         # for ships in api['breakdown']:
 
         await client.send_message(message.channel, text)
