@@ -32,12 +32,12 @@ async def system_inf(client, message, parameter):
     updated = 0
 
     if api:
-        if updated == 0:
-            text = f"```{api['name']} Faction Overview```"
-            updated + 1
+        text = f"```{api['name']} Faction Overview```"
         for faction in api['factions']:
-            text += f"__Last Updated__: {faction['lastUpdate']}"
-            text += f"\n"
+            if updated == 0
+                text += f"__Last Updated__: {faction['lastUpdate']}"
+                text += f"\n"
+                updated = 1
             if faction['influence'] != 0:
                 if api['controllingFaction']['id'] == faction['id']:
                     text += f":crown: **{faction['name']}**"
