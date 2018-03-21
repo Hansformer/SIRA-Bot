@@ -117,19 +117,15 @@ class SIRABot(discord.Client):
     async def process_message(self, message):
         chan = message.channel
 
-        # soon
-        # if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
-        #             message.content, re.I)\
-        #   or re.search(
-        #       r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
-        #       message.content, re.I):
-        #    await self.send_message(
-        #        chan,
-        #        'SOON:tm: <:smiling_man:332954734975647754>')
-
-        # >ASP
-        # if 'ASP' in message.content:
-        #    await self.send_file(chan, "images/ASP.png")
+    #   # soon
+    #   if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
+    #               message.content, re.I)\
+    #   or re.search(
+    #       r'\ba\s?t\s?m\s?o\s?s\s?p\s?h\s?e\s?r\s?(?:e|i\s?c)\s?s?\b',
+    #       message.content, re.I):
+    #       await self.send_message(
+    #           chan,
+    #           'SOON:tm: <:smiling_man:332954734975647754>')
 
     # processing commands
     async def process_commands(self, message):
@@ -196,8 +192,8 @@ class SIRABot(discord.Client):
                 await self.process_commands(message)
 
             else:
-               await self.process_reactions(message)
-               await self.process_message(message)
+                await self.process_reactions(message)
+    #           await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logger.debug(f"New message in {message.channel} -"
