@@ -29,15 +29,15 @@ async def server_status(client, message, parameter):
 async def system_inf(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
-    updated = 0
+    updated = False
 
     if api:
         text = f"```{api['name']} Faction Overview```"
         for faction in api['factions']:
-            if updated == 0
+            if updated == False
                 text += f"__Last Updated__: {faction['lastUpdate']}"
                 text += f"\n"
-                updated += 1
+                updated = True
             if faction['influence'] != 0:
                 if api['controllingFaction']['id'] == faction['id']:
                     text += f":crown: **{faction['name']}**"
