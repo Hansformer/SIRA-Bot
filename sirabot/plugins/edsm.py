@@ -56,7 +56,7 @@ async def system_inf(client, message, parameter):
                             text += f"(-)"
                         else:
                             text += f":small_red_triangle_down:"
-                        text += f"; "
+                        text += f";"
                     text += f"\n"
                 if faction['recoveringStates']:
                     text += f":twisted_rightwards_arrows: __Recovering__: "
@@ -68,7 +68,7 @@ async def system_inf(client, message, parameter):
                             text += f"(-)"
                         else:
                             text += f":small_red_triangle_down:"
-                        text += f"; "
+                        text += f";"
                     text += f"\n"
                 text += f":classical_building: `{faction['allegiance']}, " \
                         f"{faction['government']}`\n"
