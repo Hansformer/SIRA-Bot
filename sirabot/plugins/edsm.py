@@ -43,7 +43,7 @@ async def system_inf(client, message, parameter):
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
-                text += '\n'
+                text += f"\n"
                 if faction['pendingStates']:
                     text += f">> Pending: "
                     for pendingState in faction['pendingStates']:
