@@ -114,8 +114,8 @@ class SIRABot(discord.Client):
                         '<:space_ireland:309204831548211201>')
 
     # processing messages
-    async def process_message(self, message):
-        chan = message.channel
+    # async def process_message(self, message):
+    #   chan = message.channel
 
     #   # soon
     #   if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
@@ -193,7 +193,7 @@ class SIRABot(discord.Client):
 
             else:
                 await self.process_reactions(message)
-    #           await self.process_message(message)
+                # await self.process_message(message)
 
         # if debug is enabled print a message log in the console
         logger.debug(f"New message in {message.channel} -"
