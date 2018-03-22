@@ -71,8 +71,8 @@ async def system_inf(client, message, parameter):
                         text += ";"
                     text += "\n"
                 text += f":classical_building: `{faction['allegiance']}, " \
-                        f"{faction['government']}`\n"
-                text += "---\n"
+                        f"{faction['government']}`\n" \
+                        "---\n"
 
         await client.send_message(message.channel, text)
     else:
@@ -85,16 +85,13 @@ async def traffic_report(client, message, parameter):
         f'https://www.edsm.net/api-system-v1/traffic?systemName={parameter}')
 
     if api:
-        text = f"```{api['name']} EDSM Traffic Report```"
         traffic = api['traffic']
-        text += f"Last 24 Hours: {traffic['day']}"
-        text += "\n"
+        text = f"```{api['name']} EDSM Traffic Report```" \
+               f"Last 24 Hours: {traffic['day']}\n" \
+               f"Last 7 Days: {traffic['week']}\n" \
+               f"All Time: {traffic['total']}"
         # for ship in api['breakdown']:
         #    text += ship
-        text += f"Last 7 Days: {traffic['week']}"
-        text += "\n"
-        text += f"All Time: {traffic['total']}"
-
         await client.send_message(message.channel, text)
     else:
         await client.send_message(message.channel, "I can't find that, senpai.")
