@@ -1,28 +1,28 @@
 # inara page command
 async def inara(client, message, parameter):
     await client.send_message(message.channel,
-                              f'<:space_ireland:309204831548211201> **SIRA'
+                              '<:space_ireland:309204831548211201> **SIRA'
                               ' INARA Wing**: <https://inara.cz/wing/1470/>')
 
 
 # recruit briefing command
 async def recruit_brief(client, message, parameter):
     await client.send_message(message.channel,
-                              f':beginner: **SIRA New Recruit Briefing**: '
+                              ':beginner: **SIRA New Recruit Briefing**: '
                               '<https://inara.cz/wing-documents/1470/518/>')
 
 
 # mining reference command
 async def mining(client, message, parameter):
     await client.send_message(message.channel,
-                              f':pick: **SIRA Mining Reference**: '
+                              ':pick: **SIRA Mining Reference**: '
                               '<https://inara.cz/wing-documents/1470/864/>')
 
 
 # territory reference command
 async def hq_ref(client, message, parameter):
     await client.send_message(message.channel,
-                              f'<:space_ireland:309204831548211201> **SIRA '
+                              '<:space_ireland:309204831548211201> **SIRA '
                               'Territory Reference**: '
                               '<https://inara.cz/wing-documents/1470/517/>')
 
@@ -30,21 +30,21 @@ async def hq_ref(client, message, parameter):
 # powerplay briefing command
 async def pp_brief(client, message, parameter):
     await client.send_message(message.channel,
-                              f':tickets: **SIRA Powerplay Briefing**: '
+                              ':tickets: **SIRA Powerplay Briefing**: '
                               '<https://inara.cz/wing-documents/1470/512/>')
 
 
 # background sim briefing command
 async def bgs_brief(client, message, parameter):
     await client.send_message(message.channel,
-                              f':bar_chart: **SIRA BGS Briefing**: '
+                              ':bar_chart: **SIRA BGS Briefing**: '
                               '<https://inara.cz/wing-documents/1470/516/>')
 
 
 # lore and history command
 async def lore(client, message, parameter):
     await client.send_message(message.channel,
-                              f':book: **SIRA Lore & History**: '
+                              ':book: **SIRA Lore & History**: '
                               '<https://inara.cz/wing-documents/1470/424/>')
 
 

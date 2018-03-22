@@ -39,40 +39,40 @@ async def system_inf(client, message, parameter):
                 else:
                     text += f"**{faction['name']}**"
                 if faction['name'] == 'SIRA Incorporated':
-                    text += f" <:space_ireland:309204831548211201> "
+                    text += " <:space_ireland:309204831548211201> "
                 elif faction['isPlayer']:
-                    text += f" :joystick: "
+                    text += " :joystick: "
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
-                text += f"\n"
+                text += "\n"
                 if faction['pendingStates']:
-                    text += f":fast_forward: __Pending__:"
+                    text += ":fast_forward: __Pending__:"
                     for pendingState in faction['pendingStates']:
                         text += f" {pendingState['state']} "
                         if pendingState['trend'] >= 1:
-                            text += f":small_red_triangle:"
+                            text += ":small_red_triangle:"
                         elif pendingState['trend'] == 0:
-                            text += f"(-)"
+                            text += "(-)"
                         else:
-                            text += f":small_red_triangle_down:"
-                        text += f";"
-                    text += f"\n"
+                            text += ":small_red_triangle_down:"
+                        text += ";"
+                    text += "\n"
                 if faction['recoveringStates']:
-                    text += f":twisted_rightwards_arrows: __Recovering__:"
+                    text += ":twisted_rightwards_arrows: __Recovering__:"
                     for recoveringState in faction['recoveringStates']:
                         text += f" {recoveringState['state']} "
                         if recoveringState['trend'] >= 1:
-                            text += f":small_red_triangle:"
+                            text += ":small_red_triangle:"
                         elif recoveringState['trend'] == 0:
-                            text += f"(-)"
+                            text += "(-)"
                         else:
-                            text += f":small_red_triangle_down:"
-                        text += f";"
-                    text += f"\n"
+                            text += ":small_red_triangle_down:"
+                        text += ";"
+                    text += "\n"
                 text += f":classical_building: `{faction['allegiance']}, " \
                         f"{faction['government']}`\n"
-                text += f"---\n"
+                text += "---\n"
 
         await client.send_message(message.channel, text)
     else:
@@ -88,11 +88,11 @@ async def traffic_report(client, message, parameter):
         text = f"```{api['name']} EDSM Traffic Report```"
         traffic = api['traffic']
         text += f"Last 24 Hours: {traffic['day']}"
-        text += f"\n"
+        text += "\n"
         # for ship in api['breakdown']:
         #    text += ship
         text += f"Last 7 Days: {traffic['week']}"
-        text += f"\n"
+        text += "\n"
         text += f"All Time: {traffic['total']}"
 
         await client.send_message(message.channel, text)

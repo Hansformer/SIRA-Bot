@@ -24,7 +24,7 @@ async def vision(client, message, parameter):
                                  status=discord.Status('online'),
                                  afk=False)
     await client.send_message(message.channel,
-                              f'I have been V I S I O N\'d.'
+                              'I have been V I S I O N\'d.'
                               ' <:vision_intensifies:332951986645499904>')
 
 

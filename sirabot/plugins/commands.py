@@ -36,13 +36,13 @@ async def asp(client, message, parameter):
 # space ira command
 async def space_ira(client, message, parameter):
     await client.send_message(message.channel,
-                              f'https://www.youtube.com/watch?v=5h7UPVOz6MU')
+                              'https://www.youtube.com/watch?v=5h7UPVOz6MU')
 
 
 # nearby material traders command
 async def mat_trader(client, message, parameter):
     await client.send_message(message.channel,
-                              f':scales: __**Material Traders Near HQ**__:\n'
+                              ':scales: __**Material Traders Near HQ**__:\n'
                               ':floppy_disk: **Encoded**: Quimper Ring, LHS 21'
                               '\n:gear: **Manufactured**: Barba Ring, LP 355-65'
                               '\n:full_moon: **Raw Materials**: Wedge Hangar, '
@@ -52,7 +52,7 @@ async def mat_trader(client, message, parameter):
 # bot help/readme command
 async def bot_help(client, message, parameter):
     await client.send_message(message.channel,
-                              f':robot: **SIRA-Bot Help**: <https://github.com/'
+                              ':robot: **SIRA-Bot Help**: <https://github.com/'
                               'Hansformer/SIRA-Bot#helpcommands>')
 
 
@@ -69,5 +69,5 @@ async def setup(client):
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
     for alias in ['mattrade', 'mat_trader']:
-      client.register_command(alias, mat_trader)
+        client.register_command(alias, mat_trader)
     client.register_command('help', bot_help)
