@@ -29,6 +29,7 @@ async def server_status(client, message, parameter):
 async def system_inf(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
+    sira_names = ['SIRA Incorporated', 'CoRe Solutions']
 
     if api:
         text = f"```{api['name']} Influence Overview```"
@@ -38,7 +39,7 @@ async def system_inf(client, message, parameter):
                     text += f":crown: **{faction['name']}**"
                 else:
                     text += f"**{faction['name']}**"
-                if faction['name'] == ['SIRA Incorporated', 'CoRe Solutions']:
+                if faction['name'] in sira_names:
                     text += " <:space_ireland:309204831548211201> "
                 elif faction['isPlayer']:
                     text += " :joystick: "
