@@ -43,7 +43,7 @@ async def system_inf(client, message, parameter):
                 if faction['isPlayer']:
                     if faction['name'] in sira_names:
                         text += " <:space_ireland:309204831548211201> "
-                    if faction['name'] in ally_names:
+                    elif faction['name'] in ally_names:
                         text += " :green_heart: "
                     else:
                         text += " :joystick: "
