@@ -38,12 +38,10 @@ async def system_inf(client, message, parameter):
                     text += f":crown: **{faction['name']}**"
                 else:
                     text += f"**{faction['name']}**"
-                for fname in ['SIRA Incorporated', 'CoRe Solutions']:
-                    if faction['isPlayer']:
-                        if faction['name'] == fname:
-                            text += " <:space_ireland:309204831548211201> "
-                        else:
-                            text += " :joystick: "
+                if faction['name'] in ['SIRA Incorporated', 'CoRe Solutions']:
+                    text += " <:space_ireland:309204831548211201> "
+                elif faction['isPlayer']:
+                    text += " :joystick: "
                 text += f": {faction['influence']:.1%}"
                 if faction['state'] != 'None':
                     text += f" ({faction['state']})"
