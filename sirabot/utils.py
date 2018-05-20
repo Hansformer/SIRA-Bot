@@ -1,5 +1,6 @@
 import logging
 import pendulum
+import discord.utils
 
 from config import tzone, tformat, adminrole
 
@@ -15,10 +16,9 @@ def get_time():
 
 def is_admin(fn):
     async def ret_fn(client, message, parameter):
-        if adminrole in message.author.roles:
+        if discord.utils.get(message.author.roles, name=adminrole) is not None:
             return await fn(client, message, parameter)
         else:
             logger.debug(f'Permission denied: {message.author.id} '
-                         f'Roles: {message.author.roles} '
                          f'Message: {message.content}')
     return ret_fn
