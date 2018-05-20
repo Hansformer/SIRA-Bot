@@ -1,4 +1,6 @@
 import discord
+import aiofiles
+
 from sirabot.utils import is_admin
 
 
@@ -26,6 +28,13 @@ async def vision(client, message, parameter):
     await client.send_message(message.channel,
                               'I have been V I S I O N\'d.'
                               ' <:vision_intensifies:332951986645499904>')
+
+
+@is_admin
+async def avatar(client, message, parameter):
+    async with aiofiles.open('images/siraicon.png', mode='rb') as f:
+        contents = await f.read()
+    await client.edit_profile(avatar=contents)
 
 
 # trigger definitions

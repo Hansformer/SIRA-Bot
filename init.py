@@ -10,7 +10,6 @@ from functools import partial
 
 import discord
 from pluginbase import PluginBase
-import aiofiles
 
 # discord api config
 import config
@@ -143,9 +142,6 @@ class SIRABot(discord.Client):
         logger.info("Connected to Discord")
         logger.info(f'Username: {self.user.name}')
         logger.info(f'ID: {self.user.id}')
-        async with aiofiles.open('images/siraicon.png', mode='rb') as f:
-            contents = await f.read()
-        await self.edit_profile(avatar=contents)
         logger.debug('Loading plugins')
         for plugin_name in self.plugin_source.list_plugins():
             plugin = self.plugin_source.load_plugin(plugin_name)
