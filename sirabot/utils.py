@@ -1,7 +1,7 @@
 import logging
 import pendulum
 
-from config import tzone, tformat, admins
+from config import tzone, tformat, adminrole
 
 logger = logging.getLogger('sirabot')
 
@@ -15,7 +15,7 @@ def get_time():
 
 def is_admin(fn):
     async def ret_fn(client, message, parameter):
-        if message.author.id in admins:
+        if adminrole in message.author.roles:
             return await fn(client, message, parameter)
         else:
             logger.debug('Permission denied: '
