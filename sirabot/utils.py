@@ -18,6 +18,7 @@ def is_admin(fn):
         if adminrole in message.author.roles:
             return await fn(client, message, parameter)
         else:
-            logger.debug('Permission denied: '
-                         f'{message.author.id} {message.content}')
+            logger.debug(f'Permission denied: {message.author.id} '
+                         f'Roles: {message.author.roles} '
+                         f'Message: {message.content}')
     return ret_fn
