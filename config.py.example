@@ -3,4 +3,4 @@ debug = False
 tzone = 'UTC'
 tformat = '%Y-%m-%d %H:%M:%S'
 logfile = 'sirabot.log'
-adminrole = '@botadmin'
+adminrole = 'botadmin'
