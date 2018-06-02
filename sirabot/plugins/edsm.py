@@ -30,7 +30,8 @@ async def system_inf(client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
     sira_name = 'SIRA Incorporated'
-    ally_names = ['Iridium Wing', 'CROSS Corp', 'Pan Galactic Mining Corp.']
+    ally_names = ['Iridium Wing', 'CROSS Corp', 'Pan Galactic Mining Corp.',
+                  'Sirius Special Forces', 'Wrecking Crew']
 
     if api:
         text = f"```{api['name']} Influence Overview```"
