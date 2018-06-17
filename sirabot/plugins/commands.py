@@ -58,7 +58,7 @@ async def bot_help(client, message, parameter):
 
 # active role tagging
 async def active_role_set(client, message, parameter):
-    role = await client.get(message.server.roles, '217630454394650634')
+    role = discord.utils.get(message.server.roles, '217630454394650634')
     await client.add_roles(message.author, role)
     await client.send_message(message.channel, 'Done.')
 
