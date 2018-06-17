@@ -56,6 +56,12 @@ async def bot_help(client, message, parameter):
                               'Hansformer/SIRA-Bot#helpcommands>')
 
 
+# active role tagging
+async def active_role_set(client, message, parameter):
+    await client.add_roles(message.author, '217630454394650634')
+    await client.send_message(message.channel, 'Done.')
+
+
 # trigger definitions
 async def setup(client):
     client.register_command('flag', flag)
