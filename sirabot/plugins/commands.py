@@ -60,13 +60,10 @@ async def bot_help(client, message, parameter):
 async def active_role_set(client, message, parameter):
     role = discord.utils.get(message.server.roles, id='217630454394650634')
     if role in message.author.roles:
-        await client.send_message(message.channel, "You already have this role.")
+        await client.send_message(message.channel, 'You already have this role.')
     else:
-        try:
-            await client.add_roles(message.author, role)
-            await client.send_message(message.channel, 'Done.')
-        except discord.Forbidden:
-            await client.send_message(message.channel, "I can't do it.")
+        await client.add_roles(message.author, role)
+        await client.send_message(message.channel, 'Done.')
 
 
 # trigger definitions
