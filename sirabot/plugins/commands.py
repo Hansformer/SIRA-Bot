@@ -58,7 +58,7 @@ async def bot_help(client, message, parameter):
 
 # active role tagging
 async def active_role_set(client, message, parameter):
-    role = await client.get(message.server.roles, id='217630454394650634')
+    role = discord.utils.get(message.server.roles, id='217630454394650634')
     if role in message.author.roles:
         await client.send_message(message.channel, "You already have this role.")
     else:
@@ -84,4 +84,4 @@ async def setup(client):
     for alias in ['mattrade', 'mat_trader']:
         client.register_command(alias, mat_trader)
     client.register_command('help', bot_help)
-    client.register_command('active_roster', active_role_set)
+    client.register_command('active', active_role_set)
