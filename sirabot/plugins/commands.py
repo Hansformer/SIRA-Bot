@@ -77,3 +77,4 @@ async def setup(client):
     for alias in ['mattrade', 'mat_trader']:
         client.register_command(alias, mat_trader)
     client.register_command('help', bot_help)
+    client.register_command('active_roster', active_role_set)
