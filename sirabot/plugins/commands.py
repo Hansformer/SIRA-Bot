@@ -1,3 +1,5 @@
+import discord
+
 # flag command
 async def flag(client, message, parameter):
     await client.send_file(message.channel, "images/flag_of_space_ireland.png")
