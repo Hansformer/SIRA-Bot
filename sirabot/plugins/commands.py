@@ -68,6 +68,16 @@ async def active_role_set(client, message, parameter):
         await client.send_message(message.channel, 'Done.')
 
 
+# inactive role tagging
+async def inactive_role_set(client, message, parameter):
+    role = discord.utils.get(message.server.roles, name="Active Roster")
+    if role not in message.author.roles:
+        await client.send_message(message.channel, 'Cannot remove a role you do not have.')
+    else:
+        await client.remove_roles(message.author, role)
+        await client.send_message(message.channel, 'Done.')
+
+
 # trigger definitions
 async def setup(client):
     client.register_command('flag', flag)
@@ -84,3 +94,4 @@ async def setup(client):
         client.register_command(alias, mat_trader)
     client.register_command('help', bot_help)
     client.register_command('active', active_role_set)
+    client.register_command('inactive', inactive_role_set)
