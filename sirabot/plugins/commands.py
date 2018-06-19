@@ -63,6 +63,7 @@ async def active_role_set(client, message, parameter):
     role = discord.utils.get(message.server.roles, name="SIRA")
     if role not in message.author.roles:
         await client.send_message(message.channel, "The active role is for SIRA members only.")
+        return
     role = discord.utils.get(message.server.roles, name="Active Roster")
     if role in message.author.roles:
         await client.send_message(message.channel, 'You already have this role.')
