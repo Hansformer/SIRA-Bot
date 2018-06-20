@@ -3,6 +3,7 @@
 ## Help/Commands
 
 ### Basic Commands
+- **!active** ; **!inactive** - *SIRA-only commands to add/remove Active Roster tag*
 - **!mattrade** ; **!mat_trader** - *lists the material traders near LP 355-65*
 - **!server** ; **!status** - *checks ED server status per FDev*
 - **!sysinf** *x* - *replace x with a system name to check faction influence/states overview*
