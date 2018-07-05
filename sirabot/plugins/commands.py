@@ -62,11 +62,13 @@ async def bot_help(client, message, parameter):
 async def active_role_set(client, message, parameter):
     role = discord.utils.get(message.server.roles, name="SIRA")
     if role not in message.author.roles:
-        await client.send_message(message.channel, "The active role is for SIRA members only.")
+        await client.send_message(message.channel,
+                                  'The active role is for SIRA members only.')
         return
     role = discord.utils.get(message.server.roles, name="Active Roster")
     if role in message.author.roles:
-        await client.send_message(message.channel, 'You already have this role.')
+        await client.send_message(message.channel,
+                                 'You already have this role.')
     else:
         await client.add_roles(message.author, role)
         await client.send_message(message.channel, 'Done.')
@@ -76,10 +78,30 @@ async def active_role_set(client, message, parameter):
 async def inactive_role_set(client, message, parameter):
     role = discord.utils.get(message.server.roles, name="Active Roster")
     if role not in message.author.roles:
-        await client.send_message(message.channel, 'Cannot remove a role you do not have.')
+        await client.send_message(message.channel,
+                                  'Cannot remove a role you do not have.')
     else:
         await client.remove_roles(message.author, role)
         await client.send_message(message.channel, 'Done.')
+
+
+# powerplay role tagging
+async def lyr_role_set(client, message, parameter):
+    role = discord.utils.get(message.server.roles, name="SIRA")
+    if role not in message.author.roles:
+        await client.send_message(message.channel,
+                                  'The LYR role is for SIRA members only.')
+        return
+    role = discord.utils.get(message.server.roles,
+                             name="LYR Discount Defence Force")
+    if role in message.author.roles:
+        await client.remove_roles(message.author, role)
+        await client.send_message(message.channel,
+                                  'You have been removed from the LYR roster.')
+    else:
+        await client.add_roles(message.author, role)
+        await client.send_message(message.channel,
+                                  'You have been added to the LYR roster.')
 
 
 # trigger definitions
@@ -99,3 +121,5 @@ async def setup(client):
     client.register_command('help', bot_help)
     client.register_command('active', active_role_set)
     client.register_command('inactive', inactive_role_set)
+    for alias in ['LYR', 'lyr']:
+        client.register_command(alias, lyr_role_set)
