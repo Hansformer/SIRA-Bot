@@ -66,22 +66,33 @@ async def active_role_set(client, message, parameter):
                                   'The active role is for SIRA members only.')
         return
     role = discord.utils.get(message.server.roles, name="Active Roster")
+    role2 = discord.utils.get(message.server.roles, name="Inactive")
     if role in message.author.roles:
         await client.send_message(message.channel,
                                  'You already have this role.')
     else:
         await client.add_roles(message.author, role)
+        if role2 in message.author.roles:
+            await client.remove_roles(message.author, role2)
         await client.send_message(message.channel, 'Done.')
 
 
 # inactive role tagging
 async def inactive_role_set(client, message, parameter):
-    role = discord.utils.get(message.server.roles, name="Active Roster")
+    role = discord.utils.get(message.server.roles, name="SIRA")
     if role not in message.author.roles:
         await client.send_message(message.channel,
-                                  'Cannot remove a role you do not have.')
+                                  'The inactive role is for SIRA members only.')
+        return
+    role = discord.utils.get(message.server.roles, name="Active Roster")
+    role2 = discord.utils.get(message.server.roles, name="Inactive")
+    if role2 in message.author.roles:
+        await client.send_message(message.channel,
+                                 'You already have this role.')
     else:
-        await client.remove_roles(message.author, role)
+        await client.add_roles(message.author, role2)
+        if role in message.author.roles:
+            await client.remove_roles(message.author, role)
         await client.send_message(message.channel, 'Done.')
 
 
@@ -111,12 +122,13 @@ async def setup(client):
         client.register_command(alias, battle_flag)
     client.register_command('logo', logo)
     client.register_command('explore_hud', exp_hud)
-    client.register_command('explore_sysmap', exp_sysmap)
+    for alias in ['explore_sysmap', 'explore_map']:
+      client.register_command(alias, exp_sysmap)
     client.register_command('bhadaba', bhadaba)
     client.register_command('ASP', asp)
     for alias in ['spaceira', 'space_ira']:
         client.register_command(alias, space_ira)
-    for alias in ['mattrade', 'mat_trader']:
+    for alias in ['mattrade', 'mat_trader', 'mat_traders']:
         client.register_command(alias, mat_trader)
     client.register_command('help', bot_help)
     client.register_command('active', active_role_set)
