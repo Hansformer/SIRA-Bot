@@ -45,7 +45,7 @@ async def bgs_brief(client, message, parameter):
 async def lore(client, message, parameter):
     await client.send_message(message.channel,
                               ':book: **SIRA Lore & History**: '
-                              '<https://inara.cz/wing-documents/1470/424/>')
+                              '<https://sira.space/#lore>')
 
 
 # trigger definitions
