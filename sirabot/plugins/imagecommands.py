@@ -45,9 +45,9 @@ async def setup(client):
     client.register_command('logo', logo_showimg)
 
     # exploration references
-    client.register_command('explore_hud', exp_hud_showimg)
+    client.register_command('explore_hud', explore_hud_showimg)
     for alias in ['explore_sysmap', 'explore_map']:
-        client.register_command(alias, exp_sysmap_showimg)
+        client.register_command(alias, explore_sysmap_showimg)
 
     # other memes
     client.register_command('bhadaba', bhadaba_showimg)
