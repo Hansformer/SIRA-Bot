@@ -52,22 +52,22 @@ async def setup(client):
 
     # website link
     for alias in ['website', 'link']:
-      client.register_command(alias, site_link)
+        client.register_command(alias, site_link)
 
     # history/lore link
     for alias in ['lore', 'history']:
-      client.register_command(alias, lore_link)
+        client.register_command(alias, lore_link)
 
     # inara wing page link
     for alias in ['inara', 'wing']:
-      client.register_command(alias, inara_link)
+        client.register_command(alias, inara_link)
 
     # help/readme link
     client.register_command('help', bot_help_link)
 
     # space ira video link
     for alias in ['spaceira', 'space_ira']:
-      client.register_command(alias, space_ira_ytlink)
+        client.register_command(alias, space_ira_ytlink)
 
     # territory reference links
     client.register_command('hq_ref', territory_link)

@@ -73,7 +73,7 @@ async def setup(client):
 
     # material traders
     for alias in ['mattrade', 'mat_trader', 'mat_traders']:
-      client.register_command(alias, mat_trader_display)
+        client.register_command(alias, mat_trader_display)
 
     # active/inactive role tagging
     client.register_command('active', active_role_set)
@@ -81,4 +81,4 @@ async def setup(client):
 
     # lyr role tagging
     for alias in ['LYR', 'lyr']:
-      client.register_command(alias, lyr_role_set)
+        client.register_command(alias, lyr_role_set)
