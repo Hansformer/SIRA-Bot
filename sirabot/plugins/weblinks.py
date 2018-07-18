@@ -2,7 +2,7 @@
 async def site_link(client, message, parameter):
     await client.send_message(message.channel,
                               ':globe_with_meridians: **SIRA Website**: '
-                              '<https://sira.space/')
+                              'https://sira.space/')
 
 
 # lore and history command
@@ -51,7 +51,7 @@ async def mining_link(client, message, parameter):
 async def setup(client):
 
     # website link
-    for alias in ['website', 'link']:
+    for alias in ['website', 'site', 'link']:
         client.register_command(alias, site_link)
 
     # history/lore link
