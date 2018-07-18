@@ -42,13 +42,13 @@ async def setup(client):
         client.register_command(alias, battle_flag_showimg)
 
     # logo
-    client.register_command('logo', logo)
+    client.register_command('logo', logo_showimg)
 
     # exploration references
-    client.register_command('explore_hud', exp_hud)
+    client.register_command('explore_hud', exp_hud_showimg)
     for alias in ['explore_sysmap', 'explore_map']:
-        client.register_command(alias, exp_sysmap)
+        client.register_command(alias, exp_sysmap_showimg)
 
     # other memes
-    client.register_command('bhadaba', bhadaba)
-    client.register_command('ASP', asp)
+    client.register_command('bhadaba', bhadaba_showimg)
+    client.register_command('ASP', asp_showimg)
