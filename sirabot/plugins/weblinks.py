@@ -8,7 +8,7 @@ async def site_link(client, message, parameter):
 # lore and history command
 async def lore_link(client, message, parameter):
     await client.send_message(message.channel,
-                              ':book: **SIRA Lore & History**: '
+                              ':book: **SIRA History/Lore**: '
                               '<https://sira.space/?page=lore>')
 
 
