@@ -22,7 +22,7 @@ async def active_role_set(client, message, parameter):
     role2 = discord.utils.get(message.server.roles, name="Inactive")
     if role in message.author.roles:
         await client.send_message(message.channel,
-                                 'You already have this role.')
+                                  'You already have this role.')
     else:
         await client.add_roles(message.author, role)
         if role2 in message.author.roles:
@@ -41,7 +41,7 @@ async def inactive_role_set(client, message, parameter):
     role2 = discord.utils.get(message.server.roles, name="Inactive")
     if role2 in message.author.roles:
         await client.send_message(message.channel,
-                                 'You already have this role.')
+                                  'You already have this role.')
     else:
         await client.add_roles(message.author, role2)
         if role in message.author.roles:
