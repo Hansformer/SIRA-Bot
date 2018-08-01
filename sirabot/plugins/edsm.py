@@ -80,7 +80,8 @@ async def system_inf(client, message, parameter):
                 text += f":classical_building: `{faction['allegiance']}, " \
                         f"{faction['government']}`\n" \
                         "---\n"
-        text += pendulum.from_timestamp(api['factions'][0]['lastUpdate'])
+        text += pendulum.from_timestamp(api['factions'][0]
+                                        ['lastUpdate']).to_rfc2822_string()
 
         await client.send_message(message.channel, text)
     else:
