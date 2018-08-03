@@ -35,7 +35,7 @@ async def active_role_set(client, message, parameter):
                                   'You already have this role.')
     else:
         await client.add_roles(message.author, role)
-        await sleep(3)
+        await sleep(1.5)
         if role2 in message.author.roles:
             await client.remove_roles(message.author, role2)
         await client.send_message(message.channel, 'Done.')
