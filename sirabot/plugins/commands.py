@@ -1,4 +1,5 @@
 import discord
+from asyncio import sleep
 
 
 # nearby material traders command
@@ -23,9 +24,9 @@ async def active_role_set(client, message, parameter):
     r1 = "Active Roster"
     r2 = "Inactive"
     if message.content == "!inactive":
-        r = r1
+        temp = r1
         r1 = r2
-        r2 = r
+        r2 = temp
     role = discord.utils.get(message.server.roles, name=r1)
     role2 = discord.utils.get(message.server.roles, name=r2)
 
@@ -34,6 +35,7 @@ async def active_role_set(client, message, parameter):
                                   'You already have this role.')
     else:
         await client.add_roles(message.author, role)
+        await sleep(3)
         if role2 in message.author.roles:
             await client.remove_roles(message.author, role2)
         await client.send_message(message.channel, 'Done.')
