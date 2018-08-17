@@ -180,6 +180,10 @@ class SIRABot(discord.Client):
 
     # on message routine
     async def on_message(self, message):
+        # if debug is enabled print a message log in the console
+        logger.debug(f"New message in {message.channel} -"
+                     f" {message.author}: {message.content}")
+
         # react to messages (no self reactions)
         if message.author.id != self.user.id:
 
@@ -190,10 +194,6 @@ class SIRABot(discord.Client):
             else:
                 await self.process_reactions(message)
                 # await self.process_message(message)
-
-        # if debug is enabled print a message log in the console
-        logger.debug(f"New message in {message.channel} -"
-                     f" {message.author}: {message.content}")
 
     # member update routine
     # async def on_member_update(self, before, after):
