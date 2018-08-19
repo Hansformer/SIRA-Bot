@@ -47,6 +47,13 @@ async def mining_link(client, message, parameter):
                               '<https://inara.cz/wing-documents/1470/864/>')
 
 
+# background sim information command
+async def bgs_brief(client, message, parameter):
+    await client.send_message(message.channel,
+                              ':bar_chart: **BGS Information**: '	
+                              '<https://forums.frontier.co.uk/showthread.php/400110-Don-t-Panic-BGS-guides-and-help>')
+
+
 # trigger definitions
 async def setup(client):
 
@@ -72,3 +79,6 @@ async def setup(client):
     # territory reference links
     client.register_command('hq_ref', territory_link)
     client.register_command('mining', mining_link)
+
+    for alias in ['bgs', 'bgs_brief']:
+        client.register_command(alias, bgs_brief)

@@ -110,5 +110,6 @@ async def traffic_report(client, message, parameter):
 async def setup(client):
     for alias in ['server', 'status']:
         client.register_command(alias, server_status)
-    client.register_command('sysinf', system_inf)
+    for alias in ['sysinf', 'sys_inf']:
+        client.register_command(alias, system_inf)
     client.register_command('traffic', traffic_report)
