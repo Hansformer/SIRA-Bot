@@ -99,12 +99,12 @@ class SIRABot(discord.Client):
         # regex triggers
         for regex, reaction in regex_reactions.items():
             if re.search(regex, message.content, re.I):
-                await self.add_reaction(message, reaction)
+                await message.add_reaction(reaction)
 
         # reaction triggers
         for trigger, reaction in reactions.items():
             if trigger in message.content:
-                await self.add_reaction(message, reaction)
+                await message.add_reaction(reaction)
                 if reaction == "\U0001F4A3":
                     await chan.send('Space Ireland will be free! '
                                     '<:space_ireland:309204831548211201>')
