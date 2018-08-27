@@ -16,7 +16,7 @@ async def idle(client, message, parameter):
     await client.change_presence(game=discord.Game(name='with live wires'),
                                  status=discord.Status('idle'),
                                  afk=True)
-    await client.send_message(message.channel, '...')
+    await message.channel.send('...')
 
 
 # vision status
@@ -25,9 +25,8 @@ async def vision(client, message, parameter):
     await client.change_presence(game=discord.Game(name='V I S I O N'),
                                  status=discord.Status('online'),
                                  afk=False)
-    await client.send_message(message.channel,
-                              'I have been V I S I O N\'d.'
-                              ' <:vision_intensifies:332951986645499904>')
+    await message.channel.send('I have been V I S I O N\'d.'
+                               ' <:vision_intensifies:332951986645499904>')
 
 
 @is_admin

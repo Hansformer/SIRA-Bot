@@ -23,7 +23,7 @@ async def server_status(client, message, parameter):
     elif sstatus == 'danger':
         msg = f':fire: "{smsg}". Sandro tripped over the server cords again.'
 
-    await client.send_message(message.channel, msg)
+    await message.channel.send(msg)
 
 
 # faction info command
@@ -83,9 +83,9 @@ async def system_inf(client, message, parameter):
         text += pendulum.from_timestamp(api['factions'][0]
                                         ['lastUpdate']).to_rfc2822_string()
 
-        await client.send_message(message.channel, text)
+        await message.channel.send(text)
     else:
-        await client.send_message(message.channel, "I can't find that, senpai.")
+        await message.channel.send("I can't find that, senpai.")
 
 
 # traffic report command
@@ -101,9 +101,9 @@ async def traffic_report(client, message, parameter):
                f"All Time: {traffic['total']}"
         # for ship in api['breakdown']:
         #    text += ship
-        await client.send_message(message.channel, text)
+        await message.channel.send(text)
     else:
-        await client.send_message(message.channel, "I can't find that, senpai.")
+        await message.channel.send("I can't find that, senpai.")
 
 
 # trigger definitions

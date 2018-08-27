@@ -74,10 +74,8 @@ class SIRABot(discord.Client):
     # kill routine
     async def kill(self, signame='SIGINT'):
         logger.debug(f'Received {signame}')
-        chan = self.get_channel('348971376750886912')
-        await self.send_message(
-            chan,
-            'SIRA Bot signing off. <:o7:365926799613624330>')
+        chan = self.get_channel(348971376750886912)
+        await chan.send('SIRA Bot signing off. <:o7:365926799613624330>')
         await self.logout()
         logger.info('SIRA Bot disengaged.')
 
@@ -108,9 +106,8 @@ class SIRABot(discord.Client):
             if trigger in message.content:
                 await self.add_reaction(message, reaction)
                 if reaction == "\U0001F4A3":
-                    await self.send_message(
-                        chan, 'Space Ireland will be free! '
-                        '<:space_ireland:309204831548211201>')
+                    await chan.send('Space Ireland will be free! '
+                                    '<:space_ireland:309204831548211201>')
 
     # processing messages
     # async def process_message(self, message):
@@ -149,34 +146,27 @@ class SIRABot(discord.Client):
         logger.debug('Plugins loaded')
 
         # send a message
-        chan = self.get_channel('348971376750886912')
-        await self.send_message(
-            chan,
-            'SIRA Bot reporting for duty. <:o7:365926799613624330>')
+        chan = self.get_channel(348971376750886912)
+        await chan.send('SIRA Bot reporting for duty. <:o7:365926799613624330>')
 
     # member join routine
     async def on_member_join(self, member):
         logger.info(f"User joined - {member.name}")
-        chan = self.get_channel('195647497505472512')
-        await self.send_message(
-            chan,
-            f"Welcome {member.mention}."
-            " <:vision_intensifies:332951986645499904>\n"
-            "If you have any issues, please tag an <@&200367057378869248>.")
-        await self.send_message(
-            chan,
-            "Be sure to join the /edg/ group (SIRA) - "
-            "<:space_ireland:309204831548211201> - "
-            "<https://inara.cz/wing/1470>")
+        chan = self.get_channel(195647497505472512)
+        await chan.send(f"Welcome {member.mention}."
+                        " <:vision_intensifies:332951986645499904>\n"
+                        "If you have any issues, please tag an "
+                        "<@&200367057378869248>.")
+        await chan.send("Be sure to join the /edg/ group (SIRA) - "
+                        "<:space_ireland:309204831548211201> - "
+                        "<https://inara.cz/wing/1470>")
 
     # member quit routine
     async def on_member_remove(self, member):
         logger.info(f"User left - {member.name}")
-        chan = self.get_channel('200383687232192513')
-        await self.send_message(
-            chan,
-            f"{member.mention} ({member.name}) has quit. "
-            "<:umaru_cry:319973822012981248>")
+        chan = self.get_channel(200383687232192513)
+        await chan.send(f"{member.mention} ({member.name}) has quit. "
+                        "<:umaru_cry:319973822012981248>")
 
     # on message routine
     async def on_message(self, message):
