@@ -13,17 +13,17 @@ async def kill(client, message, parameter):
 # idle status
 @is_admin
 async def idle(client, message, parameter):
-    await client.change_presence(game=discord.Game(name='with live wires'),
-                                 status=discord.Status('idle'),
+    await client.change_presence(status=discord.Status.idle,
+                                 activity=discord.Game(name='with live wires'),
                                  afk=True)
+
     await message.channel.send('...')
 
 
 # vision status
 @is_admin
 async def vision(client, message, parameter):
-    await client.change_presence(game=discord.Game(name='V I S I O N'),
-                                 status=discord.Status('online'),
+    await client.change_presence(activity=discord.Game(name='V I S I O N'),
                                  afk=False)
     await message.channel.send('I have been V I S I O N\'d.'
                                ' <:vision_intensifies:332951986645499904>')
