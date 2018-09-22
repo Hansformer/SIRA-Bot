@@ -13,7 +13,7 @@ async def mat_trader_display(client, message, parameter):
 
 # active role tagging command
 async def active_role_set(client, message, parameter):
-    role = discord.utils.get(message.server.roles, name="SIRA")
+    role = discord.utils.get(message.guild.roles, name="SIRA")
     if role not in message.author.roles:
         await message.channel.send(f'The {message.content[1:]} role is for SIRA'
                                    ' members only.')
@@ -25,8 +25,8 @@ async def active_role_set(client, message, parameter):
         temp = r1
         r1 = r2
         r2 = temp
-    role = discord.utils.get(message.server.roles, name=r1)
-    role2 = discord.utils.get(message.server.roles, name=r2)
+    role = discord.utils.get(message.guild.roles, name=r1)
+    role2 = discord.utils.get(message.guild.roles, name=r2)
 
     if role in message.author.roles:
         await message.channel.send('You already have this role.')
@@ -40,11 +40,11 @@ async def active_role_set(client, message, parameter):
 
 # powerplay role tagging command
 async def lyr_role_set(client, message, parameter):
-    role = discord.utils.get(message.server.roles, name="SIRA")
+    role = discord.utils.get(message.guild.roles, name="SIRA")
     if role not in message.author.roles:
         await message.channel.send('The LYR role is for SIRA members only.')
         return
-    role = discord.utils.get(message.server.roles,
+    role = discord.utils.get(message.guild.roles,
                              name="LYR Discount Defence Force")
     if role in message.author.roles:
         await client.remove_roles(message.author, role)
