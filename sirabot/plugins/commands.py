@@ -31,10 +31,10 @@ async def active_role_set(client, message, parameter):
     if role in message.author.roles:
         await message.channel.send('You already have this role.')
     else:
-        await client.add_roles(message.author, role)
+        await message.author.add_roles(role)
         await sleep(1.5)
         if role2 in message.author.roles:
-            await client.remove_roles(message.author, role2)
+            await message.author.remove_roles(role2)
         await message.channel.send('Done.')
 
 
@@ -47,10 +47,10 @@ async def lyr_role_set(client, message, parameter):
     role = discord.utils.get(message.guild.roles,
                              name="LYR Discount Defence Force")
     if role in message.author.roles:
-        await client.remove_roles(message.author, role)
+        await message.author.remove_roles(role)
         await message.channel.send('You have been removed from the LYR roster.')
     else:
-        await client.add_roles(message.author, role)
+        await message.author.add_roles(role)
         await message.channel.send('You have been added to the LYR roster.')
 
 
