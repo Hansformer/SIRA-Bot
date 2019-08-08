@@ -1,5 +1,5 @@
-git+https://github.com/Rapptz/discord.py.git@bd46708#egg=discord.py
+discord.py==1.2.3
 pendulum
-aiohttp>=3.3.0,<3.4.0
+aiohttp>=3.3.0,<3.6.0
 pluginbase
 aiofiles
