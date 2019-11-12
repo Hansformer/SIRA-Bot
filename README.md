@@ -1,4 +1,4 @@
-# :robot: Discord bot for SIRA
+# :robot: Discord bot for SIRA (Settlement, Investment & Realty of the Arietis)
 
 Turn back now.
 
