@@ -1,4 +1,4 @@
-# Discord bot for SIRA (/edg/)
+# :robot: Discord bot for SIRA
 
 Turn back now.
 
