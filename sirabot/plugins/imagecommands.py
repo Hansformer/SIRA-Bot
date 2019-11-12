@@ -1,36 +1,36 @@
 # flag command
 async def flag_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/flag_of_space_ireland.png")
+    await client.send_file(message.channel, "../../images/flag_of_space_ireland.png")
 
 
 # new battleflag command
 async def battle_flag_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/battleflag.png")
+    await client.send_file(message.channel, "../../images/battleflag.png")
 
 
 # logo command
 async def logo_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/sira_logo.png")
+    await client.send_file(message.channel, "../../images/sira_logo.png")
 
 
 # exploration HUD cheatsheet command
 async def explore_hud_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/exp_hud.png")
+    await client.send_file(message.channel, "../../images/exp_hud.png")
 
 
 # exploration sysmap cheatsheet command
 async def explore_sysmap_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/exp_sysmap.jpg")
+    await client.send_file(message.channel, "../../images/exp_sysmap.jpg")
 
 
 # Bhadaba! meme command
 async def bhadaba_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/Bhadaba.jpg")
+    await client.send_file(message.channel, "../../images/Bhadaba.jpg")
 
 
 # asp meme command
 async def asp_showimg(client, message, parameter):
-    await client.send_file(message.channel, "images/ASP.png")
+    await client.send_file(message.channel, "../../images/ASP.png")
 
 
 # trigger definitions
