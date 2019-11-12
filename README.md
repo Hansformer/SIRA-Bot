@@ -18,8 +18,6 @@
 - **!mining** - *links to the SIRA Mining Reference*
 
 ### Semi-Useful Images
-- **!explore_hud** - *displays the exploration infographic for HUD images*
-- **!explore_sysmap** ; **!explore_map** - *displays the exploration infographic for system map images*
 - **!flag** - *displays the Space Ireland flag*
 - **!logo** - *displays the SIRA logo*
 
