@@ -13,16 +13,6 @@ async def logo_showimg(client, message, parameter):
     await client.send_file(message.channel, "../../images/sira_logo.png")
 
 
-# exploration HUD cheatsheet command
-async def explore_hud_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/exp_hud.png")
-
-
-# exploration sysmap cheatsheet command
-async def explore_sysmap_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/exp_sysmap.jpg")
-
-
 # Bhadaba! meme command
 async def bhadaba_showimg(client, message, parameter):
     await client.send_file(message.channel, "../../images/Bhadaba.jpg")
