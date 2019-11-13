@@ -13,7 +13,8 @@ async def lore_link(client, message, parameter):
 # inara page command
 async def inara_link(client, message, parameter):
     await message.channel.send('<:space_ireland:309204831548211201> **INARA'
-                               ' Squadron Page**: <https://inara.cz/wing/1470/>')
+                               ' Squadron Page**: '
+                               '<https://inara.cz/squadron/1470/>')
 
 
 # bot help/readme command
