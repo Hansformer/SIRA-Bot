@@ -31,13 +31,13 @@ async def space_ira_ytlink(client, message, parameter):
 async def territory_link(client, message, parameter):
     await message.channel.send('<:space_ireland:309204831548211201> **SIRA '
                                'Territory Reference**: '
-                               '<https://inara.cz/wing-documents/1470/517/>')
+                               '<https://inara.cz/squadron-documents/1470/517/>')
 
 
 # mining reference command
 async def mining_link(client, message, parameter):
     await message.channel.send(':pick: **SIRA Mining Reference**: '
-                               '<https://inara.cz/wing-documents/1470/864/>')
+                               '<https://inara.cz/squadron-documents/1470/864/>')
 
 
 # background sim information command
