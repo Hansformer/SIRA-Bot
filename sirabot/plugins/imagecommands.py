@@ -1,26 +1,29 @@
+from discord import File
+
+
 # flag command
 async def flag_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/flag_of_space_ireland.png")
+    await message.channel.send(file=File("../../images/flag_of_space_ireland.png"))
 
 
 # new battleflag command
 async def battle_flag_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/battleflag.png")
+    await message.channel.send(file=File("../../images/battleflag.png"))
 
 
 # logo command
 async def logo_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/sira_logo.png")
+    await message.channel.send(file=File("../../images/sira_logo.png"))
 
 
 # Bhadaba! meme command
 async def bhadaba_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/Bhadaba.jpg")
+    await message.channel.send(file=File("../../images/Bhadaba.jpg"))
 
 
 # asp meme command
 async def asp_showimg(client, message, parameter):
-    await client.send_file(message.channel, "../../images/ASP.png")
+    await message.channel.send(file=File("../../images/ASP.png"))
 
 
 # trigger definitions
@@ -33,11 +36,6 @@ async def setup(client):
 
     # logo
     client.register_command('logo', logo_showimg)
-
-    # exploration references
-    client.register_command('explore_hud', explore_hud_showimg)
-    for alias in ['explore_sysmap', 'explore_map']:
-        client.register_command(alias, explore_sysmap_showimg)
 
     # other memes
     client.register_command('bhadaba', bhadaba_showimg)
