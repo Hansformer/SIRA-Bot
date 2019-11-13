@@ -3,27 +3,27 @@ from discord import File
 
 # flag command
 async def flag_showimg(client, message, parameter):
-    await message.channel.send(file=File("../../images/flag_of_space_ireland.png"))
+    await message.channel.send(file=File("images/flag_of_space_ireland.png"))
 
 
 # new battleflag command
 async def battle_flag_showimg(client, message, parameter):
-    await message.channel.send(file=File("../../images/battleflag.png"))
+    await message.channel.send(file=File("images/battleflag.png"))
 
 
 # logo command
 async def logo_showimg(client, message, parameter):
-    await message.channel.send(file=File("../../images/sira_logo.png"))
+    await message.channel.send(file=File("images/sira_logo.png"))
 
 
 # Bhadaba! meme command
 async def bhadaba_showimg(client, message, parameter):
-    await message.channel.send(file=File("../../images/Bhadaba.jpg"))
+    await message.channel.send(file=File("images/Bhadaba.jpg"))
 
 
 # asp meme command
 async def asp_showimg(client, message, parameter):
-    await message.channel.send(file=File("../../images/ASP.png"))
+    await message.channel.send(file=File("images/ASP.png"))
 
 
 # trigger definitions
