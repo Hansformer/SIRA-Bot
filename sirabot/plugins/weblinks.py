@@ -59,7 +59,7 @@ async def setup(client):
         client.register_command(alias, lore_link)
 
     # inara wing page link
-    for alias in ['inara', 'wing']:
+    for alias in ['inara', 'wing', 'squad']:
         client.register_command(alias, inara_link)
 
     # help/readme link
