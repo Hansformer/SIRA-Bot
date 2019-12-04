@@ -81,8 +81,7 @@ async def setup(client):
 
     # flags
     client.register_command('flag', flag_showimg)
-    for alias in ['battleflag', 'battle_flag']:
-        client.register_command(alias, battle_flag_showimg)
+    client.register_command('battleflag', battle_flag_showimg)
 
     # logo
     client.register_command('logo', logo_showimg)
@@ -92,11 +91,11 @@ async def setup(client):
     client.register_command('ASP', asp_showimg)
     client.register_command('landmine', landmine_showimg)
     client.register_command('skimmer', skimmer_showimg)
-    client.register_command('stay_safe', safe_showimg)
+    client.register_command('staysafe', safe_showimg)
     client.register_command('conquest', conquest_showimg)
     client.register_command('aisling', aisling_showimg)
     client.register_command('biowaste', brabowaste_showimg)
     client.register_command('parnut', parnut_showimg)
-    client.register_command('gym_boss', gymboss_showimg)
-    client.register_command('so_good', sogood_showimg)
+    client.register_command('gymboss', gymboss_showimg)
+    client.register_command('sogood', sogood_showimg)
     client.register_command('believable', believable_showimg)
