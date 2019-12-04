@@ -67,12 +67,10 @@ async def setup(client):
     client.register_command('help', bot_help_link)
 
     # space ira video link
-    for alias in ['spaceira', 'space_ira']:
-        client.register_command(alias, space_ira_ytlink)
+    client.register_command('spaceira', space_ira_ytlink)
 
     # territory reference links
-    client.register_command('hq_ref', territory_link)
+    client.register_command('territory', territory_link)
     client.register_command('mining', mining_link)
 
-    for alias in ['bgs', 'bgs_brief']:
-        client.register_command(alias, bgs_brief)
+    client.register_command('bgs', bgs_brief)
