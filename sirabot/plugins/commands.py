@@ -58,8 +58,7 @@ async def lyr_role_set(client, message, parameter):
 async def setup(client):
 
     # material traders
-    for alias in ['mattrade', 'mat_trader', 'mat_traders']:
-        client.register_command(alias, mat_trader_display)
+    client.register_command('mattrade', mat_trader_display)
 
     # active/inactive role tagging
     for alias in ['active', 'inactive']:
