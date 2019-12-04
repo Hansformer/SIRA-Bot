@@ -46,6 +46,36 @@ async def conquest_showimg(client, message, parameter):
     await message.channel.send(file=File("images/achievement_meme.png"))
 
 
+# aisling meme command
+async def aisling_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/aisling.jpg"))
+
+
+# brabo biowaste meme command
+async def brabowaste_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/brabowaste.png"))
+
+
+# parnut war meme command
+async def parnut_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/parnut.png"))
+
+
+# gym boss meme command
+async def gymboss_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/gym_boss.png"))
+
+
+# so good meme command
+async def sogood_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/so_good.png"))
+
+
+# believable galaxy meme command
+async def believable_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/believable.jpg"))
+
+
 # trigger definitions
 async def setup(client):
 
@@ -64,3 +94,9 @@ async def setup(client):
     client.register_command('skimmer', skimmer_showimg)
     client.register_command('stay_safe', safe_showimg)
     client.register_command('conquest', conquest_showimg)
+    client.register_command('aisling', aisling_showimg)
+    client.register_command('biowaste', brabowaste_showimg)
+    client.register_command('parnut', parnut_showimg)
+    client.register_command('gym_boss', gymboss_showimg)
+    client.register_command('so_good', sogood_showimg)
+    client.register_command('believable', believable_showimg)
