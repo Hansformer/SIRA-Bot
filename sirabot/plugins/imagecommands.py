@@ -26,6 +26,26 @@ async def asp_showimg(client, message, parameter):
     await message.channel.send(file=File("images/ASP.png"))
 
 
+# landmine meme command
+async def landmine_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/landmines.jpg"))
+
+
+# skimmer meme command
+async def skimmer_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/what_is_a_skimmer.png"))
+
+
+# stay safe meme command
+async def safe_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/stay_safe_everyone.jpg"))
+
+
+# conquest meme command
+async def conquest_showimg(client, message, parameter):
+    await message.channel.send(file=File("images/achievement_meme.png"))
+
+
 # trigger definitions
 async def setup(client):
 
@@ -40,3 +60,7 @@ async def setup(client):
     # other memes
     client.register_command('bhadaba', bhadaba_showimg)
     client.register_command('ASP', asp_showimg)
+    client.register_command('landmine', landmine_showimg)
+    client.register_command('skimmer', skimmer_showimg)
+    client.register_command('stay_safe', safe_showimg)
+    client.register_command('conquest', conquest_showimg)
