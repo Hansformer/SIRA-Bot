@@ -32,7 +32,8 @@ async def system_inf(client, message, parameter):
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
     sira_name = 'SIRA Incorporated'
     ally_names = ['Iridium Wing', 'CROSS Corp', 'Pan Galactic Mining Corp.',
-                  'Sirius Special Forces', 'Wrecking Crew']
+                  'Sirius Special Forces', 'Wrecking Crew', 'Aseveljet']
+    enemy_names = ['EXO', 'The Fatherhood']
 
     if api:
         text = f"```{api['name']} Influence Overview```"
@@ -47,6 +48,8 @@ async def system_inf(client, message, parameter):
                         text += " <:space_ireland:309204831548211201> "
                     elif faction['name'] in ally_names:
                         text += " :green_heart: "
+                    elif faction['name'] in enemy_names:
+                        text += " :skull: "
                     else:
                         text += " :joystick: "
                 text += f": {faction['influence']:.1%}"
