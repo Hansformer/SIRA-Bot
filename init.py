@@ -73,7 +73,7 @@ class SIRABot(discord.Client):
 
     # kill routine
     async def kill(self, signame='SIGINT'):
-        logger.debug(f'Received {signame}')
+        logger.debug('Received %s', signame)
         chan = self.get_channel(348971376750886912)
         await chan.send('SIRA Bot signing off. <:o7:365926799613624330>')
         await self.logout()
@@ -137,8 +137,8 @@ class SIRABot(discord.Client):
     # login routine
     async def on_ready(self):
         logger.info("Connected to Discord")
-        logger.info(f'Username: {self.user.name}')
-        logger.info(f'ID: {self.user.id}')
+        logger.info('Username: %s', self.user.name)
+        logger.info('ID: %s', self.user.id)
         logger.debug('Loading plugins')
         for plugin_name in self.plugin_source.list_plugins():
             plugin = self.plugin_source.load_plugin(plugin_name)
@@ -151,7 +151,7 @@ class SIRABot(discord.Client):
 
     # member join routine
     async def on_member_join(self, member):
-        logger.info(f"User joined - {member.name}")
+        logger.info("User joined - %s", member.name)
         chan = self.get_channel(195647497505472512)
         await chan.send(f"Welcome {member.mention}."
                         " <:vision_intensifies:332951986645499904>\n"
@@ -163,7 +163,7 @@ class SIRABot(discord.Client):
 
     # member quit routine
     async def on_member_remove(self, member):
-        logger.info(f"User left - {member.name}")
+        logger.info("User left - %s", member.name)
         chan = self.get_channel(200383687232192513)
         await chan.send(f"{member.mention} ({member.name}) has quit. "
                         "<:umaru_cry:319973822012981248>")
@@ -171,8 +171,7 @@ class SIRABot(discord.Client):
     # on message routine
     async def on_message(self, message):
         # if debug is enabled print a message log in the console
-        logger.debug(f"New message in {message.channel} -"
-                     f" {message.author}: {message.content}")
+        logger.debug("New message in %s - %s: %s", message.channel, message.author, message.content)
 
         # react to messages (no self reactions)
         if message.author.id != self.user.id:

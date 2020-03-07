@@ -1,5 +1,5 @@
-import discord
 from asyncio import sleep
+import discord
 
 
 # nearby material traders command
@@ -22,9 +22,7 @@ async def active_role_set(client, message, parameter):
     r1 = "Active Roster"
     r2 = "Inactive"
     if message.content == "!inactive":
-        temp = r1
-        r1 = r2
-        r2 = temp
+        r1, r2 = r2, r1
     role = discord.utils.get(message.guild.roles, name=r1)
     role2 = discord.utils.get(message.guild.roles, name=r2)
 

@@ -18,7 +18,5 @@ def is_admin(fn):
     async def ret_fn(client, message, parameter):
         if discord.utils.get(message.author.roles, name=adminrole) is not None:
             return await fn(client, message, parameter)
-        else:
-            logger.debug(f'Permission denied: {message.author.id} '
-                         f'Message: {message.content}')
+        logger.debug(f'Permission denied: %s Message: %s', message.author.id, message.content)
     return ret_fn

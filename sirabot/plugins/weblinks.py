@@ -43,7 +43,7 @@ async def mining_link(client, message, parameter):
 
 # background sim information command
 async def bgs_brief(client, message, parameter):
-    await message.channel.send(':bar_chart: **BGS Information**: '	
+    await message.channel.send(':bar_chart: **BGS Information**: '
                                '<https://forums.frontier.co.uk/showthread.php/'
                                '400110-Don-t-Panic-BGS-guides-and-help>')
 
