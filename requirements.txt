@@ -1,4 +1,4 @@
-discord.py==1.3.4
+discord.py==1.5.1
 pendulum
 aiohttp>=3.6.0,<3.7.0
 pluginbase
