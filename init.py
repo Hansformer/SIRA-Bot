@@ -152,7 +152,7 @@ class SIRABot(discord.Client):
     # member join routine
     async def on_member_join(self, member):
         logger.info("User joined - %s", member.name)
-        chan = self.get_channel(195647497505472512)
+        chan = self.get_channel(789324979317506079)
         await chan.send(f"Welcome {member.mention}."
                         " <:vision_intensifies:332951986645499904>\n"
                         "If you have any issues, please tag an "
