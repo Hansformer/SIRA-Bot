@@ -2,7 +2,6 @@
 import asyncio
 import re
 import os
-import sys
 import logging
 import warnings
 import signal
@@ -15,39 +14,22 @@ from pluginbase import PluginBase
 import config
 
 # logging
-if config.debug:
-    logging.getLogger('asyncio').setLevel(logging.DEBUG)
-    warnings.simplefilter('default')
-
 logger = logging.getLogger('sirabot')
 logger.setLevel(logging.DEBUG)
 
 ch = logging.StreamHandler()
-fh = logging.FileHandler(config.logfile)
 
 if config.debug:
+    logging.getLogger('asyncio').setLevel(logging.DEBUG)
+    warnings.simplefilter('default')
     ch.setLevel(logging.DEBUG)
-    fh.setLevel(logging.DEBUG)
 else:
-    ch.setLevel(logging.WARNING)
-    fh.setLevel(logging.WARNING)
+    ch.setLevel(logging.INFO)
 
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:'
                               ' %(message)s')
-fh.setFormatter(formatter)
 ch.setFormatter(formatter)
-
-logger.addHandler(fh)
 logger.addHandler(ch)
-
-
-# exception logging
-def log_exception(exc_type, exc_value, exc_traceback):
-    logger.error("Uncaught exception",
-                 exc_info=(exc_type, exc_value, exc_traceback))
-
-
-sys.excepthook = log_exception
 
 
 # bot class and main functions
@@ -194,10 +176,6 @@ class SIRABot(discord.Client):
     #         if role not in after.roles:
     #             await self.add_roles(after, role)
     #             logger.info(f"{after.name} auto-tagged as EVE heathen.")
-
-    async def on_error(self, event_method, *args, **kwargs):
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-        log_exception(exc_type, exc_value, exc_traceback)
 
 
 # running the bot
