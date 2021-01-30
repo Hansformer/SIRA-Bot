@@ -32,6 +32,10 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
+intents = discord.Intents.default()
+intents.members = True
+
+
 # bot class and main functions
 class SIRABot(discord.Client):
 
@@ -180,7 +184,7 @@ class SIRABot(discord.Client):
 
 # running the bot
 if config.token != 'token':
-    bot = SIRABot()
+    bot = SIRABot(intents=intents)
     bot.run(config.token)
 else:
     logger.error('Token not set')
