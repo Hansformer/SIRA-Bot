@@ -1,5 +1,5 @@
-token = 'token'
-debug = False
-tzone = 'UTC'
-tformat = '%Y-%m-%d %H:%M:%S'
-adminrole = 'botadmin'
+TOKEN = 'token'
+DEBUG = False
+TIME_ZONE = 'UTC'
+TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+ADMIN_ROLE = 'botadmin'

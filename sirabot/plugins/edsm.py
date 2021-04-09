@@ -58,11 +58,11 @@ async def system_inf(client, message, parameter):
                 text += "\n"
                 if faction['pendingStates']:
                     text += ":fast_forward: __Pending__:"
-                    for pendingState in faction['pendingStates']:
-                        text += f" {pendingState['state']} "
-                        if pendingState['trend'] >= 1:
+                    for pending_state in faction['pendingStates']:
+                        text += f" {pending_state['state']} "
+                        if pending_state['trend'] >= 1:
                             text += ":small_red_triangle:"
-                        elif pendingState['trend'] == 0:
+                        elif pending_state['trend'] == 0:
                             text += "(-)"
                         else:
                             text += ":small_red_triangle_down:"
@@ -70,11 +70,11 @@ async def system_inf(client, message, parameter):
                     text += "\n"
                 if faction['recoveringStates']:
                     text += ":twisted_rightwards_arrows: __Recovering__:"
-                    for recoveringState in faction['recoveringStates']:
-                        text += f" {recoveringState['state']} "
-                        if recoveringState['trend'] >= 1:
+                    for recovering_state in faction['recoveringStates']:
+                        text += f" {recovering_state['state']} "
+                        if recovering_state['trend'] >= 1:
                             text += ":small_red_triangle:"
-                        elif recoveringState['trend'] == 0:
+                        elif recovering_state['trend'] == 0:
                             text += "(-)"
                         else:
                             text += ":small_red_triangle_down:"

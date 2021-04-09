@@ -31,8 +31,8 @@ async def vision(client, message, parameter):
 
 @is_admin
 async def avatar(client, message, parameter):
-    async with aiofiles.open('images/siraicon.png', mode='rb') as f:
-        contents = await f.read()
+    async with aiofiles.open('images/siraicon.png', mode='rb') as file:
+        contents = await file.read()
     await client.edit_profile(avatar=contents)
 
 

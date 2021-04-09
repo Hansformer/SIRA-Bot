@@ -1,0 +1,27 @@
+strictness: veryhigh
+
+ignore-paths:
+  - .mypy_cache
+  - venv
+  - __pycache__
+
+mypy:
+  run: false
+
+bandit:
+  run: true
+
+dodgy:
+  run: false
+
+pylint:
+  enable:
+    - useless-suppression
+  disable:
+    - unused-argument
+  options:
+    max-line-length: 120
+
+pep8:
+  options:
+    max-line-length: 120

@@ -19,12 +19,12 @@ async def active_role_set(client, message, parameter):
                                    ' members only.')
         return
 
-    r1 = "Active Roster"
-    r2 = "Inactive"
+    role1 = "Active Roster"
+    role2 = "Inactive"
     if message.content == "!inactive":
-        r1, r2 = r2, r1
-    role = discord.utils.get(message.guild.roles, name=r1)
-    role2 = discord.utils.get(message.guild.roles, name=r2)
+        role1, role2 = role2, role1
+    role = discord.utils.get(message.guild.roles, name=role1)
+    role2 = discord.utils.get(message.guild.roles, name=role2)
 
     if role in message.author.roles:
         await message.channel.send('You already have this role.')

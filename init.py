@@ -19,7 +19,7 @@ logger.setLevel(logging.DEBUG)
 
 ch = logging.StreamHandler()
 
-if config.debug:
+if config.DEBUG:
     logging.getLogger('asyncio').setLevel(logging.DEBUG)
     warnings.simplefilter('default')
     ch.setLevel(logging.DEBUG)
@@ -43,7 +43,7 @@ class SIRABot(discord.Client):
     def __init__(self, **options):
         logger.info('Initializing SIRA Bot...')
         super().__init__(**options)
-        if config.debug:
+        if config.DEBUG:
             self.loop.set_debug(True)
         for signame in ('SIGINT', 'SIGTERM'):
             self.loop.add_signal_handler(getattr(signal, signame),
@@ -183,8 +183,8 @@ class SIRABot(discord.Client):
 
 
 # running the bot
-if config.token != 'token':
+if config.TOKEN != 'token':
     bot = SIRABot(intents=intents)
-    bot.run(config.token)
+    bot.run(config.TOKEN)
 else:
     logger.error('Token not set')
