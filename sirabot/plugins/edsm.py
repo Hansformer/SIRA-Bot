@@ -11,7 +11,7 @@ async def fetch(url):
 
 
 # server status command
-async def server_status(client, message, parameter):
+async def server_status(_client, message, _parameter):
     api = await fetch('https://www.edsm.net/api-status-v1/elite-server')
     sstatus, smsg = api['type'], api['message']
 
@@ -27,7 +27,7 @@ async def server_status(client, message, parameter):
 
 
 # faction info command
-async def system_inf(client, message, parameter):
+async def system_inf(_client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/factions?systemName={parameter}')
     sira_name = 'SIRA Incorporated'
@@ -92,7 +92,7 @@ async def system_inf(client, message, parameter):
 
 
 # traffic report command
-async def traffic_report(client, message, parameter):
+async def traffic_report(_client, message, parameter):
     api = await fetch(
         f'https://www.edsm.net/api-system-v1/traffic?systemName={parameter}')
 

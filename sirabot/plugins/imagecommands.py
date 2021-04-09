@@ -2,77 +2,77 @@ from discord import File
 
 
 # flag command
-async def flag_showimg(client, message, parameter):
+async def flag_showimg(_client, message, _parameter):
     await message.channel.send(file=File("images/flag_of_space_ireland.png"))
 
 
 # new battleflag command
-async def battle_flag_showimg(client, message, parameter):
+async def battle_flag_showimg(_client, message, _parameter):
     await message.channel.send(file=File("images/battleflag.png"))
 
 
 # logo command
-async def logo_showimg(client, message, parameter):
+async def logo_showimg(_client, message, _parameter):
     await message.channel.send(file=File("images/sira_logo.png"))
 
 
 # Bhadaba! meme command
-async def bhadaba_showimg(client, message, parameter):
+async def bhadaba_showimg(_client, message, _parameter):
     await message.channel.send(file=File("images/Bhadaba.jpg"))
 
 
 # asp meme command
-async def asp_showimg(client, message, parameter):
+async def asp_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/ASP.png"))
 
 
 # landmine meme command
-async def landmine_showimg(client, message, parameter):
+async def landmine_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/landmines.jpg"))
 
 
 # skimmer meme command
-async def skimmer_showimg(client, message, parameter):
+async def skimmer_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/what_is_a_skimmer.png"))
 
 
 # stay safe meme command
-async def safe_showimg(client, message, parameter):
+async def safe_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/stay_safe_everyone.jpg"))
 
 
 # conquest meme command
-async def conquest_showimg(client, message, parameter):
+async def conquest_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/achievement_meme.png"))
 
 
 # aisling meme command
-async def aisling_showimg(client, message, parameter):
+async def aisling_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/aisling.jpg"))
 
 
 # brabo biowaste meme command
-async def brabowaste_showimg(client, message, parameter):
+async def brabowaste_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/brabowaste.png"))
 
 
 # parnut war meme command
-async def parnut_showimg(client, message, parameter):
+async def parnut_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/parnut.png"))
 
 
 # gym boss meme command
-async def gymboss_showimg(client, message, parameter):
+async def gymboss_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/gym_boss.png"))
 
 
 # so good meme command
-async def sogood_showimg(client, message, parameter):
+async def sogood_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/so_good.png"))
 
 
 # believable galaxy meme command
-async def believable_showimg(client, message, parameter):
+async def believable_showimg(_clcient, message, _parameter):
     await message.channel.send(file=File("images/believable.jpg"))
 
 

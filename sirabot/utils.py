@@ -14,9 +14,9 @@ def get_time():
     return stamp
 
 
-def is_admin(fn):
-    async def ret_fn(client, message, parameter):
+def is_admin(func):
+    async def ret_func(client, message, parameter):
         if discord.utils.get(message.author.roles, name=ADMIN_ROLE) is not None:
-            return await fn(client, message, parameter)
+            return await func(client, message, parameter)
         logger.debug('Permission denied: %s Message: %s', message.author.id, message.content)
-    return ret_fn
+    return ret_func

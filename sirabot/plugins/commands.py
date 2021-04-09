@@ -3,7 +3,7 @@ import discord
 
 
 # nearby material traders command
-async def mat_trader_display(client, message, parameter):
+async def mat_trader_display(_client, message, _parameter):
     await message.channel.send(':scales: __**Material Traders Near HQ**__:\n'
                                ':floppy_disk: **Encoded**: Quimper Ring, LHS 21'
                                '\n:gear: **Manufactured**: Barba Ring, '
@@ -12,7 +12,7 @@ async def mat_trader_display(client, message, parameter):
 
 
 # active role tagging command
-async def active_role_set(client, message, parameter):
+async def active_role_set(_client, message, _parameter):
     role = discord.utils.get(message.guild.roles, name="SIRA")
     if role not in message.author.roles:
         await message.channel.send(f'The {message.content[1:]} role is for SIRA'
@@ -37,7 +37,7 @@ async def active_role_set(client, message, parameter):
 
 
 # powerplay role tagging command
-async def lyr_role_set(client, message, parameter):
+async def lyr_role_set(_client, message, _parameter):
     role = discord.utils.get(message.guild.roles, name="SIRA")
     if role not in message.author.roles:
         await message.channel.send('The LYR role is for SIRA members only.')

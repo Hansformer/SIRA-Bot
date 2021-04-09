@@ -17,8 +17,6 @@ dodgy:
 pylint:
   enable:
     - useless-suppression
-  disable:
-    - unused-argument
   options:
     max-line-length: 120
 
