@@ -46,9 +46,7 @@ class SIRABot(discord.Client):
         if config.DEBUG:
             self.loop.set_debug(True)
         for signame in ('SIGINT', 'SIGTERM'):
-            self.loop.add_signal_handler(getattr(signal, signame),
-                                         lambda: asyncio.ensure_future(
-                                             self.kill(signame)))
+            self.loop.add_signal_handler(getattr(signal, signame), asyncio.ensure_future(self.kill(signame)))
         here = os.path.abspath(os.path.dirname(__file__))
         get_path = partial(os.path.join, here)
         plugin_base = PluginBase(package='sirabot.plugins')
