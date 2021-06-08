@@ -34,6 +34,7 @@ logger.addHandler(ch)
 
 intents = discord.Intents.default()
 intents.members = True
+intents.reactions = True
 
 
 # bot class and main functions
