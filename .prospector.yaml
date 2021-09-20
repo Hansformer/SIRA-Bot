@@ -2,12 +2,9 @@ output-format: pylint
 strictness: veryhigh
 
 ignore-paths:
-  - .mypy_cache
   - venv
   - __pycache__
-
-mypy:
-  run: false
+  - plugins
 
 bandit:
   run: true

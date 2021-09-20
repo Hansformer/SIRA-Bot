@@ -1,5 +1,5 @@
-discord.py==1.7.3
+hikari==2.0.0.dev102
+hikari-tanjun==2.0.0a4
 pendulum==2.1.2
-aiohttp>=3.6.0,<3.8.0
-pluginbase==1.0.1
+aiohttp==3.7.4.post0
 aiofiles==0.7.0

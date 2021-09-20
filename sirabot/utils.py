@@ -1,22 +1,8 @@
-import logging
-import pendulum
-import discord.utils
-
-from config import TIME_ZONE, TIME_FORMAT, ADMIN_ROLE
-
-logger = logging.getLogger('sirabot')
+import aiohttp
 
 
-# timestamp formatting for console/terminal
-def get_time():
-    zone = pendulum.timezone(TIME_ZONE)
-    stamp = pendulum.now(zone).strftime(TIME_FORMAT)
-    return stamp
-
-
-def is_admin(func):
-    async def ret_func(client, message, parameter):
-        if discord.utils.get(message.author.roles, name=ADMIN_ROLE) is not None:
-            return await func(client, message, parameter)
-        logger.debug('Permission denied: %s Message: %s', message.author.id, message.content)
-    return ret_func
+async def fetch(url: str) -> dict:
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            api = await resp.json()
+            return api

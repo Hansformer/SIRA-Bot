@@ -1,5 +1,4 @@
-from discord import File
-
+# TODO: This seems dumb, why are we not just hosting the images and linking them?
 
 # flag command
 async def flag_showimg(_client, message, _parameter):
