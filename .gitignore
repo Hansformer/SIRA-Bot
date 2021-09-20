@@ -1,6 +1,6 @@
 *.swp
 __pycache__
-config.py
+*config.py*
 !config.py.example
 .idea/
 venv/

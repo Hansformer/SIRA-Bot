@@ -4,7 +4,6 @@ strictness: veryhigh
 ignore-paths:
   - venv
   - __pycache__
-  - plugins
 
 bandit:
   run: true
