@@ -21,21 +21,12 @@ my_intents = (
 )
 
 logger = logging.getLogger('sirabot')
-logger.setLevel(logging.DEBUG)
-
-ch = logging.StreamHandler()
+logger.setLevel(logging.INFO)
 
 if config.DEBUG:
     logging.getLogger('asyncio').setLevel(logging.DEBUG)
     warnings.simplefilter('default')
-    ch.setLevel(logging.DEBUG)
-else:
-    ch.setLevel(logging.INFO)
-
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:'
-                              ' %(message)s')
-ch.setFormatter(formatter)
-logger.addHandler(ch)
+    logger.setLevel(logging.DEBUG)
 
 logger.info('Initializing SIRA Bot...')
 bot = hikari.GatewayBot(config.TOKEN, intents=my_intents)
