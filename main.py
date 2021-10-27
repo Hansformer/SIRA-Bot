@@ -22,7 +22,6 @@ my_intents = (
 logging.info('Initializing SIRA Bot...')
 bot = hikari.GatewayBot(config.TOKEN, intents=my_intents)
 client = tanjun.Client.from_gateway_bot(bot, set_global_commands=Snowflake(config.GUILD_ID))
-client.add_prefix('!')
 client.load_modules(*Path('modules').glob('*.py'))
 
 

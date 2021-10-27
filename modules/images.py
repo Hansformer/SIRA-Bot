@@ -27,36 +27,24 @@ async def images(ctx: tanjun.abc.Context, image: str) -> None:
     # TODO: This seems dumb, why are we not just hosting the images and linking them?
     # SlashContext has no attachment property so we have to edit the response to add one
     await ctx.respond('One spicy image coming right up!')
-    if image == 'flag':
-        await ctx.edit_initial_response(attachment='images/flag_of_space_ireland.png')
-    elif image == 'battleflag':
-        await ctx.edit_initial_response(attachment='images/battleflag.png')
-    elif image == 'logo':
-        await ctx.edit_initial_response(attachment='images/sira_logo.png')
-    elif image == 'bhadaba':
-        await ctx.edit_initial_response(attachment='images/images/Bhadaba.jpg')
-    elif image == 'asp':
-        await ctx.edit_initial_response(attachment='images/ASP.png')
-    elif image == 'landmine':
-        await ctx.edit_initial_response(attachment='images/landmines.jpg')
-    elif image == 'skimmer':
-        await ctx.edit_initial_response(attachment='images/what_is_a_skimmer.png')
-    elif image == 'staysafe':
-        await ctx.edit_initial_response(attachment='images/stay_safe_everyone.jpg')
-    elif image == 'conquest':
-        await ctx.edit_initial_response(attachment='images/achievement_meme.png')
-    elif image == 'aisling':
-        await ctx.edit_initial_response(attachment='images/aisling.jpg')
-    elif image == 'biowaste':
-        await ctx.edit_initial_response(attachment='images/brabowaste.png')
-    elif image == 'parnut':
-        await ctx.edit_initial_response(attachment='images/parnut.png')
-    elif image == 'gymboss':
-        await ctx.edit_initial_response(attachment='images/gym_boss.png')
-    elif image == 'sogood':
-        await ctx.edit_initial_response(attachment='images/so_good.png')
-    elif image == 'believable':
-        await ctx.edit_initial_response(attachment='images/believable.jpg')
+    image_paths = {
+        'flag': 'images/flag_of_space_ireland.png',
+        'battleflag': 'images/battleflag.png',
+        'logo': 'images/sira_logo.png',
+        'bhadaba': 'images/images/Bhadaba.jpg',
+        'asp': 'images/ASP.png',
+        'landmine': 'images/landmines.jpg',
+        'skimmer': 'images/what_is_a_skimmer.png',
+        'staysafe': 'images/stay_safe_everyone.jpg',
+        'conquest': 'images/achievement_meme.png',
+        'aisling': 'images/aisling.jpg',
+        'biowaste': 'images/brabowaste.png',
+        'parnut': 'images/parnut.png',
+        'gymboss': 'images/gym_boss.png',
+        'sogood': 'images/so_good.png',
+        'believable': 'images/believable.jpg'
+    }
+    await ctx.edit_initial_response(attachment=image_paths[image])
 
 
 @tanjun.as_loader
