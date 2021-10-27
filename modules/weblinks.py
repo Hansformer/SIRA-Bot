@@ -5,16 +5,16 @@ component = tanjun.Component()
 
 @component.with_slash_command
 @tanjun.with_str_slash_option('resource', 'The resource you wan to fetch',
-                              choices=[
-                                  ('SIRA Website', 'website'),
-                                  ('SIRA Lore/History', 'lore'),
-                                  ('Inara Squadron Page', 'inara'),
-                                  ('Bot help', 'help'),
-                                  ('Space IRA', 'spaceira'),
-                                  ('Territory Reference', 'territory'),
-                                  ('Mining Reference', 'mining'),
-                                  ('BGS Information', 'bgs')
-                              ])
+                              choices={
+                                  'SIRA Website': 'website',
+                                  'SIRA Lore/History': 'lore',
+                                  'Inara Squadron Page': 'inara',
+                                  'Bot help': 'help',
+                                  'Space IRA': 'spaceira',
+                                  'Territory Reference': 'territory',
+                                  'Mining Reference': 'mining',
+                                  'BGS Information': 'bgs'
+                              })
 @tanjun.as_slash_command('link', "Fetch a link to one of SIRA's resources.")
 async def weblinks(ctx: tanjun.abc.Context, resource: str) -> None:
     msg = None
