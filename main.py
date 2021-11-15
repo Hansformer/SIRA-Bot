@@ -35,9 +35,8 @@ client.load_modules(*Path('modules').glob('*.py'))
 
 
 @bot.listen()
-async def on_stopping(event: hikari.StoppingEvent) -> None:
-    guild = await event.app.rest.fetch_guild(config.GUILD_ID)
-    await guild.get_channel(config.BOT_CHANNEL).send('SIRA Bot signing off. <:o7:365926799613624330>')
+async def on_stopping(_: hikari.StoppingEvent) -> None:
+    await bot.rest.create_message(config.BOT_CHANNEL, 'SIRA Bot signing off. <:o7:365926799613624330>')
 
 
 @bot.listen()
@@ -50,15 +49,13 @@ async def on_shard_ready(event: hikari.ShardReadyEvent) -> None:
     logger.info('Connected to Discord')
     logger.info('Username: %s', event.my_user.username)
     logger.info('ID: %s', event.my_user.id)
-    guild = await event.app.rest.fetch_guild(config.GUILD_ID)
-    await guild.get_channel(config.BOT_CHANNEL).send('SIRA Bot reporting for duty. '
-                                                     '<:o7:365926799613624330>')
+    await bot.rest.create_message(config.BOT_CHANNEL, 'SIRA Bot reporting for duty. <:o7:365926799613624330>')
 
 
 @bot.listen()
 async def on_member_create(event: hikari.MemberCreateEvent) -> None:
     logger.info('User joined - %s', event.user.username)
-    chan = event.get_guild().get_channel(config.WELCOME_CHANNEL)
+    chan = bot.cache.get_guild_channel(config.WELCOME_CHANNEL)
     await chan.send(f'Welcome {event.user.mention}.'
                     ' <:vision_intensifies:332951986645499904>\n'
                     'If you have any issues, please tag an '
@@ -71,8 +68,8 @@ async def on_member_create(event: hikari.MemberCreateEvent) -> None:
 @bot.listen()
 async def on_member_delete(event: hikari.MemberDeleteEvent) -> None:
     logger.info('User left - %s', event.user.username)
-    await event.get_guild().get_channel(config.ADMIN_CHANNEL).send(f'{event.user.mention} ({event.user.username}) '
-                                                                   'has quit. <:umaru_cry:319973822012981248>')
+    await bot.rest.create_message(config.ADMIN_CHANNEL, f'{event.user.mention} ({event.user.username}) has quit.'
+                                                        ' <:umaru_cry:319973822012981248>')
 
 
 @bot.listen()
