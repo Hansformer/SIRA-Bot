@@ -6,11 +6,6 @@ from sirabot.utils import fetch
 component = tanjun.Component()
 
 
-ALLY_NAMES = ['Iridium Wing', 'CROSS Corp', 'Pan Galactic Mining Corp.',
-              'Sirius Special Forces', 'Wrecking Crew', 'Aseveljet']
-ENEMY_NAMES = ['EXO', 'The Fatherhood']
-
-
 @component.with_slash_command
 @tanjun.with_str_slash_option('system', 'The system name')
 @tanjun.as_slash_command('sysinf', 'System info for a given system.')
@@ -31,18 +26,11 @@ async def system_inf(ctx: tanjun.abc.Context, system: str) -> None:
 
 
 async def process_faction_inf(api: dict, faction: dict) -> str:
-    sira_name = 'SIRA Incorporated'
     text = f"{':crown: ' if api['controllingFaction']['id'] == faction['id'] else ''}**{faction['name']}**"
 
     if faction['isPlayer']:
-        if faction['name'] == sira_name:
-            text += ' <:space_ireland:309204831548211201> '
-        elif faction['name'] in ALLY_NAMES:
-            text += ' :green_heart: '
-        elif faction['name'] in ENEMY_NAMES:
-            text += ' :skull: '
-        else:
-            text += ' :joystick: '
+        text += await get_player_faction_indicator(faction)
+
     text += f""": {faction['influence']:.1%}{f" ({faction['state']})" if faction['state'] != 'None' else ''}\n"""
 
     if faction['pendingStates']:
@@ -76,6 +64,24 @@ async def process_faction_inf(api: dict, faction: dict) -> str:
             '---\n'
 
     return text
+
+
+async def get_player_faction_indicator(faction):
+    sira_name = 'SIRA Incorporated'
+    ally_names = ['Iridium Wing', 'CROSS Corp', 'Pan Galactic Mining Corp.',
+                  'Sirius Special Forces', 'Wrecking Crew', 'Aseveljet']
+    enemy_names = ['EXO', 'The Fatherhood']
+
+    if faction['name'] == sira_name:
+        indicator = ' <:space_ireland:309204831548211201> '
+    elif faction['name'] in ally_names:
+        indicator = ' :green_heart: '
+    elif faction['name'] in enemy_names:
+        indicator = ' :skull: '
+    else:
+        indicator = ' :joystick: '
+
+    return indicator
 
 
 @component.with_slash_command
