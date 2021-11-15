@@ -5,23 +5,23 @@ component = tanjun.Component()
 
 @component.with_slash_command
 @tanjun.with_str_slash_option('image', 'The image you want to see',
-                              choices=[
-                                  ('SIRA Flag', 'flag'),
-                                  ('SIRA Battleflag', 'battleflag'),
-                                  ('SIRA Logo', 'logo'),
-                                  ('Bhadaba!', 'bhadaba'),
-                                  ('>ASP', 'asp'),
-                                  ('Landmine', 'landmine'),
-                                  ('What is a skimmer?', 'skimmer'),
-                                  ('Stay safe everyone', 'staysafe'),
-                                  ('Conquest', 'conquest'),
-                                  ('Aisling', 'aisling'),
-                                  ('Biowaste', 'biowaste'),
-                                  ('Parnut', 'parnut'),
-                                  ('GymBoss', 'gymboss'),
-                                  ('So Good', 'sogood'),
-                                  ('Believable', 'believable'),
-                              ])
+                              choices={
+                                  'SIRA Flag': 'flag',
+                                  'SIRA Battleflag': 'battleflag',
+                                  'SIRA Logo': 'logo',
+                                  'Bhadaba!': 'bhadaba',
+                                  '>ASP': 'asp',
+                                  'Landmine': 'landmine',
+                                  'What is a skimmer?': 'skimmer',
+                                  'Stay safe everyone': 'staysafe',
+                                  'Conquest': 'conquest',
+                                  'Aisling': 'aisling',
+                                  'Biowaste': 'biowaste',
+                                  'Parnut': 'parnut',
+                                  'GymBoss': 'gymboss',
+                                  'So Good': 'sogood',
+                                  'Believable': 'believable',
+                              })
 @tanjun.as_slash_command('image', "Fetch some of SIRA's finest art.")
 async def images(ctx: tanjun.abc.Context, image: str) -> None:
     # TODO: This seems dumb, why are we not just hosting the images and linking them?
