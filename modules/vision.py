@@ -14,6 +14,4 @@ async def vision(ctx: tanjun.abc.Context) -> None:
     await ctx.respond("I have been V I S I O N'd. <:vision_intensifies:332951986645499904>")
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

@@ -22,6 +22,4 @@ async def server_status(ctx: tanjun.abc.Context) -> None:
     await ctx.respond(msg)
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

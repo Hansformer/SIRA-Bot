@@ -25,6 +25,4 @@ async def active_role_set(ctx: tanjun.abc.Context) -> None:
         await ctx.respond('You have been added to the Active Roster.')
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

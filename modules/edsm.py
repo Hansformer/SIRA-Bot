@@ -104,6 +104,4 @@ async def traffic_report(ctx: tanjun.abc.Context, system: str) -> None:
         await ctx.respond("I can't find that, senpai.")
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

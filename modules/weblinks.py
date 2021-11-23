@@ -42,6 +42,4 @@ async def weblinks(ctx: tanjun.abc.Context, resource: str) -> None:
         await ctx.respond(msg)
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

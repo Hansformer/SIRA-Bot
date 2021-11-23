@@ -47,6 +47,4 @@ async def images(ctx: tanjun.abc.Context, image: str) -> None:
     await ctx.edit_initial_response(attachment=image_paths[image])
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

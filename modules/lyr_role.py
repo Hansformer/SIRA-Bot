@@ -20,6 +20,4 @@ async def lyr_role_set(ctx: tanjun.abc.Context) -> None:
         await ctx.respond('You have been added to the LYR roster.')
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

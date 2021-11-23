@@ -17,6 +17,4 @@ async def ping(ctx: tanjun.abc.Context) -> None:
     await ctx.edit_last_response(f'PONG\n - REST: {time_taken:.0f}ms\n - Gateway: {heartbeat_latency:.0f}ms')
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

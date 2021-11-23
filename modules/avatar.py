@@ -15,6 +15,4 @@ async def avatar(ctx: tanjun.abc.Context) -> None:
     await ctx.rest.edit_my_user(avatar=contents)
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()

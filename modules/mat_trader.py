@@ -12,6 +12,4 @@ async def mat_trader_display(ctx: tanjun.abc.Context) -> None:
                       ':full_moon: **Raw Materials**: Wedge Hangar, LFT 300')
 
 
-@tanjun.as_loader
-def load_component(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+loader = component.make_loader()
