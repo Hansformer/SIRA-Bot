@@ -17,6 +17,6 @@ pylint:
   options:
     max-line-length: 120
 
-pep8:
+pycodestyle:
   options:
     max-line-length: 120
