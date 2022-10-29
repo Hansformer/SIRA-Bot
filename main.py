@@ -84,7 +84,7 @@ async def process_reactions(event: hikari.GuildMessageCreateEvent) -> None:
          ':space_ireland:309204831548211201',
          r'[*|_]bombs u[*|_]': '\U0001F4A3'}
 
-    reactions = {f'{await event.shard.get_user_id()}>': ':anime_smug:319973746825756683'}
+    reactions = {f'{event.shard.get_user_id()}>': ':anime_smug:319973746825756683'}
 
     for regex, reaction in regex_reactions.items():
         if re.search(regex, event.content, re.I):
