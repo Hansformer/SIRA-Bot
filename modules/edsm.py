@@ -31,7 +31,13 @@ async def process_faction_inf(api: dict, faction: dict) -> str:
     if faction['isPlayer']:
         text += await get_player_faction_indicator(faction)
 
-    text += f""": {faction['influence']:.1%}{f" ({faction['state']})" if faction['state'] != 'None' else ''}\n"""
+    text += f": {faction['influence']:.1%}"
+    if faction['activeStates']:
+        states = []
+        for state in faction['activeStates']:
+            states.append(state['state'])
+        text += f" ({', '.join(states)})"
+    text += '\n'
 
     if faction['pendingStates']:
         text += ':fast_forward: __Pending__:'
