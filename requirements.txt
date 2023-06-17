@@ -1,5 +1,5 @@
-hikari==2.0.0.dev117
-hikari-tanjun==2.12.0
+hikari==2.0.0.dev120
+hikari-tanjun==2.15.0
 pendulum==2.1.2
 aiohttp~=3.8
 aiofiles==23.1.0

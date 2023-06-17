@@ -12,7 +12,7 @@ Turn back now.
 - `/active` - *SIRA-only command to toggle active/inactive tag*
 - `/lyr` - *SIRA-only command to toggle LYR tag*
 - `/mattrade` - *lists the material traders near LP 355-65*
-- `/link x` - *links to various web destinations, replaces the old individual !website etc commands*
+- `/link x` - *links to various web destinations, replaces the old individual !website etc. commands*
 
 ### EDSM Integration
 

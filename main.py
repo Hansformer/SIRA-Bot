@@ -89,13 +89,13 @@ async def process_reactions(event: hikari.GuildMessageCreateEvent) -> None:
     for regex, reaction in regex_reactions.items():
         if re.search(regex, event.content, re.I):
             await event.message.add_reaction(reaction)
+            if reaction == '\U0001F4A3':
+                await event.message.respond('Space Ireland will be free! '
+                                            '<:space_ireland:309204831548211201>')
 
     for trigger, reaction in reactions.items():
         if trigger in event.content:
             await event.message.add_reaction(reaction)
-            if reaction == '\U0001F4A3':
-                await event.message.respond('Space Ireland will be free! '
-                                            '<:space_ireland:309204831548211201>')
 
 #   # soon
 #   if re.search(r'\bs\s?p\s?a\s?c\s?e\s*l\s?e\s?g\s?s\b',
