@@ -17,7 +17,8 @@ if os.name != 'nt':
 
 my_intents = (
     Intents.ALL_UNPRIVILEGED |
-    Intents.GUILD_MEMBERS
+    Intents.GUILD_MEMBERS |
+    Intents.MESSAGE_CONTENT
 )
 
 logger = logging.getLogger('sirabot')
