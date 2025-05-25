@@ -1,1 +1,1 @@
-prospector[with_bandit]==1.12.1
+prospector[with_bandit]==1.17.1
