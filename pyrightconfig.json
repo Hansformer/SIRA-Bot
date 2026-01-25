@@ -1,5 +1,0 @@
-{
-  "include": ["init.py", "modules", "sirabot"],
-  "exclude": ["**/plugins"],
-  "python.analysis.useLibraryCodeForTypes": true
-}

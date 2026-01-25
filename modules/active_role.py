@@ -4,11 +4,11 @@ component = tanjun.Component()
 
 
 @component.with_slash_command
-@tanjun.as_slash_command('active', 'Toggle your Active Roster role.')
+@tanjun.as_slash_command("active", "Toggle your Active Roster role.")
 async def active_role_set(ctx: tanjun.abc.Context) -> None:
     role = 424537981731471361
     if role not in ctx.member.role_ids:
-        await ctx.respond('The Active Roster is for SIRA members only.')
+        await ctx.respond("The Active Roster is for SIRA members only.")
         return
 
     active_role = 217630454394650634
@@ -17,12 +17,12 @@ async def active_role_set(ctx: tanjun.abc.Context) -> None:
     if active_role in ctx.member.role_ids:
         await ctx.member.remove_role(active_role)
         await ctx.member.add_role(inactive_role)
-        await ctx.respond('You have been removed from the Active Roster.')
+        await ctx.respond("You have been removed from the Active Roster.")
     else:
         await ctx.member.add_role(active_role)
         if inactive_role in ctx.member.role_ids:
             await ctx.member.remove_role(inactive_role)
-        await ctx.respond('You have been added to the Active Roster.')
+        await ctx.respond("You have been added to the Active Roster.")
 
 
 loader = component.make_loader()
